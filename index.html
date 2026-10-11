@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>韓国語学習ソフト チェミイッソ！</title>
+  <style>
+    :root {
+      --primary: #ff4d88;
+      --primary-light: #fff0f5;
+      --accent: #6c5ce7;
+      --bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text: #2d3436;
+      --text-sub: #636e72;
+      --success: #00b894;
+      --danger: #d63031;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    header {
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    header p {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+    }
+
+    .tab-bar {
+      display: flex;
+      width: 100%;
+      max-width: 600px;
+      background: #e9ecef;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 16px;
+      gap: 4px;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 8px 4px;
+      border: none;
+      background: none;
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: var(--text-sub);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    .tab-button.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+
+    .app-card {
+      width: 100%;
+      max-width: 600px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      padding: 20px;
+      display: none;
+    }
+
+    .app-card.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .btn {
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #edf2f7;
+      color: var(--text);
+    }
+
+    .video-viewport {
+      width: 100%;
+      height: 220px;
+      border-radius: 14px;
+      background: #2d3436;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      margin-bottom: 16px;
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
+    }
+
+    .character-avatar {
+      font-size: 4.5rem;
+      margin-bottom: 8px;
+      transition: transform 0.15s ease;
+      display: inline-block;
+    }
+
+    .character-avatar.speaking {
+      animation: speakingBounce 0.3s infinite alternate;
+    }
+
+    @keyframes speakingBounce {
+      0% { transform: scale(1) translateY(0); }
+      100% { transform: scale(1.1) translateY(-6px); }
+    }
+
+    .video-telop {
+      position: absolute;
+      bottom: 16px;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 6px 16px;
+      border-radius: 8px;
+      text-align: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .video-telop .hangul {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ffeb3b;
+    }
+
+    .video-telop .meaning {
+      font-size: 0.85rem;
+      color: #ffffff;
+      margin-top: 2px;
+    }
+
+    .step-panel {
+      display: none;
+    }
+
+    .step-panel.active {
+      display: block;
+    }
+
+    .repeat-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .repeat-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #dee2e6;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .repeat-dot.active {
+      background: var(--primary);
+      transform: scale(1.2);
+    }
+
+    .pronounce-card {
+      background: var(--primary-light);
+      border: 1px dashed var(--primary);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 12px 0;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .result-status {
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: bold;
+      margin: 12px 0;
+      min-height: 28px;
+    }
+
+    .two-shot-frame {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #fce4ec, #e8eaf6);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      position: relative;
+      margin-bottom: 16px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .character-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: transform 0.2s;
+    }
+
+    .character-box.speaking {
+      transform: scale(1.15);
+    }
+
+    .character-box .icon {
+      font-size: 3rem;
+    }
+
+    .character-box .name {
+      font-size: 0.8rem;
+      font-weight: bold;
+      background: rgba(255,255,255,0.85);
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    .dialogue-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #f8f9fa;
+      margin-bottom: 10px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .dialogue-item.speaker-b {
+      border-left-color: var(--primary);
+    }
+
+    .dialogue-content {
+      flex: 1;
+    }
+
+    .dialogue-content .ko {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--text);
+    }
+
+    .dialogue-content .ja {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      margin-top: 2px;
+    }
+
+    .dialogue-content .grammar-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      background: #edf2f7;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-top: 4px;
+      color: #4a5568;
+    }
+
+    .kanji-group-container {
+      margin-top: 20px;
+    }
+
+    .kanji-card {
+      background: #ffffff;
+      border: 1px solid #edf2f7;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .kanji-card h4 {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kanji-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .kanji-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      padding: 4px 6px;
+      border-radius: 6px;
+    }
+
+    .kanji-list li:hover {
+      background: #f1f3f5;
+    }
+
+    .sound-btn {
+      background: #ffffff;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      padding: 3px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+
+    .sound-btn:hover {
+      border-color: var(--accent);
+      background-color: var(--primary-light);
+    }
+
+    .sound-btn.accent-btn {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .sound-btn.danger-btn {
+      color: var(--danger);
+      font-weight: bold;
+    }
+
+    .telop-column {
+      background: #2d3436;
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 16px;
+    }
+
+    .telop-column .label {
+      font-size: 0.75rem;
+      color: #ffd166;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+
+    .telop-header-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .telop-column .screen-text {
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: #06d6a0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255,255,255,0.08);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .telop-column .screen-text:hover {
+      background: rgba(255,255,255,0.18);
+    }
+
+    .telop-column .screen-translation {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .telop-column p {
+      font-size: 0.8rem;
+      color: #dfe6e9;
+      line-height: 1.5;
+    }
+
+    .level-block {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .sound-change-tag {
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .sound-change-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>チェミイッソ！ <span>재미있어!</span></h1>
+    <p>1,2,3 IVE EP.1（19:15〜19:30 練習室ミーティング編）</p>
+  </header>
+
+  <div class="tab-bar">
+    <button class="tab-button active" onclick="switchLevel(1)">Lv 1. 実在セリフ発音</button>
+    <button class="tab-button" onclick="switchLevel(2)">Lv 2. 本編対話・漢字語</button>
+    <button class="tab-button" onclick="switchLevel(3)">Lv 3. 音声変化・テロップ</button>
+    <button class="tab-button" onclick="switchLevel(4)">Lv 4. 公式動画シンクロ</button>
+  </div>
+
+  <!-- LEVEL 1 -->
+  <div id="level-1" class="app-card active">
+    <div class="section-title">
+      <span>レベル 1: 動画の実在セリフ特訓</span>
+      <span class="badge" id="phrase-progress">問 1 / 4</span>
+    </div>
+
+    <div class="video-viewport">
+      <div id="character-face" class="character-avatar">👧</div>
+      <div class="video-telop">
+        <div id="telop-hangul" class="hangul">맞아!</div>
+        <div id="telop-meaning" class="meaning">そうそう！（19:25 ユジン）</div>
+      </div>
+    </div>
+
+    <!-- Step 1: 音声リピート -->
+    <div id="step-1-panel" class="step-panel active">
+      <div class="repeat-indicator">
+        <div class="repeat-dot" id="dot-1"></div>
+        <div class="repeat-dot" id="dot-2"></div>
+        <div class="repeat-dot" id="dot-3"></div>
+      </div>
+      <button id="btn-step1-play" class="btn btn-primary" style="width: 100%;" onclick="startStep1Repeat()">
+        ▶ お手本音声を再生（3回リピート）
+      </button>
+      <button class="btn btn-secondary" style="width: 100%; margin-top: 8px;" onclick="goToStep2()">
+        次へ：発音に挑戦する ➔
+      </button>
+    </div>
+
+    <!-- Step 2: 発音判定 -->
+    <div id="step-2-panel" class="step-panel">
+      <div class="pronounce-card" id="point-box">
+        💡 <b>発音の急所</b>: 最初の「ㅁ」は唇をしっかり閉じてスタート。「자」は息を吐きすぎず軽く発音。
+      </div>
+
+      <div class="result-status" id="eval-status">マイクボタンを押して発音してください</div>
+
+      <div style="display: flex; gap: 8px;">
+        <button id="mic-btn" class="btn btn-primary" style="flex: 2;" onclick="startSpeechRecognition()">
+          🎤 発音チェック
+        </button>
+      </div>
+
+      <div id="retry-actions" style="display: none; margin-top: 12px; gap: 8px; flex-direction: column;">
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-secondary" style="flex: 1;" onclick="goToStep1()">
+            ◀ お手本を見直す
+          </button>
+          <button class="btn btn-primary" style="flex: 1;" onclick="startSpeechRecognition()">
+            もう一度言う
+          </button>
+        </div>
+      </div>
+
+      <button id="next-phrase-btn" class="btn btn-primary" style="width: 100%; margin-top: 12px; display: none; background: var(--success);" onclick="nextPhrase()">
+        次のフレーズへ進む 🎉
+      </button>
+      <!-- 自由に移動できるボタン（常時表示） -->
+      <div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 16px; border-top: 1px solid #edf2f7; padding-top: 12px;">
+        <button id="prev-btn" class="btn btn-secondary" style="flex: 1;" onclick="prevPhrase()">
+          ◀ 前のフレーズ
+        </button>
+        <button id="skip-btn" class="btn btn-secondary" style="flex: 1;" onclick="nextPhrase()">
+          次へ進む（スキップ） ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEVEL 2 -->
+  <div id="level-2" class="app-card">
+    <div class="section-title">
+      <span>レベル 2: 本編対話・漢字語</span>
+      <span class="badge">動画内100%実在</span>
+    </div>
+
+    <div class="two-shot-frame">
+      <div class="character-box" id="char-a-box">
+        <div class="icon">👧</div>
+        <div class="name">ユジン（19:19）</div>
+      </div>
+      <div style="font-weight: bold; color: var(--text-sub);">VS</div>
+      <div class="character-box" id="char-b-box">
+        <div class="icon">👱‍♀️</div>
+        <div class="name">リズ（19:30）</div>
+      </div>
+    </div>
+
+    <!-- 実在セリフ 19:19 ユジン -->
+    <div class="dialogue-item">
+      <button class="btn btn-secondary" onclick="speakSingleSentence('일단 옆줄 맞추는 거 진짜 신경 써야 해.', 'A')">🔊</button>
+      <div class="dialogue-content">
+        <div class="ko">일단 옆줄 맞추는 거 진짜 신경 써야 해.</div>
+        <div class="ja">まず横の列を合わせるの、本当に気をつけなきゃ。</div>
+        <div class="grammar-tag">-아/어야 하다（〜しなければならない）</div>
+      </div>
+    </div>
+
+    <!-- 実在セリフ 19:30 リズ -->
+    <div class="dialogue-item speaker-b">
+      <button class="btn btn-secondary" onclick="speakSingleSentence('만들면 안 돼여?', 'B')">🔊</button>
+      <div class="dialogue-content">
+        <div class="ko">만들면 안 돼여?</div>
+        <div class="ja">作っちゃダメですか？</div>
+        <div class="grammar-tag">-(으)면 안 되다（〜してはならない）</div>
+      </div>
+    </div>
+
+    <!-- 本編実在の漢字語 -->
+    <div class="kanji-group-container">
+      <div style="font-weight: bold; margin-bottom: 8px;">📚 動画内の実在漢字語</div>
+
+      <div class="kanji-card">
+        <h4>① 会話の切り出し・表現（動画内セリフ）</h4>
+        <ul class="kanji-list">
+          <li>
+            <button class="sound-btn" onclick="playSingleWordTTS('일단')">🔊 <b>일단</b></button>
+            <span style="color: var(--text-sub);">【一旦】（まずは / ひとまず）</span>
+          </li>
+          <li>
+            <button class="sound-btn" onclick="playSingleWordTTS('신경')">🔊 <b>신경</b></button>
+            <span style="color: var(--text-sub);">【神経】（신경 쓰다：気をつける・意識する）</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="kanji-card">
+        <h4>② テロップに登場する漢字語（[공지 사항]）</h4>
+        <ul class="kanji-list">
+          <li>
+            <button class="sound-btn" onclick="playSingleWordTTS('공지')">🔊 <b>공지</b></button>
+            <span style="color: var(--text-sub);">【告知】</span>
+          </li>
+          <li>
+            <button class="sound-btn" onclick="playSingleWordTTS('사항')">🔊 <b>사항</b></button>
+            <span style="color: var(--text-sub);">【事項】</span>
+          </li>
+          <li>
+            <button class="sound-btn" onclick="playSingleWordTTS('공지사항')">🔊 <b>공지사항</b></button>
+            <span style="color: var(--text-sub);">【告知事項】（お知らせ）</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 実在テロップ ① -->
+    <div class="telop-column">
+      <div class="label">💡 本編実在テロップ ①（19:19）</div>
+      <div class="telop-header-row">
+        <span class="screen-text" onclick="playSingleWordTTS('리더 공지 사항')">🔊 [리더 공지 사항 / 1. 옆줄 맞추기]</span>
+        <span class="screen-translation">訳：「リーダー告知事項 / 1. 横列合わせ」</span>
+      </div>
+      <p>ユジンが練習の改善点として真っ先に伝えた場面の公式テロップ。「옆줄（横の列）」＋「맞추기（合わせること）」。</p>
+    </div>
+  </div>
+
+  <!-- LEVEL 3 -->
+  <div id="level-3" class="app-card">
+    <div class="section-title">
+      <span>レベル 3: ネイティブのリアル音</span>
+      <span class="badge">動画の音のズレ</span>
+    </div>
+
+    <!-- 濃音化（옆줄） -->
+    <div class="level-block">
+      <div class="sound-change-tag">⚡ 濃音化（動画 19:19 ユジン）</div>
+      <div class="sound-change-row">
+        <button class="sound-btn" onclick="playSingleWordTTS('옆줄')">🔊 <b>옆줄</b></button>
+        <span style="font-weight: bold; color: var(--text-sub);">➔ 発音:</span>
+        <button class="sound-btn danger-btn" onclick="playSingleWordTTS('엽쭐')">🔊 <b>[엽쭐]</b></button>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
+        パッチム「ㅍ（代表音ㅂ）」の後ろで「ㅈ」が濃音化して「ㅉ」になります。
+      </p>
+    </div>
+
+    <!-- 口語語尾（안 돼여） -->
+    <div class="level-block">
+      <div class="sound-change-tag">⚡ 口語特有のテロップ表記（動画 19:30 リズ）</div>
+      <div class="sound-change-row">
+        <button class="sound-btn" onclick="playSingleWordTTS('안 돼요')">🔊 <b>안 돼요?</b></button>
+        <span style="font-weight: bold; color: var(--text-sub);">➔ 字幕・口調:</span>
+        <button class="sound-btn accent-btn" onclick="playSingleWordTTS('안 돼여')">🔊 <b>안 돼여?</b></button>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
+        標準語「〜요」を、甘えや親しみを込めて「〜여」と発音・字幕表記しています。
+      </p>
+    </div>
+
+    <!-- 実在テロップ ② & ③ -->
+    <div class="telop-column">
+      <div class="label">💡 本編実在テロップ ②（19:21）</div>
+      <div class="telop-header-row">
+        <span class="screen-text" onclick="playSingleWordTTS('점프할 때 가볍게')">🔊 [2. 점프할 때 가볍게]</span>
+        <span class="screen-translation">訳：「2. ジャンプするとき軽く」</span>
+      </div>
+      <p>「〜(으)ㄹ 때（〜する時）」＋「가볍게（軽く）」。</p>
+    </div>
+
+    <div class="telop-column" style="margin-top: 10px;">
+      <div class="label">💡 本編実在テロップ ③（19:27）</div>
+      <div class="telop-header-row">
+        <span class="screen-text" onclick="playSingleWordTTS('어떻게 끝내지')">🔊 [(어떻게 끝내지...) / (갑자기 목소리 작아진 이유)]</span>
+        <span class="screen-translation">訳：「どうやって終わらせよう… / 急に声が小さくなった理由」</span>
+      </div>
+      <p>ユジンが急に小声になった理由をユーモラスに説明した公式字幕です。</p>
+    </div>
+  </div>
+
+  <!-- LEVEL 4 -->
+  <div id="level-4" class="app-card">
+    <div class="section-title">
+      <span>レベル 4: 公式動画シンクロ</span>
+      <span class="badge">19:15〜 再生</span>
+    </div>
+
+    <div class="level-block" style="text-align: center; padding: 20px;">
+      <div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 8px;">🎬 1,2,3 IVE EP.1 練習室ミーティング</div>
+      <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 20px; line-height: 1.5;">
+        動画の 19:15〜19:30 を再生して、学んだセリフとテロップを答え合わせしましょう！
+      </p>
+
+      <!-- YouTube公式直行ボタン -->
+      <a 
+        href="https://www.youtube.com/watch?v=qNQvMrGf96w&t=1155s" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="btn btn-primary" 
+        style="display: inline-flex; text-decoration: none; font-size: 1rem; padding: 12px 24px;">
+        ▶ YouTube公式で19:15から再生する
+      </a>
+
+      <!-- 埋め込み枠 -->
+      <div style="margin-top: 20px; position: relative; width: 100%; padding-top: 56.25%; border-radius: 12px; overflow: hidden; background: #000;">
+        <iframe 
+          id="yt-player"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+          src="https://www.youtube.com/embed/qNQvMrGf96w?start=1155" 
+          title="1,2,3 IVE EP.1" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const phrases = [
+      {
+        hangul: "맞아",
+        meaning: "そうそう（19:25 ユジン）",
+        point: "「ㅁ」で口を閉じ、「자」は息を吐きすぎず弾むように発音。",
+        targetWord: "맞아"
+      },
+      {
+        hangul: "어떡해...",
+        meaning: "どうしよう…（19:27 ユジン）",
+        point: "「떡」の濃音「ㄸ」を詰まらせるように鋭く発音。",
+        targetWord: "어떡해"
+      },
+      {
+        hangul: "우리 파이팅 만들까?",
+        meaning: "私たちの掛け声作ろうか？（19:29 ウォニョン）",
+        point: "「들까」のパッチム「ㄹ」と濃音「ㄲ」をスムーズに繋げて発音。",
+        targetWord: "만들까"
+      },
+      {
+        hangul: "만들면 안 돼여?",
+        meaning: "作っちゃダメですか？（19:30 リズ）",
+        point: "「안」のパッチム「ㄴ」と「돼」をしっかり発音し、語尾は「여」と発音。",
+        targetWord: "안 돼"
+      }
+    ];
+
+    let currentPhraseIdx = 0;
+    let isPlayingRepeat = false;
+    let audioCtx = null;
+
+    function unlockAudioHardware() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+          audioCtx = new AudioContext();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      if (audioCtx) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        gain.gain.value = 0.0001;
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.01);
+      }
+    }
+
+    window.addEventListener('click', unlockAudioHardware, { once: true });
+    window.addEventListener('touchstart', unlockAudioHardware, { once: true });
+
+    function switchLevel(levelNum) {
+      window.speechSynthesis.cancel();
+      document.querySelectorAll('.tab-button').forEach((b, idx) => {
+        b.classList.toggle('active', idx === levelNum - 1);
+      });
+      document.querySelectorAll('.app-card').forEach((c, idx) => {
+        c.classList.toggle('active', idx === levelNum - 1);
+      });
+    }
+
+    function updateLevel1UI() {
+      const p = phrases[currentPhraseIdx];
+      document.getElementById('phrase-progress').textContent = `問 ${currentPhraseIdx + 1} / ${phrases.length}`;
+      document.getElementById('telop-hangul').textContent = p.hangul;
+      document.getElementById('telop-meaning').textContent = p.meaning;
+      document.getElementById('point-box').innerHTML = `💡 <b>発音の急所</b>: ${p.point}`;
+      document.getElementById('character-face').textContent = "👧";
+      document.getElementById('character-face').classList.remove('speaking');
+      document.getElementById('eval-status').textContent = "マイクボタンを押して発音してください";
+      document.getElementById('eval-status').style.color = "var(--text)";
+      document.getElementById('retry-actions').style.display = 'none';
+      document.getElementById('next-phrase-btn').style.display = 'none';
+      updateDots(0);
+      goToStep1();
+    }
+
+    function goToStep1() {
+      window.speechSynthesis.cancel();
+      document.getElementById('step-1-panel').classList.add('active');
+      document.getElementById('step-2-panel').classList.remove('active');
+      document.getElementById('character-face').textContent = "👧";
+      document.getElementById('character-face').classList.remove('speaking');
+      document.getElementById('retry-actions').style.display = 'none';
+      updateDots(0);
+    }
+
+    function goToStep2() {
+      window.speechSynthesis.cancel();
+      document.getElementById('step-1-panel').classList.remove('active');
+      document.getElementById('step-2-panel').classList.add('active');
+    }
+
+    function playKoreanTTS(text, pitch = 1.0, onComplete) {
+      if (!('speechSynthesis' in window)) {
+        if (onComplete) onComplete();
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      setTimeout(() => {
+        const uttr = new SpeechSynthesisUtterance(text);
+        uttr.lang = 'ko-KR';
+        uttr.rate = 0.85;
+        uttr.pitch = pitch;
+
+        let hasFinished = false;
+
+        uttr.onend = () => {
+          if (!hasFinished) {
+            hasFinished = true;
+            if (onComplete) onComplete();
+          }
+        };
+
+        uttr.onerror = () => {
+          if (!hasFinished) {
+            hasFinished = true;
+            if (onComplete) onComplete();
+          }
+        };
+
+        window.speechSynthesis.speak(uttr);
+      }, 400);
+    }
+
+    function playSingleWordTTS(word) {
+      unlockAudioHardware();
+      playKoreanTTS(word, 1.0);
+    }
+
+    function startStep1Repeat() {
+      if (isPlayingRepeat) return;
+      isPlayingRepeat = true;
+
+      unlockAudioHardware();
+
+      const btn = document.getElementById('btn-step1-play');
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+
+      const avatar = document.getElementById('character-face');
+      const p = phrases[currentPhraseIdx];
+      let currentCount = 0;
+
+      function triggerNextRound() {
+        if (currentCount < 3) {
+          currentCount++;
+          updateDots(currentCount);
+          avatar.classList.add('speaking');
+
+          playKoreanTTS(p.hangul, 1.05, () => {
+            avatar.classList.remove('speaking');
+            setTimeout(triggerNextRound, 700);
+          });
+        } else {
+          setTimeout(() => {
+            updateDots(0);
+            isPlayingRepeat = false;
+            btn.disabled = false;
+            btn.style.opacity = '1';
+          }, 500);
+        }
+      }
+
+      updateDots(0);
+      triggerNextRound();
+    }
+
+    function updateDots(activeCount) {
+      for (let i = 1; i <= 3; i++) {
+        const dot = document.getElementById(`dot-${i}`);
+        if (i <= activeCount) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      }
+    }
+
+    function speakSingleSentence(text, speaker) {
+      unlockAudioHardware();
+      const boxA = document.getElementById('char-a-box');
+      const boxB = document.getElementById('char-b-box');
+
+      boxA.classList.remove('speaking');
+      boxB.classList.remove('speaking');
+
+      const pitch = (speaker === 'B') ? 1.25 : 1.0;
+      const targetBox = (speaker === 'B') ? boxB : boxA;
+
+      targetBox.classList.add('speaking');
+
+      playKoreanTTS(text, pitch, () => {
+        targetBox.classList.remove('speaking');
+      });
+    }
+
+    function startSpeechRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert('Google Chrome等のWeb Speech API対応ブラウザをご利用ください。');
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const status = document.getElementById('eval-status');
+      status.textContent = "🎙️ 聞き取り中... 声を出してください";
+      status.style.color = "var(--primary)";
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'ko-KR';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript.trim().replace(/\s+/g, '');
+        const target = phrases[currentPhraseIdx].targetWord.replace(/\s+/g, '');
+
+        if (transcript.includes(target) || target.includes(transcript)) {
+          document.getElementById('character-face').textContent = "😆✨";
+          status.textContent = `合格！ 発音バッチリです（認識: ${transcript}）`;
+          status.style.color = "var(--success)";
+          document.getElementById('retry-actions').style.display = 'none';
+          document.getElementById('next-phrase-btn').style.display = 'block';
+        } else {
+          document.getElementById('character-face').textContent = "🥺💦";
+          status.textContent = `おしい！（認識: ${transcript}）もう一度！`;
+          status.style.color = "var(--danger)";
+          document.getElementById('retry-actions').style.display = 'flex';
+          document.getElementById('next-phrase-btn').style.display = 'none';
+        }
+      };
+
+      recognition.onerror = () => {
+        status.textContent = "音声を認識できませんでした。もう一度お試しください。";
+        status.style.color = "var(--danger)";
+        document.getElementById('retry-actions').style.display = 'flex';
+      };
+
+      recognition.start();
+    }
+
+    function nextPhrase() {
+      if (currentPhraseIdx < phrases.length - 1) {
+        currentPhraseIdx++;
+        updateLevel1UI();
+      } else {
+        alert('🎉 全問クリア！ レベル2（本編対話・漢字語編）へ進みましょう！');
+        switchLevel(2);
+      }
+    } 
+function prevPhrase() {
+      if (currentPhraseIdx > 0) {
+        currentPhraseIdx--;
+        updateLevel1UI();
+      }
+    }
+
+    updateLevel1UI();
+  </script>
+</body>
+</html>
