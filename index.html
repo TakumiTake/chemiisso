@@ -93,7 +93,7 @@
       padding: 8px 4px;
       border: none;
       background: none;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: bold;
       color: var(--text-sub);
       cursor: pointer;
@@ -504,7 +504,9 @@
       <option value="unit3">Unit 3：じゃんけん勝負＆リズを守れ編（19:45〜20:09）</option>
       <option value="unit4">Unit 4：ガウルの提案編（20:10〜20:35）</option>
       <option value="unit5">Unit 5：掛け声の演出・細部詰め編（20:36〜21:21）</option>
-      <option value="unit6" selected>Unit 6：本番実践＆即退勤ダッシュ編（21:22〜21:40）</option>
+      <option value="unit6">Unit 6：本番実践＆即退勤ダッシュ編（21:22〜21:40）</option>
+      <option value="unit7" selected>Unit 7：総復習・純粋漢字語マスター編（同音同義／同音異義）</option>
+      <option value="unit8">Unit 8：総復習・ネイティブのリアル音（発音変化）編</option>
     </select>
   </div>
 
@@ -518,7 +520,7 @@
   <!-- LEVEL 1 -->
   <div id="level-1" class="app-card active">
     <div class="section-title">
-      <span>レベル 1: 動画の実在セリフ特訓</span>
+      <span>レベル 1: 実在セリフ特訓</span>
       <span class="badge" id="phrase-progress">問 1 / 4</span>
     </div>
 
@@ -1478,7 +1480,8 @@
               <button class="sound-btn danger-btn" onclick="playSingleWordTTS('임바카면')">🔊 <b>[임바카면]</b></button>
             </div>
             <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
-              パッチム「ㄱ」と初声「ㅎ」が合体し、息を強く吐き出す [카] の激音に変化します。「임박【臨迫】」。</p>
+              パッチム「ㄱ」と初声「ㅎ」が合体し、息を強く吐き出す [카] の激音に変化します。「임박【臨迫】」。
+            </p>
           </div>
           <div class="level-block">
             <div class="sound-change-tag">⚡ 濃音化（動画 21:19 テロップ）</div>
@@ -1508,10 +1511,273 @@
             <p>EP.1 練習室ミーティングの掛け声作りコーナーがこれで終了したことを告げる公式テロップです。</p>
           </div>
         `
+      },
+      unit7: {
+        subtitle: "1,2,3 IVE EP.1（Unit 7：総復習・純粋漢字語マスター編）",
+        ytSeconds: 1155,
+        ytDesc: "全編（19:15〜21:40）を通して、テロップや会話に溢れる「純粋漢字語」をチェックしましょう！",
+        phrases: [
+          {
+            hangul: "사회생활",
+            meaning: "社会生活（Unit 4・5 公式テロップ）",
+            point: "【社会生活】。日韓共通の漢字語。舌を引かずにスムーズに発音。",
+            targetWord: "사회생활"
+          },
+          {
+            hangul: "공지사항",
+            meaning: "告知事項・お知らせ（Unit 1 ユジンテロップ）",
+            point: "【告知事項】。「사항」の「항」は息をしっかり吐いて発音。",
+            targetWord: "공지사항"
+          },
+          {
+            hangul: "조절 가능",
+            meaning: "調節可能（Unit 6 公式テロップ）",
+            point: "【調節可能】。パッチム「ㄹ」と「ㄱ」を滑らかに繋げる。",
+            targetWord: "조절 가능"
+          },
+          {
+            hangul: "퇴근",
+            meaning: "退勤・仕事上がり（Unit 5・6 全員）",
+            point: "【退勤】。二重母音「ㅚ」を滑らかに口を横に引きながら発音。",
+            targetWord: "퇴근"
+          }
+        ],
+        level2HTML: `
+          <div class="section-title">
+            <span>レベル 2: 同音同義語マスター</span>
+            <span class="badge">音も意味もほぼ同じ</span>
+          </div>
+          <div class="level-block" style="line-height: 1.6; font-size: 0.85rem; margin-bottom: 14px;">
+            💡 <b>同音同義語とは？</b><br>
+            日本語の漢字の「音読み」と、韓国語の漢字語の「発音・意味」が驚くほどそっくりな単語です。一度覚えるだけで語彙が一気に爆発します！
+          </div>
+          <div class="kanji-group-container">
+            <div class="kanji-card">
+              <h4>① 動画本編で使われた同音同義語</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('신경')">🔊 <b>신경</b></button>
+                  <span><b>【神経】</b>（シンギョン ＝ 神経 / 気を使う）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('기분')">🔊 <b>기분</b></button>
+                  <span><b>【気分】</b>（キブン ＝ 気分）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('순간')">🔊 <b>순간</b></button>
+                  <span><b>【瞬間】</b>（スンガン ＝ 瞬間）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('태도')">🔊 <b>태도</b></button>
+                  <span><b>【態度】</b>（テド ＝ 態度）</span>
+                </li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>② 日常で即通じる鉄板の同音同義語</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('약속')">🔊 <b>약속</b></button>
+                  <span><b>【約束】</b>（ヤクソク ＝ 約束）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('준비')">🔊 <b>준비</b></button>
+                  <span><b>【準備】</b>（チュンビ ＝ 準備）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('무료')">🔊 <b>무료</b></button>
+                  <span><b>【無料】</b>（ムリョ ＝ 無料）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('간단')">🔊 <b>간단</b></button>
+                  <span><b>【簡単】</b>（カンダン ＝ 簡単）</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        `,
+        level3HTML: `
+          <div class="section-title">
+            <span>レベル 3: 同音異義語マスター</span>
+            <span class="badge">同じ音・異なる漢字</span>
+          </div>
+          <div class="level-block" style="line-height: 1.6; font-size: 0.85rem; margin-bottom: 14px;">
+            ⚠️ <b>同音異義語の罠を攻略！</b><br>
+            韓国語は漢字表記を廃止したため、<b>「1つのハングル音に対して全く異なる複数の漢字」</b>が割り当てられています。動画に出てきた漢字から仕組みを解き明かします。
+          </div>
+          <div class="kanji-group-container">
+            <div class="kanji-card">
+              <h4>① 「사（サ）」の同音異義語</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('공지사항')">🔊 <b>사【事】</b></button>
+                  <span>공지사항【告知事項】、사고【事故】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('사회')">🔊 <b>사【社】</b></button>
+                  <span>사회【社会】、회사【会社】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('사망')">🔊 <b>사【死】</b></button>
+                  <span>사망【死亡】、필사【必死】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('사진')">🔊 <b>사【写】</b></button>
+                  <span>사진【写真】、묘사【描写】</span>
+                </li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>② 「가（カ）」の同音異義語</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('가능')">🔊 <b>가【可】</b></button>
+                  <span>가능【可能】、허가【許可】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('가족')">🔊 <b>가【家】</b></button>
+                  <span>가족【家族】、화가【画家】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('가수')">🔊 <b>가【歌】</b></button>
+                  <span>가수【歌手】、가사【歌詞】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('가격')">🔊 <b>가【価】</b></button>
+                  <span>가격【価格】、평가【評価】</span>
+                </li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>③ 「전（チョン）」の同音異義語</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('전')">🔊 <b>전【前】</b></button>
+                  <span>전【前】（前）、직전【直前】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('완전')">🔊 <b>전【全】</b></button>
+                  <span>완전【完全】、전국【全国】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('전화')">🔊 <b>전【電】</b></button>
+                  <span>전화【電話】、전기【電気】</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      unit8: {
+        subtitle: "1,2,3 IVE EP.1（Unit 8：総復習・発音変化マスター編）",
+        ytSeconds: 1155,
+        ytDesc: "全編（19:15〜21:40）を通して、ネイティブが自然に口にするリアルな音の変化を体感しましょう！",
+        phrases: [
+          {
+            hangul: "옆줄",
+            meaning: "横の列（[엽쭐] と濃音化 / 19:19）",
+            point: "パッチム「ㅍ（代表音ㅂ）」の後ろで「ㅈ」が濃音化し [엽쭐] に変化。",
+            targetWord: "옆줄"
+          },
+          {
+            hangul: "임박하면",
+            meaning: "差し迫ったら（[임바카면] と激音化 / 21:18）",
+            point: "パッチム「ㄱ」と「ㅎ」が合体し、息を吐く激音 [카] に変化。",
+            targetWord: "임박하면"
+          },
+          {
+            hangul: "퇴근하겠습니다",
+            meaning: "退勤します（[퇴그나겓씀니다] 連音・濃音 / 20:50）",
+            point: "「ㄴ」の連音化、パッチム「ㅆ」による濃音化 [씀]、鼻音化 [니다] の連鎖。",
+            targetWord: "퇴근하겠습니다"
+          },
+          {
+            hangul: "바깥으로",
+            meaning: "外側に（[바까트로] と連音化 / 21:15）",
+            point: "パッチム「ㅌ」が母音「으」に滑らかに繋がって [바까트로] と発音。",
+            targetWord: "바깥으로"
+          }
+        ],
+        level2HTML: `
+          <div class="section-title">
+            <span>レベル 2: 発音変化の掛け合い対話</span>
+            <span class="badge">リアルな口調で実践</span>
+          </div>
+          <div class="two-shot-frame">
+            <div class="character-box" id="char-a-box">
+              <div class="icon">👧</div>
+              <div class="name">ユジン（指示）</div>
+            </div>
+            <div style="font-weight: bold; color: var(--text-sub);">VS</div>
+            <div class="character-box" id="char-b-box">
+              <div class="icon">🏃‍♀️</div>
+              <div class="name">メンバー（実践）</div>
+            </div>
+          </div>
+          <div class="dialogue-item">
+            <button class="btn btn-secondary" onclick="speakSingleSentence('옆줄 맞추고, 시간 임박하면 바로 퇴근하겠습니다!', 'A')">🔊</button>
+            <div class="dialogue-content">
+              <div class="ko">옆줄 [엽쭐] 맞추고, 시간 임박하면 [임바카면] 바로 퇴근하겠습니다 [퇴그나겓씀니다]!</div>
+              <div class="ja">横列を合わせて、時間が迫ったらすぐ退勤します！</div>
+              <div class="grammar-tag">濃音化・激音化・連音化のトリプルコンボ</div>
+            </div>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <button class="btn btn-secondary" onclick="speakSingleSentence('알겠어, 바깥으로 나가자!', 'B')">🔊</button>
+            <div class="dialogue-content">
+              <div class="ko">알겠어 [알게써], 바깥으로 [바까트로] 나가자!</div>
+              <div class="ja">分かった、外側へ出よう！</div>
+              <div class="grammar-tag">連音化によるスムーズな脱出</div>
+            </div>
+          </div>
+          <div class="level-block" style="margin-top: 16px;">
+            <div style="font-weight: bold; margin-bottom: 6px;">🎯 発音のコツ</div>
+            <p style="font-size: 0.85rem; color: var(--text-sub); line-height: 1.5;">
+              ハングルの表記を一文字ずつ読もうとせず、舌や喉の筋肉が「最も楽に発音できる流れ」に乗ることがネイティブ発音の極意です。
+            </p>
+          </div>
+        `,
+        level3HTML: `
+          <div class="section-title">
+            <span>レベル 3: 動画内 4大発音変化総まとめ</span>
+            <span class="badge">完全攻略</span>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">① 濃音化（喉を締めて鋭く詰まる音）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('옆줄')">🔊 옆줄 ➔ <b>[엽쭐]</b></button>
+              <button class="sound-btn" onclick="playSingleWordTTS('갑자기')">🔊 갑자기 ➔ <b>[갑짜기]</b></button>
+              <button class="sound-btn" onclick="playSingleWordTTS('짧고')">🔊 짧고 ➔ <b>[짤꼬]</b></button>
+            </div>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">② 激音化（息が激しく吹き出す音）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('임박하면')">🔊 임박하면 ➔ <b>[임바카면]</b></button>
+              <button class="sound-btn" onclick="playSingleWordTTS('갇힌')">🔊 갇힌 ➔ <b>[가친]</b></button>
+              <button class="sound-btn" onclick="playSingleWordTTS('괜찮다')">🔊 괜찮다 ➔ <b>[괜찬타]</b></button>
+            </div>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">③ 連音化（パッチムが母音へ流れる音）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('알겠어')">🔊 알겠어 ➔ <b>[알게써]</b></button>
+              <button class="sound-btn" onclick="playSingleWordTTS('바깥으로')">🔊 바깥으로 ➔ <b>[바까트로]</b></button>
+              <button class="sound-btn" onclick="playSingleWordTTS('음이')">🔊 음이 ➔ <b>[으미]</b></button>
+            </div>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">④ 口語・テロップ特有表記（愛嬌や崩し）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('안 돼여')">🔊 안 돼요? ➔ <b>안 돼여?</b></button>
+              <button class="sound-btn" onclick="playSingleWordTTS('조아여')">🔊 좋아요 ➔ <b>조아여</b></button>
+            </div>
+          </div>
+        `
       }
     };
 
-    let currentUnitKey = 'unit6';
+    let currentUnitKey = 'unit7';
     let phrases = unitsData[currentUnitKey].phrases;
     let currentPhraseIdx = 0;
     let isPlayingRepeat = false;
