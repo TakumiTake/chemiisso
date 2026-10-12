@@ -500,7 +500,8 @@
   <div class="unit-selector-bar">
     <select id="unit-select" class="unit-select" onchange="switchUnit(this.value)">
       <option value="unit1">Unit 1：かけ声を作ろう!提案編（19:15〜19:30）</option>
-      <option value="unit2" selected>Unit 2：順番決めのなすり合い編（19:33〜19:44）</option>
+      <option value="unit2">Unit 2：順番決めのなすり合い編（19:33〜19:44）</option>
+      <option value="unit3" selected>Unit 3：じゃんけん勝負＆リズを守れ編（19:45〜20:09）</option>
     </select>
   </div>
 
@@ -893,10 +894,167 @@
             <p>「아기（赤ちゃん）」＋「아이브（IVE）」を合わせた公式字幕の造語「아기브（アギブ）」。掛け声を作れることにワクワクするメンバーを表しています。</p>
           </div>
         `
+      },
+      unit3: {
+        subtitle: "1,2,3 IVE EP.1（19:45〜20:09 じゃんけん勝負＆リズを守れ編）",
+        ytSeconds: 1195,
+        ytDesc: "動画の 19:45〜20:09 を再生して、学んだセリフとテロップを答え合わせしましょう！",
+        phrases: [
+          {
+            hangul: "리즈야 내 뒤로 와!",
+            meaning: "リズ、私の後ろに来て！（19:59 ウォニョン）",
+            point: "「뒤로」の二重母音「위」を滑らかに、「와」は口を大きく開いて発音。",
+            targetWord: "뒤로 와"
+          },
+          {
+            hangul: "얘 얼굴이 홍당무 됐어~",
+            meaning: "この子、顔が真っ赤になっちゃった〜（20:02 ガウル）",
+            point: "「얼굴이」は連音化して [얼구리]。「홍당무」はリズが照れている様子。",
+            targetWord: "홍당무"
+          },
+          {
+            hangul: "알겠어 알겠어",
+            meaning: "分かった 分かった（20:08 ユジン）",
+            point: "「알겠어」はパッチム「ㅆ」が連音化して [알게써] と発音。",
+            targetWord: "알겠어"
+          },
+          {
+            hangul: "잠깐만 기다려 봐여..!",
+            meaning: "ちょっと待ってください…！（20:09 リズ）",
+            point: "「잠깐」の濃音「ㄲ」と、「기다려 봐여」の愛嬌ある語尾「여」を意識。",
+            targetWord: "기다려"
+          }
+        ],
+        level2HTML: `
+          <div class="section-title">
+            <span>レベル 2: 本編対話・漢字語</span>
+            <span class="badge">動画内100%実在</span>
+          </div>
+          <div class="two-shot-frame">
+            <div class="character-box" id="char-a-box">
+              <div class="icon">🐰</div>
+              <div class="name">ウォニョン（19:59）</div>
+            </div>
+            <div style="font-weight: bold; color: var(--text-sub);">VS</div>
+            <div class="character-box" id="char-b-box">
+              <div class="icon">👱‍♀️</div>
+              <div class="name">リズ（20:09）</div>
+            </div>
+          </div>
+          <div class="dialogue-item">
+            <button class="btn btn-secondary" onclick="speakSingleSentence('리즈야 내 뒤로 와!', 'A')">🔊</button>
+            <div class="dialogue-content">
+              <div class="ko">리즈야 내 뒤로 와!</div>
+              <div class="ja">リズ、私の後ろに来て！</div>
+              <div class="grammar-tag">-(으)로（〜へ、〜に：方向の助詞）</div>
+            </div>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <button class="btn btn-secondary" onclick="speakSingleSentence('잠깐만 기다려 봐여..!', 'B')">🔊</button>
+            <div class="dialogue-content">
+              <div class="ko">잠깐만 기다려 봐여..!</div>
+              <div class="ja">ちょっと待ってください…！</div>
+              <div class="grammar-tag">-아/어 보다（〜してみる）</div>
+            </div>
+          </div>
+          <div class="kanji-group-container">
+            <div style="font-weight: bold; margin-bottom: 8px;">📚 動画内の実在漢字語</div>
+            <div class="kanji-card">
+              <h4>① 会話・セリフの実在漢字語</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('순서')">🔊 <b>순서</b></button>
+                  <span style="color: var(--text-sub);">【順序】（順番）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('순')">🔊 <b>순</b></button>
+                  <span style="color: var(--text-sub);">【順】（じゅんばん）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('서')">🔊 <b>서</b></button>
+                  <span style="color: var(--text-sub);">【序】（ついで、ならび）</span>
+                </li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>② 公式テロップの実在漢字語（[행복해 보이는 모습] / [한 번 봐줌]）</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('행복')">🔊 <b>행복</b></button>
+                  <span style="color: var(--text-sub);">【幸福】（しあわせ）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('행')">🔊 <b>행</b></button>
+                  <span style="color: var(--text-sub);">【幸】（さいわい）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('복')">🔊 <b>복</b></button>
+                  <span style="color: var(--text-sub);">【福】（ふく、めぐみ）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('번')">🔊 <b>번</b></button>
+                  <span style="color: var(--text-sub);">【番】（回、度 / 한 번 = 1回）</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="telop-column">
+            <div class="label">💡 本編実在テロップ ①（19:59）</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playSingleWordTTS('공포즈 리더')">🔊 [공포즈 리더 / 리즈야 내 뒤로 와!]</span>
+              <span class="screen-translation">訳：「コンポズリーダー / リズ、私の後ろに来て！」</span>
+            </div>
+            <p>04年生まれ（コンポズ）のウォニョンが、年下のリズを守るために背負おうとするユーモラスな公式字幕です。</p>
+          </div>
+        `,
+        level3HTML: `
+          <div class="section-title">
+            <span>レベル 3: ネイティブのリアル音</span>
+            <span class="badge">動画の音のズレ</span>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 連音化＋濃音化（動画 20:08 ユジン）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('알겠어')">🔊 <b>알겠어</b></button>
+              <span style="font-weight: bold; color: var(--text-sub);">➔ 発音:</span>
+              <button class="sound-btn danger-btn" onclick="playSingleWordTTS('알게써')">🔊 <b>[알게써]</b></button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
+              「겠」のパッチム「ㅆ」が後ろの母音「어」に連音化し、[써] と濃音で力強く発音されます。
+            </p>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 公式テロップの慣用表現（動画 20:02 ガウル）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('홍당무')">🔊 <b>홍당무</b></button>
+              <span style="font-weight: bold; color: var(--text-sub);">➔ 意味・ニュアンス:</span>
+              <button class="sound-btn accent-btn" onclick="playSingleWordTTS('얼굴이 홍당무 됐어')">🔊 <b>[真っ赤]</b></button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
+              「홍당무【紅唐武】」は直訳すると赤人参。照れたり恥ずかしがって顔が真っ赤になることを表す代表的な慣用句です。
+            </p>
+          </div>
+          <div class="telop-column">
+            <div class="label">💡 本編実在テロップ ②（20:03）</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playSingleWordTTS('오늘 중 가장 행복해 보이는 모습')">🔊 [오늘 중 가장 행복해 보이는 모습]</span>
+              <span class="screen-translation">訳：「今日一番幸せそうな姿」</span>
+            </div>
+            <p>じゃんけんで負けたリズをからかって大爆笑するユジンの様子を表した公式テロップ。「행복【幸福】」。</p>
+          </div>
+          <div class="telop-column" style="margin-top: 10px;">
+            <div class="label">💡 本編実在テロップ ③（20:08）</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playSingleWordTTS('한 번 봐줌')">🔊 [한 번 봐줌 / 알겠어 알겠어]</span>
+              <span class="screen-translation">訳：「大目に見てあげる / 分かった分かった」</span>
+            </div>
+            <p>動詞「봐주다（見逃す・大目に見る）」の名詞形「봐줌」。必死に抵抗するリズを見てユジンが一度許してあげる場面です。</p>
+          </div>
+        `
       }
     };
 
-    let currentUnitKey = 'unit2';
+    let currentUnitKey = 'unit3';
     let phrases = unitsData[currentUnitKey].phrases;
     let currentPhraseIdx = 0;
     let isPlayingRepeat = false;
