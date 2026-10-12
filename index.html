@@ -56,16 +56,19 @@
       margin-top: 2px;
     }
 
+    /* ユニットセレクターバー */
     .unit-selector-bar {
       width: 100%;
       max-width: 600px;
       margin-bottom: 12px;
+      display: flex;
+      gap: 8px;
     }
 
     .unit-select {
-      width: 100%;
+      flex: 1;
       padding: 10px 14px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: bold;
       color: var(--accent);
       background-color: #ffffff;
@@ -74,6 +77,23 @@
       box-shadow: 0 2px 6px rgba(108, 92, 231, 0.1);
       outline: none;
       cursor: pointer;
+    }
+
+    .modal-open-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 0 14px;
+      font-weight: bold;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(108, 92, 231, 0.2);
     }
 
     .tab-bar {
@@ -660,6 +680,103 @@
       color: var(--text-sub);
       margin-top: 2px;
     }
+
+    /* 目次カード・モーダル用スタイル */
+    .toc-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s;
+    }
+
+    .toc-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(108, 92, 231, 0.12);
+    }
+
+    .toc-card .toc-title {
+      font-weight: bold;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .toc-card .toc-desc {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-top: 2px;
+    }
+
+    .toc-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .toc-modal-backdrop.open {
+      display: flex;
+    }
+
+    .toc-modal {
+      background: #ffffff;
+      width: 100%;
+      max-width: 540px;
+      max-height: 85vh;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+      overflow: hidden;
+      animation: modalFadeIn 0.25s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .toc-modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #edf2f7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toc-modal-header h3 {
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .toc-modal-body {
+      padding: 16px 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-sub);
+      cursor: pointer;
+      line-height: 1;
+    }
   </style>
 </head>
 <body>
@@ -669,9 +786,10 @@
     <p id="unit-subtitle">1,2,3 IVE EP.1</p>
   </header>
 
-  <!-- ユニット切り替えドロップダウン -->
+  <!-- ユニット切り替えバー ＆ 目次ボタン -->
   <div class="unit-selector-bar">
     <select id="unit-select" class="unit-select" onchange="switchUnit(this.value)">
+      <option value="unit0" selected>Unit 0：カリキュラム目次＆学習マップ</option>
       <option value="unit1">Unit 1：かけ声を作ろう!提案編（19:15〜19:30）</option>
       <option value="unit2">Unit 2：順番決めのなすり合い編（19:33〜19:44）</option>
       <option value="unit3">Unit 3：じゃんけん勝負＆リズを守れ編（19:45〜20:09）</option>
@@ -681,8 +799,9 @@
       <option value="unit7">Unit 7：総復習・純粋漢字語マスター編（同音同義／同音異義）</option>
       <option value="unit8">Unit 8：総復習・ネイティブのリアル音（発音変化）編</option>
       <option value="unit9">Unit 9：ボスバトル編（門番を倒して即退勤せよ！）</option>
-      <option value="unit10" selected>Unit 10：全編総復習マスタークラス（全スクリプト完全網羅）</option>
+      <option value="unit10">Unit 10：全編総復習マスタークラス（全スクリプト完全網羅）</option>
     </select>
+    <button class="modal-open-btn" onclick="openTocModal()">📑 目次</button>
   </div>
 
   <div class="tab-bar" id="main-tab-bar">
@@ -697,6 +816,14 @@
     <div class="section-title">
       <span id="level-1-title">レベル 1: 実在セリフ特訓</span>
       <span class="badge" id="phrase-progress">問 1 / 4</span>
+    </div>
+
+    <!-- Unit 0 専用 Lv1 ビュー（目次ロードマップ） -->
+    <div id="unit0-lv1-view" style="display: none;">
+      <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px; line-height:1.5;">
+        『1,2,3 IVE EP.1』掛け声作り編（19:15〜21:40）の全学習カリキュラムです。カードをタップすると該当ユニットへ直接ジャンプできます！
+      </p>
+      <div id="unit0-roadmap-list"></div>
     </div>
 
     <!-- 通常ユニット用ビュー -->
@@ -815,7 +942,33 @@
     <div id="level-4-container"></div>
   </div>
 
+  <!-- 目次ポップアップモーダル -->
+  <div id="toc-modal-backdrop" class="toc-modal-backdrop" onclick="closeTocModalOnBackdrop(event)">
+    <div class="toc-modal">
+      <div class="toc-modal-header">
+        <h3>📑 カリキュラム目次一覧</h3>
+        <button class="close-btn" onclick="closeTocModal()">×</button>
+      </div>
+      <div class="toc-modal-body" id="modal-toc-list"></div>
+    </div>
+  </div>
+
   <script>
+    // カリキュラム目次データ
+    const curriculumData = [
+      { key: "unit0", title: "Unit 0：カリキュラム目次＆学習マップ", desc: "全体の構成・TOPIK 2級文法チェック・攻略方針", badge: "案内" },
+      { key: "unit1", title: "Unit 1：かけ声を作ろう!提案編（19:15〜19:30）", desc: "義務表現「-아/어야 하다」／濃音化 [엽쭐]", badge: "シーン1" },
+      { key: "unit2", title: "Unit 2：順番決めのなすり合い編（19:33〜19:44）", desc: "理由「-(으)니까」／勧誘「-자」／濃音化 [명씩]", badge: "シーン2" },
+      { key: "unit3", title: "Unit 3：じゃんけん勝負＆リズを守れ編（19:45〜20:09）", desc: "試み「-아/어 보다」／慣用句「홍당무」", badge: "シーン3" },
+      { key: "unit4", title: "Unit 4：ガウルの提案編（20:10〜20:35）", desc: "「아이팅!」／強調「너무」／濃音化 [갑짜기]", badge: "シーン4" },
+      { key: "unit5", title: "Unit 5：掛け声の演出・細部詰め編（20:36〜21:21）", desc: "音程確認「음이 뭐였져?」／方向「-(으)로」", badge: "シーン5" },
+      { key: "unit6", title: "Unit 6：本番実践＆即退勤ダッシュ編（21:22〜21:40）", desc: "退勤号令「퇴근이니까」／尊敬過去「-(으)셨습니다」", badge: "シーン6" },
+      { key: "unit7", title: "Unit 7：総復習・純粋漢字語マスター編", desc: "同音同義語（기분, 신경）＆ 同音異義語（사, 가, 전）", badge: "漢字語" },
+      { key: "unit8", title: "Unit 8：総復習・ネイティブのリアル音編", desc: "濃音化・激音化・連音化・口語愛嬌表記の4大分類", badge: "発音" },
+      { key: "unit9", title: "Unit 9：ボスバトル編（門番を倒して即退勤せよ！）", desc: "発音アタック ➔ 漢字語ガード ➔ 掛け声シンクロ脱出", badge: "BOSS" },
+      { key: "unit10", title: "Unit 10：全編総復習マスタークラス", desc: "全33行スクリプト（通常・漢字英語化・全文音読判定）", badge: "集大成" }
+    ];
+
     // 19:15〜21:40 の全編完全スクリプトデータ
     const fullScriptData = [
       { time: "19:15", speaker: "ユジン", ko: "일단 옆줄 맞추는 거 진짜 신경 써야 해.", mixed: "一旦 옆줄 맞추는 거 진짜 神經 써야 해.", ja: "まず横の列を合わせるの、本当に気をつけなきゃ。", target: "신경" },
@@ -833,7 +986,7 @@
       { time: "19:59", speaker: "ウォニョン", ko: "리즈야 내 뒤로 와!", mixed: "리즈야 내 뒤로 와!", ja: "リズ、私の後ろに来て！", target: "뒤로 와" },
       { time: "20:02", speaker: "ガウル", ko: "얘 얼굴이 홍당무 됐어~", mixed: "얘 顔이 紅唐武 됐어~", ja: "この子、顔が真っ赤になっちゃった〜", target: "홍당무" },
       { time: "20:08", speaker: "ユジン", ko: "알겠어 알겠어.", mixed: "알겠어 알겠어.", ja: "分かった 分かった。", target: "알겠어" },
-      { time: "20:09", speaker: "リズ", ko: "잠깐만 기다려 봐여..!", mixed: "暫間만 기다려 봐여..!", ja: "ちょっと待ってください…！", target: "기다려" },
+      { time: "20:09", speaker: "リズ", ko: "잠깐만 기다려 봐여..!", mixed: "暫間만 기다려 봐여..!", ja: "ちょっと待ってください…！", target: "기だ려" },
       { time: "20:10", speaker: "ガウル", ko: "아, 나 생각났어!", mixed: "아, 나 生覺났어!", ja: "あ、私思いついた！", target: "생각났어" },
       { time: "20:12", speaker: "ガウル", ko: "아이팅!", mixed: "IVETING!", ja: "アイティン！", target: "아이팅" },
       { time: "20:14", speaker: "妹たち", ko: "너무 좋아 언니, 너무 좋아!", mixed: "너무 좋아 언니, 너무 좋아!", ja: "すごくいいよオンニ、すごくいい！", target: "너무 좋아" },
@@ -855,6 +1008,12 @@
 
     // 全ユニットの教材データ
     const unitsData = {
+      unit0: {
+        subtitle: "1,2,3 IVE EP.1（Unit 0：カリキュラム目次＆学習マップ）",
+        ytSeconds: 1155,
+        ytDesc: "動画の 19:15〜21:40（全編）を通して、掛け声作りの流れ全体を把握しましょう！",
+        isUnit0: true
+      },
       unit1: {
         subtitle: "1,2,3 IVE EP.1（19:15〜19:30 かけ声を作ろう!提案編）",
         ytSeconds: 1155,
@@ -973,7 +1132,7 @@
       }
     };
 
-    let currentUnitKey = 'unit10';
+    let currentUnitKey = 'unit0';
     let phrases = unitsData[currentUnitKey].phrases || [];
     let currentPhraseIdx = 0;
     let isPlayingRepeat = false;
@@ -1029,12 +1188,18 @@
     function switchUnit(unitKey) {
       window.speechSynthesis.cancel();
       currentUnitKey = unitKey;
+      document.getElementById('unit-select').value = unitKey;
       const data = unitsData[unitKey];
       document.getElementById('unit-subtitle').textContent = data.subtitle;
 
       // タブのラベルをユニットごとに微調整
       const tabs = document.querySelectorAll('.tab-button');
-      if (data.isUnit10) {
+      if (data.isUnit0) {
+        tabs[0].textContent = "Lv 1. 全体目次";
+        tabs[1].textContent = "Lv 2. 文法達成度";
+        tabs[2].textContent = "Lv 3. 漢字＆発音表";
+        tabs[3].textContent = "Lv 4. 本編通し再生";
+      } else if (data.isUnit10) {
         tabs[0].textContent = "Lv 1. 全スクリプト";
         tabs[1].textContent = "Lv 2. 漢字・英語化";
         tabs[2].textContent = "Lv 3. 全文音読判定";
@@ -1046,7 +1211,21 @@
         tabs[3].textContent = "Lv 4. 公式動画シンクロ";
       }
 
-      if (data.isBossUnit) {
+      if (data.isUnit0) {
+        document.getElementById('normal-viewport').style.display = 'none';
+        document.getElementById('boss-viewport').style.display = 'none';
+        document.getElementById('unit10-lv1-view').style.display = 'none';
+        document.getElementById('boss-control-panel').style.display = 'none';
+        document.getElementById('step-1-panel').style.display = 'none';
+        document.getElementById('step-2-panel').style.display = 'none';
+        document.getElementById('unit0-lv1-view').style.display = 'block';
+
+        document.getElementById('phrase-progress').textContent = "11 ユニット";
+        document.getElementById('level-1-title').textContent = "レベル 1: 全体カリキュラム・目次ロードマップ";
+
+        renderUnit0();
+      } else if (data.isBossUnit) {
+        document.getElementById('unit0-lv1-view').style.display = 'none';
         document.getElementById('normal-viewport').style.display = 'none';
         document.getElementById('boss-viewport').style.display = 'block';
         document.getElementById('unit10-lv1-view').style.display = 'none';
@@ -1058,6 +1237,7 @@
 
         initBossBattle();
       } else if (data.isUnit10) {
+        document.getElementById('unit0-lv1-view').style.display = 'none';
         document.getElementById('normal-viewport').style.display = 'none';
         document.getElementById('boss-viewport').style.display = 'none';
         document.getElementById('boss-control-panel').style.display = 'none';
@@ -1069,6 +1249,7 @@
 
         renderUnit10();
       } else {
+        document.getElementById('unit0-lv1-view').style.display = 'none';
         document.getElementById('normal-viewport').style.display = 'flex';
         document.getElementById('boss-viewport').style.display = 'none';
         document.getElementById('boss-control-panel').style.display = 'none';
@@ -1120,9 +1301,107 @@
       });
     }
 
+    /* ---------------- Unit 0 専用レンダリング ---------------- */
+    function renderUnit0() {
+      // Lv 1: 目次ロードマップ一覧
+      const listContainer = document.getElementById('unit0-roadmap-list');
+      listContainer.innerHTML = '';
+      curriculumData.forEach((c) => {
+        const card = document.createElement('div');
+        card.className = 'toc-card';
+        card.onclick = () => switchUnit(c.key);
+        card.innerHTML = `
+          <div>
+            <div class="toc-title">${c.title}</div>
+            <div class="toc-desc">${c.desc}</div>
+          </div>
+          <span class="badge" style="margin-left:8px;">${c.badge}</span>
+        `;
+        listContainer.appendChild(card);
+      });
+
+      // Lv 2: TOPIK 2級文法達成チェック
+      document.getElementById('level-2-container').innerHTML = `
+        <div class="section-title">
+          <span>レベル 2: TOPIK 2級文法達成度チェック</span>
+          <span class="badge">網羅度 約30%</span>
+        </div>
+        <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px; line-height:1.5;">
+          本編で習得した重要文法の一覧です。クリックすると該当ユニットに移動します。
+        </p>
+        <div class="kanji-card">
+          <h4>必須接続語尾・表現</h4>
+          <ul class="kanji-list">
+            <li>✅ <b>-아/어야 하다</b>（〜しなければならない） ➔ <button class="sound-btn" onclick="switchUnit('unit1')">Unit 1へ</button></li>
+            <li>✅ <b>-(으)면 안 되다</b>（〜してはならない） ➔ <button class="sound-btn" onclick="switchUnit('unit1')">Unit 1へ</button></li>
+            <li>✅ <b>-(으)니까</b>（〜だから、理由） ➔ <button class="sound-btn" onclick="switchUnit('unit2')">Unit 2へ</button></li>
+            <li>✅ <b>-자</b>（〜しよう、パンマル勧誘） ➔ <button class="sound-btn" onclick="switchUnit('unit2')">Unit 2へ</button></li>
+            <li>✅ <b>-아/어 보다</b>（〜してみる、経験） ➔ <button class="sound-btn" onclick="switchUnit('unit3')">Unit 3へ</button></li>
+            <li>✅ <b>-(으)로</b>（〜へ、〜に、方向） ➔ <button class="sound-btn" onclick="switchUnit('unit5')">Unit 5へ</button></li>
+            <li>✅ <b>-겠습니다</b>（〜します、改まった意志） ➔ <button class="sound-btn" onclick="switchUnit('unit6')">Unit 6へ</button></li>
+            <li>✅ <b>-(으)셨습니다</b>（〜されました、過去尊敬） ➔ <button class="sound-btn" onclick="switchUnit('unit6')">Unit 6へ</button></li>
+          </ul>
+        </div>
+      `;
+
+      // Lv 3: 漢字語＆音声変化サマリー
+      document.getElementById('level-3-container').innerHTML = `
+        <div class="section-title">
+          <span>レベル 3: 漢字語＆発音変化マスター表</span>
+          <span class="badge">特訓総まとめ</span>
+        </div>
+        <div class="kanji-card">
+          <h4>純粋漢字語の構造（Unit 7）</h4>
+          <p style="font-size:0.85rem; color:var(--text-sub); line-height:1.5; margin-bottom:8px;">
+            同音同義語（신경【神経】、기분【気分】）と、同音異義語（사【事/社/死/写】、가【可/家/歌/価】）の整理。
+          </p>
+          <button class="btn btn-secondary" style="width:100%;" onclick="switchUnit('unit7')">Unit 7（漢字語マスター）を開く ➔</button>
+        </div>
+        <div class="kanji-card" style="margin-top:12px;">
+          <h4>4大音声変化のルール（Unit 8）</h4>
+          <p style="font-size:0.85rem; color:var(--text-sub); line-height:1.5; margin-bottom:8px;">
+            濃音化（[엽쭐]、[갑짜기]）、激音化（[임바카면]）、連音化（[알게써]、[바까트로]）、口語表記（조아여）。
+          </p>
+          <button class="btn btn-secondary" style="width:100%;" onclick="switchUnit('unit8')">Unit 8（発音変化マスター）を開く ➔</button>
+        </div>
+      `;
+    }
+
+    /* ---------------- 目次モーダル開閉ロジック ---------------- */
+    function openTocModal() {
+      const modalList = document.getElementById('modal-toc-list');
+      modalList.innerHTML = '';
+      curriculumData.forEach((c) => {
+        const card = document.createElement('div');
+        card.className = 'toc-card';
+        card.onclick = () => {
+          closeTocModal();
+          switchUnit(c.key);
+        };
+        card.innerHTML = `
+          <div>
+            <div class="toc-title">${c.title}</div>
+            <div class="toc-desc">${c.desc}</div>
+          </div>
+          <span class="badge" style="margin-left:8px;">${c.badge}</span>
+        `;
+        modalList.appendChild(card);
+      });
+      document.getElementById('toc-modal-backdrop').classList.add('open');
+    }
+
+    function closeTocModal() {
+      document.getElementById('toc-modal-backdrop').classList.remove('open');
+    }
+
+    function closeTocModalOnBackdrop(e) {
+      if (e.target.id === 'toc-modal-backdrop') {
+        closeTocModal();
+      }
+    }
+
     /* ---------------- Unit 10 専用レンダリング ---------------- */
     function renderUnit10() {
-      // Lv 1: 通常表記
       const lv1Box = document.getElementById('unit10-script-lv1');
       lv1Box.innerHTML = '';
       fullScriptData.forEach((row, idx) => {
@@ -1141,7 +1420,6 @@
         lv1Box.appendChild(item);
       });
 
-      // Lv 2: 漢字・英語化表記
       document.getElementById('level-2-container').innerHTML = `
         <div class="section-title">
           <span>レベル 2: 漢字語・英語化スクリプト</span>
@@ -1168,7 +1446,6 @@
         lv2Box.appendChild(item);
       });
 
-      // Lv 3: 音読チェック（色変化判定）
       document.getElementById('level-3-container').innerHTML = `
         <div class="section-title">
           <span>レベル 3: 全行音読チェック</span>
@@ -1198,7 +1475,6 @@
       });
     }
 
-    // 全文通し再生
     let isAutoplaying = false;
     let autoplayIdx = 0;
     function playFullScriptAutoplay() {
@@ -1229,7 +1505,6 @@
       window.speechSynthesis.cancel();
     }
 
-    // 行ごとの音読判定
     function checkRowSpeech(idx) {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) {
