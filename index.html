@@ -567,6 +567,27 @@
       border-color: var(--accent);
       background: var(--primary-light);
     }
+
+    .boss-listen-btn {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #dfe6e9;
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: var(--accent);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+      transition: background 0.2s;
+    }
+
+    .boss-listen-btn:hover {
+      background: #ffffff;
+      border-color: var(--accent);
+    }
   </style>
 </head>
 <body>
@@ -1087,12 +1108,14 @@
     const bossPhase2Questions = [
       {
         question: "【問題 1】門番の技:『사회생활』の正しい漢字表記と意味は？",
+        soundText: "사회생활",
         correct: "【社会生活】",
         options: ["【社会生活】", "【会社生活】", "【社員生計】", "【社外生活】"],
         dmg: 20
       },
       {
         question: "【問題 2】門番の技:『조절 가능』の正しい漢字表記と意味は？",
+        soundText: "조절 가능",
         correct: "【調節可能】",
         options: ["【調節可能】", "【直接可能】", "【調節機能】", "【条件可能】"],
         dmg: 20
@@ -1126,7 +1149,6 @@
       document.getElementById('unit-subtitle').textContent = data.subtitle;
 
       if (data.isBossUnit) {
-        // ボスモード初期化
         document.getElementById('normal-viewport').style.display = 'none';
         document.getElementById('boss-viewport').style.display = 'block';
         document.getElementById('step-1-panel').style.display = 'none';
@@ -1137,7 +1159,6 @@
 
         initBossBattle();
       } else {
-        // 通常ユニット初期化
         document.getElementById('normal-viewport').style.display = 'flex';
         document.getElementById('boss-viewport').style.display = 'none';
         document.getElementById('boss-control-panel').style.display = 'none';
@@ -1151,7 +1172,6 @@
         updateLevel1UI();
       }
 
-      // Lv4（動画プレイヤー）の描画更新
       const ytSec = data.ytSeconds;
       const ytMin = Math.floor(ytSec / 60);
       const ytSecRem = String(ytSec % 60).padStart(2, '0');
@@ -1229,8 +1249,13 @@
         quizBox.style.display = 'none';
 
         const item = bossPhase1Items[bossTurn];
-        box.innerHTML = `🎯 <b>ターゲット</b>: <span style="font-size:1.3rem; color:var(--primary); font-weight:bold;">${item.text}</span><br>💡 <b>弱点</b>: ${item.hint} で正しくマイクに吹き込め！`;
-        status.textContent = "「音声アタック」を押して発音してください！";
+        box.innerHTML = `
+          🎯 <b>ターゲット</b>: <span style="font-size:1.3rem; color:var(--primary); font-weight:bold;">${item.text}</span>
+          <br>
+          <button class="boss-listen-btn" onclick="playSingleWordTTS('${item.text}')">🔊 お手本を聞く</button>
+          <div style="margin-top:6px; font-size:0.85rem; color:var(--text-sub);">💡 <b>弱点</b>: ${item.hint} で正しくマイクに吹き込め！</div>
+        `;
+        status.textContent = "お手本を聞いてから「音声アタック」を押してください！";
         status.style.color = "var(--text)";
       } else if (bossPhase === 2) {
         badge.textContent = `Phase 2: 純粋漢字語ガード (${bossTurn + 1}/2)`;
@@ -1238,7 +1263,12 @@
         quizBox.style.display = 'grid';
 
         const q = bossPhase2Questions[bossTurn];
-        box.innerHTML = `🛡️ <b>${q.question}</b><br>門番の攻撃を防ぐ正しい漢字語を選べ！`;
+        box.innerHTML = `
+          🛡️ <b>${q.question}</b>
+          <br>
+          <button class="boss-listen-btn" onclick="playSingleWordTTS('${q.soundText}')">🔊 お手本を聞く</button>
+          <div style="margin-top:6px; font-size:0.85rem; color:var(--text-sub);">門番の攻撃を防ぐ正しい漢字語を選べ！</div>
+        `;
         status.textContent = "正しい選択肢をタップ！";
         status.style.color = "var(--text)";
 
@@ -1255,8 +1285,13 @@
         micBox.style.display = 'block';
         quizBox.style.display = 'none';
 
-        box.innerHTML = `🚪 <b>退勤扉の開放コード</b>: <span style="font-size:1.3rem; color:var(--primary); font-weight:bold;">둘 셋! 아이~브!</span><br>全力で叫んで門番を圧倒し、退勤せよ！`;
-        status.textContent = "「音声アタック」を押して掛け声を叫んでください！";
+        box.innerHTML = `
+          🚪 <b>退勤扉の開放コード</b>: <span style="font-size:1.3rem; color:var(--primary); font-weight:bold;">둘 셋! 아이~브!</span>
+          <br>
+          <button class="boss-listen-btn" onclick="playKoreanTTS('둘 셋! 아이브!', 1.15)">🔊 掛け声のお手本を聞く</button>
+          <div style="margin-top:6px; font-size:0.85rem; color:var(--text-sub);">全力で叫んで門番を圧倒し、退勤せよ！</div>
+        `;
+        status.textContent = "お手本を聞いて「音声アタック」を押して叫んでください！";
         status.style.color = "var(--text)";
       }
     }
