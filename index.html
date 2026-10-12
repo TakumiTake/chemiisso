@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>韓国語学習ソフト チェミイッソ！</title>
+  <title>韓国語学習ソフト チェミイッソ！ - Unit 2</title>
   <style>
     :root {
       --primary: #ff4d88;
@@ -471,7 +471,7 @@
 
   <header>
     <h1>チェミイッソ！ <span>재미있어!</span></h1>
-    <p>1,2,3 IVE EP.1（19:15〜19:30 練習室ミーティング編）</p>
+    <p>1,2,3 IVE EP.1（19:33〜19:44 順番決めのなすり合い編）</p>
   </header>
 
   <div class="tab-bar">
@@ -491,8 +491,8 @@
     <div class="video-viewport">
       <div id="character-face" class="character-avatar">👧</div>
       <div class="video-telop">
-        <div id="telop-hangul" class="hangul">맞아!</div>
-        <div id="telop-meaning" class="meaning">そうそう！（19:25 ユジン）</div>
+        <div id="telop-hangul" class="hangul">만들어야 해</div>
+        <div id="telop-meaning" class="meaning">作らなきゃ（19:33 ガウル）</div>
       </div>
     </div>
 
@@ -514,7 +514,7 @@
     <!-- Step 2: 発音判定 -->
     <div id="step-2-panel" class="step-panel">
       <div class="pronounce-card" id="point-box">
-        💡 <b>発音の急所</b>: 最初の「ㅁ」は唇をしっかり閉じてスタート。「자」は息を吐きすぎず軽く発音。
+        💡 <b>発音の急所</b>: 「들」のパッチム「ㄹ」と「어」を連音化させて [드러] と滑らかに発音。
       </div>
 
       <div class="result-status" id="eval-status">マイクボタンを押して発音してください</div>
@@ -539,7 +539,6 @@
       <button id="next-phrase-btn" class="btn btn-primary" style="width: 100%; margin-top: 12px; display: none; background: var(--success);" onclick="nextPhrase()">
         次のフレーズへ進む 🎉
       </button>
-      <!-- 自由に移動できるボタン（常時表示） -->
       <div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 16px; border-top: 1px solid #edf2f7; padding-top: 12px;">
         <button id="prev-btn" class="btn btn-secondary" style="flex: 1;" onclick="prevPhrase()">
           ◀ 前のフレーズ
@@ -561,67 +560,67 @@
     <div class="two-shot-frame">
       <div class="character-box" id="char-a-box">
         <div class="icon">👧</div>
-        <div class="name">ユジン（19:19）</div>
+        <div class="name">ユジン（19:42）</div>
       </div>
       <div style="font-weight: bold; color: var(--text-sub);">VS</div>
       <div class="character-box" id="char-b-box">
-        <div class="icon">👱‍♀️</div>
-        <div class="name">リズ（19:30）</div>
+        <div class="icon">🐰</div>
+        <div class="name">ウォニョン（19:44）</div>
       </div>
     </div>
 
-    <!-- 実在セリフ 19:19 ユジン -->
+    <!-- 実在セリフ 19:42 ユジン -->
     <div class="dialogue-item">
-      <button class="btn btn-secondary" onclick="speakSingleSentence('일단 옆줄 맞추는 거 진짜 신경 써야 해.', 'A')">🔊</button>
+      <button class="btn btn-secondary" onclick="speakSingleSentence('한 명씩 아이디어 내자.', 'A')">🔊</button>
       <div class="dialogue-content">
-        <div class="ko">일단 옆줄 맞추는 거 진짜 신경 써야 해.</div>
-        <div class="ja">まず横の列を合わせるの、本当に気をつけなきゃ。</div>
-        <div class="grammar-tag">-아/어야 하다（〜しなければならない）</div>
+        <div class="ko">한 명씩 아이디어 내자.</div>
+        <div class="ja">1人ずつアイデアを出そう。</div>
+        <div class="grammar-tag">-자（〜しよう：パンマル勧誘形）</div>
       </div>
     </div>
 
-    <!-- 実在セリフ 19:30 リズ -->
+    <!-- 実在セリフ 19:44 ウォニョン -->
     <div class="dialogue-item speaker-b">
-      <button class="btn btn-secondary" onclick="speakSingleSentence('만들면 안 돼여?', 'B')">🔊</button>
+      <button class="btn btn-secondary" onclick="speakSingleSentence('언니가 말했으니까!', 'B')">🔊</button>
       <div class="dialogue-content">
-        <div class="ko">만들면 안 돼여?</div>
-        <div class="ja">作っちゃダメですか？</div>
-        <div class="grammar-tag">-(으)면 안 되다（〜してはならない）</div>
+        <div class="ko">언니가 말했으니까!</div>
+        <div class="ja">オンニが言い出したんだから！（ユジンから出して！）</div>
+        <div class="grammar-tag">-(으)니까（〜だから、〜なので：理由）</div>
       </div>
     </div>
 
-    <!-- 本編実在の漢字語 -->
+    <!-- 本編実在の漢字語（固有語なし・漢字表記） -->
     <div class="kanji-group-container">
       <div style="font-weight: bold; margin-bottom: 8px;">📚 動画内の実在漢字語</div>
 
       <div class="kanji-card">
-        <h4>① 会話の切り出し・表現（動画内セリフ）</h4>
+        <h4>① 会話・セリフの実在漢字語</h4>
         <ul class="kanji-list">
           <li>
-            <button class="sound-btn" onclick="playSingleWordTTS('일단')">🔊 <b>일단</b></button>
-            <span style="color: var(--text-sub);">【一旦】（まずは / ひとまず）</span>
+            <button class="sound-btn" onclick="playSingleWordTTS('명')">🔊 <b>명</b></button>
+            <span style="color: var(--text-sub);">【名】（助数詞：人 / 一名、二名）</span>
           </li>
           <li>
-            <button class="sound-btn" onclick="playSingleWordTTS('신경')">🔊 <b>신경</b></button>
-            <span style="color: var(--text-sub);">【神経】（신경 쓰다：気をつける・意識する）</span>
+            <button class="sound-btn" onclick="playSingleWordTTS('인')">🔊 <b>인</b></button>
+            <span style="color: var(--text-sub);">【人】（一人、三人などの人数）</span>
           </li>
         </ul>
       </div>
 
       <div class="kanji-card">
-        <h4>② テロップに登場する漢字語（[공지 사항]）</h4>
+        <h4>② 公式テロップの実在漢字語（[파이팅 구호]）</h4>
         <ul class="kanji-list">
           <li>
-            <button class="sound-btn" onclick="playSingleWordTTS('공지')">🔊 <b>공지</b></button>
-            <span style="color: var(--text-sub);">【告知】</span>
+            <button class="sound-btn" onclick="playSingleWordTTS('구호')">🔊 <b>구호</b></button>
+            <span style="color: var(--text-sub);">【口号】（掛け声、スローガン）</span>
           </li>
           <li>
-            <button class="sound-btn" onclick="playSingleWordTTS('사항')">🔊 <b>사항</b></button>
-            <span style="color: var(--text-sub);">【事項】</span>
+            <button class="sound-btn" onclick="playSingleWordTTS('구')">🔊 <b>구</b></button>
+            <span style="color: var(--text-sub);">【口】（くち、言葉）</span>
           </li>
           <li>
-            <button class="sound-btn" onclick="playSingleWordTTS('공지사항')">🔊 <b>공지사항</b></button>
-            <span style="color: var(--text-sub);">【告知事項】（お知らせ）</span>
+            <button class="sound-btn" onclick="playSingleWordTTS('호')">🔊 <b>호</b></button>
+            <span style="color: var(--text-sub);">【号】（叫ぶ、合図）</span>
           </li>
         </ul>
       </div>
@@ -629,12 +628,12 @@
 
     <!-- 実在テロップ ① -->
     <div class="telop-column">
-      <div class="label">💡 本編実在テロップ ①（19:19）</div>
+      <div class="label">💡 本編実在テロップ ①（19:40）</div>
       <div class="telop-header-row">
-        <span class="screen-text" onclick="playSingleWordTTS('리더 공지 사항')">🔊 [리더 공지 사항 / 1. 옆줄 맞추기]</span>
-        <span class="screen-translation">訳：「リーダー告知事項 / 1. 横列合わせ」</span>
+        <span class="screen-text" onclick="playSingleWordTTS('파이팅 구호')">🔊 [파이팅 구호 / 아이돌이라면 다들 한다는 그것]</span>
+        <span class="screen-translation">訳：「ファイトの掛け声 / アイドルなら全員やっているというアレ」</span>
       </div>
-      <p>ユジンが練習の改善点として真っ先に伝えた場面の公式テロップ。「옆줄（横の列）」＋「맞추기（合わせること）」。</p>
+      <p>「구호【口号】（掛け声）」。「다들 한다는 그것（みんながやるというソレ）」という公式の状況説明テロップです。</p>
     </div>
   </div>
 
@@ -645,49 +644,49 @@
       <span class="badge">動画の音のズレ</span>
     </div>
 
-    <!-- 濃音化（옆줄） -->
+    <!-- 濃音化（한 명씩） -->
     <div class="level-block">
-      <div class="sound-change-tag">⚡ 濃音化（動画 19:19 ユジン）</div>
+      <div class="sound-change-tag">⚡ 接尾辞「-씩」の鋭い濃音化（動画 19:42 ユジン）</div>
       <div class="sound-change-row">
-        <button class="sound-btn" onclick="playSingleWordTTS('옆줄')">🔊 <b>옆줄</b></button>
+        <button class="sound-btn" onclick="playSingleWordTTS('명씩')">🔊 <b>명씩</b></button>
         <span style="font-weight: bold; color: var(--text-sub);">➔ 発音:</span>
-        <button class="sound-btn danger-btn" onclick="playSingleWordTTS('엽쭐')">🔊 <b>[엽쭐]</b></button>
+        <button class="sound-btn danger-btn" onclick="playSingleWordTTS('명씩')">🔊 <b>[명씩]</b></button>
       </div>
       <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
-        パッチム「ㅍ（代表音ㅂ）」の後ろで「ㅈ」が濃音化して「ㅉ」になります。
+        「〜ずつ」を表す「-씩」は濃音「ㅆ」です。息を漏らさず喉を締めて鋭く発音します。
       </p>
     </div>
 
-    <!-- 口語語尾（안 돼여） -->
+    <!-- 過去形＋理由の激音化・濃音化（말했으니까） -->
     <div class="level-block">
-      <div class="sound-change-tag">⚡ 口語特有のテロップ表記（動画 19:30 リズ）</div>
+      <div class="sound-change-tag">⚡ 過去形パッチム＋濃音化（動画 19:44 ウォニョン）</div>
       <div class="sound-change-row">
-        <button class="sound-btn" onclick="playSingleWordTTS('안 돼요')">🔊 <b>안 돼요?</b></button>
-        <span style="font-weight: bold; color: var(--text-sub);">➔ 字幕・口調:</span>
-        <button class="sound-btn accent-btn" onclick="playSingleWordTTS('안 돼여')">🔊 <b>안 돼여?</b></button>
+        <button class="sound-btn" onclick="playSingleWordTTS('말했으니까')">🔊 <b>말했으니까</b></button>
+        <span style="font-weight: bold; color: var(--text-sub);">➔ 発音:</span>
+        <button class="sound-btn accent-btn" onclick="playSingleWordTTS('말해쓰니까')">🔊 <b>[말해쓰니까]</b></button>
       </div>
       <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
-        標準語「〜요」を、甘えや親しみを込めて「〜여」と発音・字幕表記しています。
+        「했」のサンシヨッ（ㅆ）が後ろの母音「으」に連音化し、[쓰] と強く響きます。
       </p>
     </div>
 
     <!-- 実在テロップ ② & ③ -->
     <div class="telop-column">
-      <div class="label">💡 本編実在テロップ ②（19:21）</div>
+      <div class="label">💡 本編実在テロップ ②（19:35）</div>
       <div class="telop-header-row">
-        <span class="screen-text" onclick="playSingleWordTTS('점프할 때 가볍게')">🔊 [2. 점프할 때 가볍게]</span>
-        <span class="screen-translation">訳：「2. ジャンプするとき軽く」</span>
+        <span class="screen-text" onclick="playSingleWordTTS('우리 파이팅도 없어')">🔊 [우리 파이팅도 없어~]</span>
+        <span class="screen-translation">訳：「私たち掛け声もないじゃん〜」</span>
       </div>
-      <p>「〜(으)ㄹ 때（〜する時）」＋「가볍게（軽く）」。</p>
+      <p>助詞「~도（〜も）」＋「없어（ない）」。自分たちの掛け声がまだないことに気付いたユジンのセリフがそのまま字幕に。</p>
     </div>
 
     <div class="telop-column" style="margin-top: 10px;">
-      <div class="label">💡 本編実在テロップ ③（19:27）</div>
+      <div class="label">💡 本編実在テロップ ③（19:39）</div>
       <div class="telop-header-row">
-        <span class="screen-text" onclick="playSingleWordTTS('어떻게 끝내지')">🔊 [(어떻게 끝내지...) / (갑자기 목소리 작아진 이유)]</span>
-        <span class="screen-translation">訳：「どうやって終わらせよう… / 急に声が小さくなった理由」</span>
+        <span class="screen-text" onclick="playSingleWordTTS('파이팅 하나에도 설레는 아기브')">🔊 [파이팅 하나에도 설레는 아기브]</span>
+        <span class="screen-translation">訳：「掛け声1つにもときめく赤ちゃんヴ」</span>
       </div>
-      <p>ユジンが急に小声になった理由をユーモラスに説明した公式字幕です。</p>
+      <p>「아기（赤ちゃん）」＋「아이브（IVE）」を合わせた公式字幕の造語「아기브（アギブ）」。掛け声を作れることにワクワクするメンバーを表しています。</p>
     </div>
   </div>
 
@@ -695,23 +694,23 @@
   <div id="level-4" class="app-card">
     <div class="section-title">
       <span>レベル 4: 公式動画シンクロ</span>
-      <span class="badge">19:15〜 再生</span>
+      <span class="badge">19:33〜 再生</span>
     </div>
 
     <div class="level-block" style="text-align: center; padding: 20px;">
       <div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 8px;">🎬 1,2,3 IVE EP.1 練習室ミーティング</div>
       <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 20px; line-height: 1.5;">
-        動画の 19:15〜19:30 を再生して、学んだセリフとテロップを答え合わせしましょう！
+        動画の 19:33〜19:44 を再生して、学んだセリフとテロップを答え合わせしましょう！
       </p>
 
-      <!-- YouTube公式直行ボタン -->
+      <!-- YouTube公式直行ボタン（19:33 = 1173s） -->
       <a 
-        href="https://www.youtube.com/watch?v=qNQvMrGf96w&t=1155s" 
+        href="https://www.youtube.com/watch?v=qNQvMrGf96w&t=1173s" 
         target="_blank" 
         rel="noopener noreferrer"
         class="btn btn-primary" 
         style="display: inline-flex; text-decoration: none; font-size: 1rem; padding: 12px 24px;">
-        ▶ YouTube公式で19:15から再生する
+        ▶ YouTube公式で19:33から再生する
       </a>
 
       <!-- 埋め込み枠 -->
@@ -719,7 +718,7 @@
         <iframe 
           id="yt-player"
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-          src="https://www.youtube.com/embed/qNQvMrGf96w?start=1155" 
+          src="https://www.youtube.com/embed/qNQvMrGf96w?start=1173" 
           title="1,2,3 IVE EP.1" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen>
@@ -731,28 +730,28 @@
   <script>
     const phrases = [
       {
-        hangul: "맞아",
-        meaning: "そうそう（19:25 ユジン）",
-        point: "「ㅁ」で口を閉じ、「자」は息を吐きすぎず弾むように発音。",
-        targetWord: "맞아"
+        hangul: "만들어야 해",
+        meaning: "作らなきゃ（19:33 ガウル）",
+        point: "「들」の「ㄹ」と「어」を滑らかに連音化（[드러]）。",
+        targetWord: "만들어야"
       },
       {
-        hangul: "어떡해...",
-        meaning: "どうしよう…（19:27 ユジン）",
-        point: "「떡」の濃音「ㄸ」を詰まらせるように鋭く発音。",
-        targetWord: "어떡해"
+        hangul: "우리 파이팅도 없어~",
+        meaning: "私たち掛け声もないじゃん〜（19:35 ユジン）",
+        point: "助詞「도（〜も）」を軽く添え、「없어」は [업써] と濃音化して発音。",
+        targetWord: "없어"
       },
       {
-        hangul: "우리 파이팅 만들까?",
-        meaning: "私たちの掛け声作ろうか？（19:29 ウォニョン）",
-        point: "「들까」のパッチム「ㄹ」と濃音「ㄲ」をスムーズに繋げて発音。",
-        targetWord: "만들까"
+        hangul: "한 명씩 아이디어 내자",
+        meaning: "1人ずつアイデアを出そう（19:42 ユジン）",
+        point: "「한 명（1人）」＋「씩（〜ずつ：濃音）」＋「내자（出そう）」。",
+        targetWord: "아이디어"
       },
       {
-        hangul: "만들면 안 돼여?",
-        meaning: "作っちゃダメですか？（19:30 リズ）",
-        point: "「안」のパッチム「ㄴ」と「돼」をしっかり発音し、語尾は「여」と発音。",
-        targetWord: "안 돼"
+        hangul: "언니가 말했으니까!",
+        meaning: "オンニが言い出したんだから！（19:44 ウォニョン）",
+        point: "「말했으니까」は [말해쓰니까] と力強く発音。",
+        targetWord: "말했으니까"
       }
     ];
 
@@ -985,8 +984,9 @@
         alert('🎉 全問クリア！ レベル2（本編対話・漢字語編）へ進みましょう！');
         switchLevel(2);
       }
-    } 
-function prevPhrase() {
+    }
+
+    function prevPhrase() {
       if (currentPhraseIdx > 0) {
         currentPhraseIdx--;
         updateLevel1UI();
@@ -997,3 +997,4 @@ function prevPhrase() {
   </script>
 </body>
 </html>
+
