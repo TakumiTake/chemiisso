@@ -501,7 +501,8 @@
     <select id="unit-select" class="unit-select" onchange="switchUnit(this.value)">
       <option value="unit1">Unit 1：かけ声を作ろう!提案編（19:15〜19:30）</option>
       <option value="unit2">Unit 2：順番決めのなすり合い編（19:33〜19:44）</option>
-      <option value="unit3" selected>Unit 3：じゃんけん勝負＆リズを守れ編（19:45〜20:09）</option>
+      <option value="unit3">Unit 3：じゃんけん勝負＆リズを守れ編（19:45〜20:09）</option>
+      <option value="unit5" selected>Unit 5：ガウルの提案編（20:10〜20:35）</option>
     </select>
   </div>
 
@@ -606,7 +607,7 @@
             hangul: "맞아",
             meaning: "そうそう（19:25 ユジン）",
             point: "「ㅁ」で口を閉じ、「자」は息を吐きすぎず弾むように発音。",
-            targetWord: "맞아"
+            targetWord: "맞あ"
           },
           {
             hangul: "어떡해...",
@@ -1048,13 +1049,166 @@
               <span class="screen-text" onclick="playSingleWordTTS('한 번 봐줌')">🔊 [한 번 봐줌 / 알겠어 알겠어]</span>
               <span class="screen-translation">訳：「大目に見てあげる / 分かった分かった」</span>
             </div>
-            <p>動詞「봐주다（見逃す・大目に見る）」の名詞形「봐줌」。必死に抵抗するリズを見てユジンが一度許してあげる場面です。</p>
+            <p>動詞「봐주だ（見逃す・大目に見る）」の名詞形「봐줌」。必死に抵抗するリズを見てユジンが一度許してあげる場面です。</p>
+          </div>
+        `
+      },
+      unit5: {
+        subtitle: "1,2,3 IVE EP.1（20:10〜20:35 ガウルの提案編）",
+        ytSeconds: 1210,
+        ytDesc: "動画の 20:10〜20:35 を再生して、ガウルの渾身提案「アイティング！」とメンバーのリアクションを答え合わせしましょう！",
+        phrases: [
+          {
+            hangul: "아, 나 생각났어!",
+            meaning: "あ、私思いついた！（20:10 ガウル）",
+            point: "「생각」の「ㄱ」と「났어」を滑らかに。「났어」は [나써] と濃音化。",
+            targetWord: "생각났어"
+          },
+          {
+            hangul: "아이팅!",
+            meaning: "アイティン！（20:12 ガウル渾身の提案）",
+            point: "IVE（アイヴ）＋ファイティンを合体させた渾身の叫び！元気に発音。",
+            targetWord: "아이팅"
+          },
+          {
+            hangul: "너무 좋아 언니, 너무 좋아",
+            meaning: "すごくいいよオンニ、すごくいい（20:14 妹たち）",
+            point: "「너무」を重ねて感情を込め、「좋아」はパッチム「ㅎ」を脱落させて [조아] と発音。",
+            targetWord: "너무 좋아"
+          },
+          {
+            hangul: "나 갑자기 생각났어!",
+            meaning: "私、急に思いついた！（20:25 ガウル）",
+            point: "「갑자기」は濃音化して [갑짜기]。「急に」ひらめいた勢いを込めて。",
+            targetWord: "갑자기"
+          }
+        ],
+        level2HTML: `
+          <div class="section-title">
+            <span>レベル 2: 本編対話・漢字語</span>
+            <span class="badge">動画内100%実在</span>
+          </div>
+          <div class="two-shot-frame">
+            <div class="character-box" id="char-a-box">
+              <div class="icon">🐿️</div>
+              <div class="name">ガウル（渾身提案）</div>
+            </div>
+            <div style="font-weight: bold; color: var(--text-sub);">VS</div>
+            <div class="character-box" id="char-b-box">
+              <div class="icon">👧</div>
+              <div class="name">妹たち（全力フォロー）</div>
+            </div>
+          </div>
+          <div class="dialogue-item">
+            <button class="btn btn-secondary" onclick="speakSingleSentence('아, 나 생각났어! 하나 둘 셋, 아이팅!', 'A')">🔊</button>
+            <div class="dialogue-content">
+              <div class="ko">아, 나 생각났어! 하나 둘 셋, 아이팅!</div>
+              <div class="ja">あ、私思いついた！せーの、アイティン！</div>
+              <div class="grammar-tag">-났어（〜浮かんだ・思いついた：過去形）</div>
+            </div>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <button class="btn btn-secondary" onclick="speakSingleSentence('너무 좋아 언니, 너무 좋아!', 'B')">🔊</button>
+            <div class="dialogue-content">
+              <div class="ko">너무 좋아 언니, 너무 좋아!</div>
+              <div class="ja">すごくいいよオンニ、すごくいい！（絶賛リアクション）</div>
+              <div class="grammar-tag">너무（とても・すごく：強調副詞）</div>
+            </div>
+          </div>
+          <div class="kanji-group-container">
+            <div style="font-weight: bold; margin-bottom: 8px;">📚 動画内の実在漢字語</div>
+            <div class="kanji-card">
+              <h4>① 公式テロップの実在漢字語（[사회생활 만렙]）</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('사회생활')">🔊 <b>사회생활</b></button>
+                  <span style="color: var(--text-sub);">【社会生活】（世渡り・大人の対応）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('사회')">🔊 <b>사회</b></button>
+                  <span style="color: var(--text-sub);">【社会】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('생활')">🔊 <b>생활</b></button>
+                  <span style="color: var(--text-sub);">【生活】</span>
+                </li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>② 公式テロップの実在漢字語（[불꽃연기] / [혼신의 리액션]）</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('연기')">🔊 <b>연기</b></button>
+                  <span style="color: var(--text-sub);">【演技】（熱演、芝居）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('혼신')">🔊 <b>혼신</b></button>
+                  <span style="color: var(--text-sub);">【渾身】（全身全霊）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('신')">🔊 <b>신</b></button>
+                  <span style="color: var(--text-sub);">【身】（からだ、み）</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="telop-column">
+            <div class="label">💡 本編実在テロップ ①（20:15）</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playSingleWordTTS('사회생활 만렙')">🔊 [사회생활 만렙 / (네버엔딩 사회생활)]</span>
+              <span class="screen-translation">訳：「社会人生活レベルMAX / ネバーエンディング社会生活」</span>
+            </div>
+            <p>ガウルの掛け声「アイティング！」に対して、妹たちが全力でウケて褒めちぎる世渡り上手なリアクションをツッコんだ公式字幕です。</p>
+          </div>
+        `,
+        level3HTML: `
+          <div class="section-title">
+            <span>レベル 3: ネイティブのリアル音</span>
+            <span class="badge">動画の音のズレ</span>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 濃音化（動画 20:25 ガウル）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('갑자기')">🔊 <b>갑자기</b></button>
+              <span style="font-weight: bold; color: var(--text-sub);">➔ 発音:</span>
+              <button class="sound-btn danger-btn" onclick="playSingleWordTTS('갑짜기')">🔊 <b>[갑짜기]</b></button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
+              パッチム「ㅂ」の後ろで平音「ㅈ」が詰まり、鋭く [갑짜기] と濃音化します。
+            </p>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 激音化・推量の濃音化（動画 20:18 テロップ）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('목 꺾이겠어요')">🔊 <b>목 꺾이겠어요</b></button>
+              <span style="font-weight: bold; color: var(--text-sub);">➔ 発音:</span>
+              <button class="sound-btn accent-btn" onclick="playSingleWordTTS('목 뻐끼게써요')">🔊 <b>[목 뻐끼게써요]</b></button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
+              ユジンが大爆笑して首を後ろに倒した様子。「-겠-」のサンシヨッ（ㅆ）が母音に連音化して [게써요] と強く響きます。
+            </p>
+          </div>
+          <div class="telop-column">
+            <div class="label">💡 本編実在テロップ ②（20:22）</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playSingleWordTTS('불꽃연기')">🔊 [불꽃연기 / 혼신의 리액션]</span>
+              <span class="screen-translation">訳：「迫真の演技 / 渾身のリアクション」</span>
+            </div>
+            <p>ガウルが前に出て熱演を披露し、メンバーが全力でリアクションして盛り上げる一連のハイライトを表した公式字幕です。</p>
+          </div>
+          <div class="telop-column" style="margin-top: 10px;">
+            <div class="label">💡 本編実在テロップ ③（20:30）</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playSingleWordTTS('맏언니의 속도를 따라갈 수 없었던 동생들')">🔊 [맏언니의 속도를 따라갈 수 없었던 동생들]</span>
+              <span class="screen-translation">訳：「長女のスピードについていけなかった妹たち」</span>
+            </div>
+            <p>最年長ガウル（맏언니）の独特なテンポに必死に合わせようとする妹たちの姿。「속도【速度】」。</p>
           </div>
         `
       }
     };
 
-    let currentUnitKey = 'unit3';
+    let currentUnitKey = 'unit5';
     let phrases = unitsData[currentUnitKey].phrases;
     let currentPhraseIdx = 0;
     let isPlayingRepeat = false;
