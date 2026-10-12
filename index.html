@@ -502,7 +502,8 @@
       <option value="unit1">Unit 1：かけ声を作ろう!提案編（19:15〜19:30）</option>
       <option value="unit2">Unit 2：順番決めのなすり合い編（19:33〜19:44）</option>
       <option value="unit3">Unit 3：じゃんけん勝負＆リズを守れ編（19:45〜20:09）</option>
-      <option value="unit4" selected>Unit 4：ガウルの提案編（20:10〜20:35）</option>
+      <option value="unit4">Unit 4：ガウルの提案編（20:10〜20:35）</option>
+      <option value="unit5" selected>Unit 5：妹たちのお世辞＆即退勤ダッシュ編（20:36〜21:05）</option>
     </select>
   </div>
 
@@ -1205,10 +1206,163 @@
             <p>最年長ガウル（맏언니）の独特なテンポに必死に合わせようとする妹たちの姿。「속도【速度】」。</p>
           </div>
         `
+      },
+      unit5: {
+        subtitle: "1,2,3 IVE EP.1（20:36〜21:05 妹たちのお世辞＆即退勤ダッシュ編）",
+        ytSeconds: 1236,
+        ytDesc: "動画の 20:36〜21:05 を再生して、音程の調整から「即退勤ダッシュ」までのオチを答え合わせしましょう！",
+        phrases: [
+          {
+            hangul: "음이 뭐였져?",
+            meaning: "音程は何でしたっけ？（20:38 リズ）",
+            point: "「음이」は連音化して [으ミ]。「-죠」を可愛らしく「-져」と発音。",
+            targetWord: "뭐였져"
+          },
+          {
+            hangul: "저희 오늘 퇴근하겠습니다~",
+            meaning: "私たち、今日は退勤します〜（20:50 ユジン）",
+            point: "「퇴근」の「ㄴ」と「하」が滑らかに繋がり、語尾は「-습니다」と丁寧に。",
+            targetWord: "퇴근하겠습니다"
+          },
+          {
+            hangul: "나가, 빨리 나가!",
+            meaning: "出て、早く出て！（20:55 メンバー）",
+            point: "「빨리」のパッチム「ㄹ」と初声「ㄹ」を弾むように力強く発音。",
+            targetWord: "빨리 나가"
+          },
+          {
+            hangul: "수고하셨습니다!",
+            meaning: "お疲れ様でした！（21:00 全員）",
+            point: "練習や現場終わりで最もよく使う必須フレーズ。元気よく挨拶！",
+            targetWord: "수고하셨습니다"
+          }
+        ],
+        level2HTML: `
+          <div class="section-title">
+            <span>レベル 2: 本編対話・漢字語</span>
+            <span class="badge">動画内100%実在</span>
+          </div>
+          <div class="two-shot-frame">
+            <div class="character-box" id="char-a-box">
+              <div class="icon">👧</div>
+              <div class="name">ユジン（退勤宣言）</div>
+            </div>
+            <div style="font-weight: bold; color: var(--text-sub);">VS</div>
+            <div class="character-box" id="char-b-box">
+              <div class="icon">🏃‍♀️</div>
+              <div class="name">全員（即ダッシュ）</div>
+            </div>
+          </div>
+          <div class="dialogue-item">
+            <button class="btn btn-secondary" onclick="speakSingleSentence('저희 오늘 퇴근하겠습니다~ 둘 셋, 아이브!', 'A')">🔊</button>
+            <div class="dialogue-content">
+              <div class="ko">저희 오늘 퇴근하겠습니다~ 둘 셋, 아이브!</div>
+              <div class="ja">私たち今日は退勤します〜 せーの、アイ〜ヴ！</div>
+              <div class="grammar-tag">-겠습니다（〜します：改まった意志表現）</div>
+            </div>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <button class="btn btn-secondary" onclick="speakSingleSentence('나가, 빨리 나가! 수고하셨습니다!', 'B')">🔊</button>
+            <div class="dialogue-content">
+              <div class="ko">나가, 빨리 나가! 수고하셨습니다!</div>
+              <div class="ja">出て、早く出て！お疲れ様でした！（スタジオ脱出）</div>
+              <div class="grammar-tag">-(으)셨습니다（〜されました：過去尊敬形）</div>
+            </div>
+          </div>
+          <div class="kanji-group-container">
+            <div style="font-weight: bold; margin-bottom: 8px;">📚 動画内の実在漢字語</div>
+            <div class="kanji-card">
+              <h4>① セリフ・日常会話の実在漢字語</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('퇴근')">🔊 <b>퇴근</b></button>
+                  <span style="color: var(--text-sub);">【退勤】（仕事上がり・解散）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('음')">🔊 <b>음</b></button>
+                  <span style="color: var(--text-sub);">【音】（音程・メロディ）</span>
+                </li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>② 公式テロップの実在漢字語（[상황에 따라 길이 조절 가능] / [구호의 완성]）</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('상황')">🔊 <b>상황</b></button>
+                  <span style="color: var(--text-sub);">【状況】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('조절')">🔊 <b>조절</b></button>
+                  <span style="color: var(--text-sub);">【調節】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('가능')">🔊 <b>가능</b></button>
+                  <span style="color: var(--text-sub);">【可能】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('완성')">🔊 <b>완성</b></button>
+                  <span style="color: var(--text-sub);">【完成】</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="telop-column">
+            <div class="label">💡 本編実在テロップ ①（20:45）</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playSingleWordTTS('상황에 따라 길이 조절 가능')">🔊 [상황에 따라 길이 조절 가능]</span>
+              <span class="screen-translation">訳：「状況に応じて長さ（尺）の調節が可能」</span>
+            </div>
+            <p>本番直前のスタンバイ臨迫時には短く、普段は長くジタバタしながら言うという秀逸なルール解説字幕です。「상황【状況】」「조절【調節】」「가능【可能】」。</p>
+          </div>
+        `,
+        level3HTML: `
+          <div class="section-title">
+            <span>レベル 3: ネイティブのリアル音</span>
+            <span class="badge">動画の音のズレ</span>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 激音化・連音化（動画 20:50 ユジン）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('퇴근하겠습니다')">🔊 <b>퇴근하겠습니다</b></button>
+              <span style="font-weight: bold; color: var(--text-sub);">➔ 発音:</span>
+              <button class="sound-btn danger-btn" onclick="playSingleWordTTS('퇴그나겓씀니다')">🔊 <b>[퇴그나겓씀니다]</b></button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
+              「퇴근」の「ㄴ」が「하」と滑らかに繋がり、「-겠-」のパッチム「ㅆ」が後ろの「습」を濃音化させます。
+            </p>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 激音化（動画 20:42 テロップ）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('임박하면')">🔊 <b>임박하면</b></button>
+              <span style="font-weight: bold; color: var(--text-sub);">➔ 発音:</span>
+              <button class="sound-btn accent-btn" onclick="playSingleWordTTS('임바카면')">🔊 <b>[임바카면]</b></button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
+              「박」のパッチム「ㄱ」と「하」の初声「ㅎ」が合体し、息を強く出す [카] の音に変化します。「임박【臨迫】」。
+            </p>
+          </div>
+          <div class="telop-column">
+            <div class="label">💡 本編実在テロップ ②（20:40）</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playSingleWordTTS('디테일 지옥')">🔊 [디테일 지옥 / 마지막 음을 올리는 게 포인트]</span>
+              <span class="screen-translation">訳：「ディテール地獄 / 最後の音を上げるのがポイント」</span>
+            </div>
+            <p>掛け声の細かい音程までこだわり抜く様子をツッコんだ公式字幕です。「지옥【地獄】」。</p>
+          </div>
+          <div class="telop-column" style="margin-top: 10px;">
+            <div class="label">💡 本編実在テロップ ③（21:02）</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playSingleWordTTS('나가는 것까지가 구호의 완성')">🔊 [(feat. 나가는 것까지가 구호의 완성)]</span>
+              <span class="screen-translation">訳：「（feat. 出ていくところまでが掛け声の完成）」</span>
+            </div>
+            <p>掛け声を叫んだ直後にスタジオからダッシュで逃げるように退勤するオチを見事に締めくくった公式字幕です。「완성【完成】」。</p>
+          </div>
+        `
       }
     };
 
-    let currentUnitKey = 'unit4';
+    let currentUnitKey = 'unit5';
     let phrases = unitsData[currentUnitKey].phrases;
     let currentPhraseIdx = 0;
     let isPlayingRepeat = false;
