@@ -56,7 +56,6 @@
       margin-top: 2px;
     }
 
-    /* ユニットセレクターバー */
     .unit-selector-bar {
       width: 100%;
       max-width: 600px;
@@ -430,61 +429,6 @@
       font-weight: bold;
     }
 
-    .telop-column {
-      background: #2d3436;
-      color: #ffffff;
-      border-radius: 12px;
-      padding: 14px;
-      margin-top: 16px;
-    }
-
-    .telop-column .label {
-      font-size: 0.75rem;
-      color: #ffd166;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-bottom: 6px;
-    }
-
-    .telop-header-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 6px;
-    }
-
-    .telop-column .screen-text {
-      font-size: 1.05rem;
-      font-weight: bold;
-      color: #06d6a0;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(255,255,255,0.08);
-      padding: 2px 8px;
-      border-radius: 6px;
-    }
-
-    .telop-column .screen-text:hover {
-      background: rgba(255,255,255,0.18);
-    }
-
-    .telop-column .screen-translation {
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .telop-column p {
-      font-size: 0.8rem;
-      color: #dfe6e9;
-      line-height: 1.5;
-    }
-
     .level-block {
       background: #f8f9fa;
       border-radius: 12px;
@@ -781,7 +725,6 @@
 </head>
 <body>
 
-  <!-- ここがアプリタイトルです！ -->
   <header>
     <h1>イッソのチェミイッソ！ <span>있어의 재미있어!</span></h1>
     <p id="unit-subtitle">1,2,3 IVE EP.1</p>
@@ -790,8 +733,8 @@
   <!-- ユニット切り替えバー ＆ 目次ボタン -->
   <div class="unit-selector-bar">
     <select id="unit-select" class="unit-select" onchange="switchUnit(this.value)">
-      <option value="unit0" selected>Unit 0：カリキュラム目次＆学習マップ</option>
-      <option value="unit1">Unit 1：かけ声を作ろう!提案編（19:15〜19:30）</option>
+      <option value="unit0">Unit 0：カリキュラム目次＆学習マップ</option>
+      <option value="unit1" selected>Unit 1：かけ声を作ろう!提案編（19:15〜19:30）</option>
       <option value="unit2">Unit 2：順番決めのなすり合い編（19:33〜19:44）</option>
       <option value="unit3">Unit 3：じゃんけん勝負＆リズを守れ編（19:45〜20:09）</option>
       <option value="unit4">Unit 4：ガウルの提案編（20:10〜20:35）</option>
@@ -955,7 +898,6 @@
   </div>
 
   <script>
-    // カリキュラム目次データ
     const curriculumData = [
       { key: "unit0", title: "Unit 0：カリキュラム目次＆学習マップ", desc: "全体の構成・TOPIK 2級文法チェック・攻略方針", badge: "案内" },
       { key: "unit1", title: "Unit 1：かけ声を作ろう!提案編（19:15〜19:30）", desc: "義務表現「-아/어야 하다」／濃音化 [엽쭐]", badge: "シーン1" },
@@ -970,7 +912,6 @@
       { key: "unit10", title: "Unit 10：全編総復習マスタークラス", desc: "全33行スクリプト（通常・漢字英語化・全文音読判定）", badge: "集大成" }
     ];
 
-    // 19:15〜21:40 の全編完全スクリプトデータ（イソ発言修正済み）
     const fullScriptData = [
       { time: "19:15", speaker: "ユジン", ko: "일단 옆줄 맞추는 거 진짜 신경 써야 해.", mixed: "一旦 옆줄 맞추는 거 진짜 神經 써야 해.", ja: "まず横の列を合わせるの、本当に気をつけなきゃ。", target: "신경" },
       { time: "19:19", speaker: "テロップ", ko: "리더 공지 사항: 옆줄 맞추기", mixed: "Leader 告知 事項: 옆줄 맞추기", ja: "リーダー告知事項: 横列合わせ", target: "공지사항" },
@@ -1007,7 +948,6 @@
       { time: "21:35", speaker: "全員", ko: "수고하셨습니다!", mixed: "受苦하셨습니다!", ja: "お疲れ様でした！", target: "수고하셨습니다" }
     ];
 
-    // 全ユニットの教材データ
     const unitsData = {
       unit0: {
         subtitle: "1,2,3 IVE EP.1（Unit 0：カリキュラム目次＆学習マップ）",
@@ -1025,8 +965,89 @@
           { hangul: "우리 파이팅 만들까?", meaning: "私たちの掛け声作ろうか？（19:29 ウォニョン）", point: "「들까」のパッチム「ㄹ」と濃音「ㄲ」をスムーズに繋げて発音。", targetWord: "만들까" },
           { hangul: "만들면 안 돼여?", meaning: "作っちゃダメですか？（19:30 リズ）", point: "「안」のパッチム「ㄴ」と「돼」をしっかり発音し、語尾は「여」と発音。", targetWord: "안 돼" }
         ],
-        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>`,
-        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>`
+        level2HTML: `
+          <div class="section-title">
+            <span>レベル 2: 本編対話・漢字語</span>
+            <span class="badge">動画内100%実在</span>
+          </div>
+          <div class="two-shot-frame">
+            <div class="character-box" id="char-a-box">
+              <div class="icon">👧</div>
+              <div class="name">ユジン（19:19）</div>
+            </div>
+            <div style="font-weight: bold; color: var(--text-sub);">VS</div>
+            <div class="character-box" id="char-b-box">
+              <div class="icon">👱‍♀️</div>
+              <div class="name">リズ（19:30）</div>
+            </div>
+          </div>
+          <div class="dialogue-item">
+            <button class="btn btn-secondary" onclick="speakSingleSentence('일단 옆줄 맞추는 거 진짜 신경 써야 해.', 'A')">🔊</button>
+            <div class="dialogue-content">
+              <div class="ko">일단 옆줄 맞추는 거 진짜 신경 써야 해.</div>
+              <div class="ja">まず横の列を合わせるの、本当に気をつけなきゃ。</div>
+              <div class="grammar-tag">-아/어야 하다（〜しなければならない）</div>
+            </div>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <button class="btn btn-secondary" onclick="speakSingleSentence('만들면 안 돼여?', 'B')">🔊</button>
+            <div class="dialogue-content">
+              <div class="ko">만들면 안 돼여?</div>
+              <div class="ja">作っちゃダメですか？</div>
+              <div class="grammar-tag">-(으)면 안 되다（〜してはならない）</div>
+            </div>
+          </div>
+          <div class="kanji-group-container">
+            <div style="font-weight: bold; margin-bottom: 8px;">📚 動画内の実在漢字語</div>
+            <div class="kanji-card">
+              <h4>① 会話の切り出し・表現（動画内セリフ）</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('일단')">🔊 <b>일단</b></button>
+                  <span style="color: var(--text-sub);">【一旦】（まずは / ひとまず）</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('신경')">🔊 <b>신경</b></button>
+                  <span style="color: var(--text-sub);">【神経】（신경 쓰다：気をつける・意識する）</span>
+                </li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>② テロップに登場する漢字語（[공지 사항]）</h4>
+              <ul class="kanji-list">
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('공지')">🔊 <b>공지</b></button>
+                  <span style="color: var(--text-sub);">【告知】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('사항')">🔊 <b>사항</b></button>
+                  <span style="color: var(--text-sub);">【事項】</span>
+                </li>
+                <li>
+                  <button class="sound-btn" onclick="playSingleWordTTS('공지사항')">🔊 <b>공지사항</b></button>
+                  <span style="color: var(--text-sub);">【告知事項】（お知らせ）</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        `,
+        level3HTML: `
+          <div class="section-title">
+            <span>レベル 3: ネイティブのリアル音</span>
+            <span class="badge">動画の音のズレ</span>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 濃音化（動画 19:19 ユジン）</div>
+            <div class="sound-change-row">
+              <button class="sound-btn" onclick="playSingleWordTTS('옆줄')">🔊 <b>옆줄</b></button>
+              <span style="font-weight: bold; color: var(--text-sub);">➔ 発音:</span>
+              <button class="sound-btn danger-btn" onclick="playSingleWordTTS('엽쭐')">🔊 <b>[엽쭐]</b></button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub); margin-top: 4px;">
+              パッチム「ㅍ（代表音ㅂ）」の後ろで「ㅈ」が濃音化して「ㅉ」になります。
+            </p>
+          </div>
+        `
       },
       unit2: {
         subtitle: "1,2,3 IVE EP.1（19:33〜19:44 順番決めのなすり合い編）",
@@ -1038,8 +1059,8 @@
           { hangul: "한 명씩 아이디어 내자", meaning: "1人ずつアイデアを出そう（19:42 ユジン）", point: "「한 명（1人）」＋「씩（〜ずつ：濃音）」＋「내자（出そう）」。", targetWord: "아이디어" },
           { hangul: "언니가 말했으니까!", meaning: "オンニが言い出したんだから！（19:44 ウォニョン）", point: "「말했으니까」は [말해쓰니까] と力強く発音。", targetWord: "말했으니까" }
         ],
-        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>`,
-        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>`
+        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span><span class="badge">動画内実在</span></div><div class="kanji-card"><p style="font-size:0.9rem; color:var(--text-sub);">【順番決め編】の対話・漢字語コンテンツです。</p></div>`,
+        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span><span class="badge">発音変化</span></div><div class="level-block"><div class="sound-change-tag">⚡ 濃音化: 한 명씩 ➔ [한 명씩]</div></div>`
       },
       unit3: {
         subtitle: "1,2,3 IVE EP.1（19:45〜20:09 じゃんけん勝負＆リズを守れ編）",
@@ -1051,8 +1072,8 @@
           { hangul: "알겠어 알겠어", meaning: "分かった 分かった（20:08 ユジン）", point: "「알겠어」はパッチム「ㅆ」が連音化して [알게써] と発音。", targetWord: "알겠어" },
           { hangul: "잠깐만 기다려 봐여..!", meaning: "ちょっと待ってください…！（20:09 リズ）", point: "「잠깐」の濃音「ㄲ」と、「기다려 봐여」の愛嬌ある語尾「여」を意識。", targetWord: "기다려" }
         ],
-        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>`,
-        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>`
+        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span><span class="badge">動画内実在</span></div><div class="kanji-card"><p style="font-size:0.9rem; color:var(--text-sub);">【リズを守れ編】の対話・漢字語コンテンツです。</p></div>`,
+        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span><span class="badge">連音化</span></div><div class="level-block"><div class="sound-change-tag">⚡ 連音化: 알겠어 ➔ [알게써]</div></div>`
       },
       unit4: {
         subtitle: "1,2,3 IVE EP.1（20:10〜20:35 ガウルの提案編）",
@@ -1064,8 +1085,8 @@
           { hangul: "너무 좋아 언니, 너무 좋아", meaning: "すごくいいよオンニ、すごくいい（20:14 妹たち）", point: "「너무」を重ねて感情を込め、「좋아」はパッチム「ㅎ」を脱落させて [조아] と発音。", targetWord: "너무 좋아" },
           { hangul: "나 갑자기 생각났어!", meaning: "私、急に思いついた！（20:25 ガウル）", point: "「갑자기」は濃音化して [갑짜기]。「急に」ひらめいた勢いを込めて。", targetWord: "갑자기" }
         ],
-        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>`,
-        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>`
+        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span><span class="badge">動画内実在</span></div><div class="kanji-card"><p style="font-size:0.9rem; color:var(--text-sub);">【ガウル提案編】の対話・漢字語コンテンツです。</p></div>`,
+        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span><span class="badge">濃音化</span></div><div class="level-block"><div class="sound-change-tag">⚡ 濃音化: 갑자기 ➔ [갑짜기]</div></div>`
       },
       unit5: {
         subtitle: "1,2,3 IVE EP.1（20:36〜21:21 掛け声の演出・細部詰め編）",
@@ -1077,8 +1098,8 @@
           { hangul: "쿨하게 헤어지는 거야~", meaning: "クールに解散するんだよ〜（21:05 ユジン）", point: "「쿨하게」の外来語の響きと、「헤어지는」の滑らかな連音を意識。", targetWord: "쿨하게" },
           { hangul: "바깥으로? 응, 도는 거", meaning: "外側に？ うん、回るの（21:15 レイ＆ユジン）", point: "「바깥으로」はパッチム「ㅌ」が連音化して [바까트로] と発音。", targetWord: "바깥으로" }
         ],
-        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>`,
-        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>`
+        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span><span class="badge">動画内実在</span></div><div class="kanji-card"><p style="font-size:0.9rem; color:var(--text-sub);">【細部詰め編】の対話・漢字語コンテンツです。</p></div>`,
+        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span><span class="badge">連音化</span></div><div class="level-block"><div class="sound-change-tag">⚡ 連音化: 바깥으로 ➔ [바까트로]</div></div>`
       },
       unit6: {
         subtitle: "1,2,3 IVE EP.1（21:22〜21:40 本番実践＆即退勤ダッシュ編）",
@@ -1087,11 +1108,11 @@
         phrases: [
           { hangul: "그럼 오늘은 퇴근이니까~", meaning: "それじゃあ 今日は退勤だから〜（21:22 ユジン）", point: "「퇴근」の「ㄴ」と「이」を滑らかに連音化。「-(으)니까」で理由を述べる。", targetWord: "퇴근이니까" },
           { hangul: "둘 셋! 아이~브!", meaning: "せーの！アイ〜ヴ！（21:28 全員）", point: "合図の「1」を省略して「둘, 셋!」と揃え、語尾の音程をグッと上げて発音。", targetWord: "아이브" },
-          { hangul: "나가, 빨리 나가!", meaning: "出て、早く出て！（21:30 メンバー）", point: "「빨り」のパッチム「ㄹ」と初声「ㄹ」を弾むように力強く発音。", targetWord: "빨리 나가" },
+          { hangul: "나가, 빨리 나가!", meaning: "出て、早く出て！（21:30 メンバー）", point: "「빨리」のパッチム「ㄹ」と初声「ㄹ」を弾むように力強く発音。", targetWord: "빨리 나가" },
           { hangul: "수고하셨습니다!", meaning: "お疲れ様でした！（21:35 全員）", point: "仕事や練習終わりで最もよく使う必須挨拶。元気よく挨拶！", targetWord: "수고하셨습니다" }
         ],
-        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>`,
-        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>`
+        level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span><span class="badge">動画内実在</span></div><div class="kanji-card"><p style="font-size:0.9rem; color:var(--text-sub);">【即退勤ダッシュ編】の対話・漢字語コンテンツです。</p></div>`,
+        level3HTML: `<div class="section-title"><span>レベル 3: ネイティブのリアル音</span><span class="badge">連音・濃音</span></div><div class="level-block"><div class="sound-change-tag">⚡ 複合変化: 퇴근하겠습니다 ➔ [퇴그나겓씀니다]</div></div>`
       },
       unit7: {
         subtitle: "1,2,3 IVE EP.1（Unit 7：総復習・純粋漢字語マスター編）",
@@ -1103,8 +1124,8 @@
           { hangul: "조절 가능", meaning: "調節可能（Unit 6 公式テロップ）", point: "【調節可能】。パッチム「ㄹ」と「ㄱ」を滑らかに繋げる。", targetWord: "조절 가능" },
           { hangul: "퇴근", meaning: "退勤・仕事上がり（Unit 5・6 全員）", point: "【退勤】。二重母音「ㅚ」を滑らかに口を横に引きながら発音。", targetWord: "퇴근" }
         ],
-        level2HTML: `<div class="section-title"><span>レベル 2: 同音同義語マスター</span></div>`,
-        level3HTML: `<div class="section-title"><span>レベル 3: 同音異義語マスター</span></div>`
+        level2HTML: `<div class="section-title"><span>レベル 2: 同音同義語マスター</span><span class="badge">漢字語</span></div><div class="kanji-card"><h4>日韓共通漢字語</h4><ul class="kanji-list"><li><b>사회생활</b>【社会生活】</li><li><b>공지사항</b>【告知事項】</li><li><b>조절 가능</b>【調節可能】</li><li><b>퇴근</b>【退勤】</li></ul></div>`,
+        level3HTML: `<div class="section-title"><span>レベル 3: 同音異義語マスター</span><span class="badge">漢字語</span></div><div class="kanji-card"><h4>多義的な漢字語</h4><ul class="kanji-list"><li><b>사</b>：【事】【社】【死】【四】</li><li><b>가</b>：【可】【家】【歌】【価】</li></ul></div>`
       },
       unit8: {
         subtitle: "1,2,3 IVE EP.1（Unit 8：総復習・発音変化マスター編）",
@@ -1116,8 +1137,8 @@
           { hangul: "퇴근하겠습니다", meaning: "退勤します（[퇴그나겓씀니다] 連音・濃音 / 20:50）", point: "「ㄴ」の連音化、パッチム「ㅆ」による濃音化 [씀]、鼻音化 [니다] の連鎖。", targetWord: "퇴근하겠습니다" },
           { hangul: "바깥으로", meaning: "外側に（[바까트로] と連音化 / 21:15）", point: "パッチム「ㅌ」が母音「으」に滑らかに繋がって [바까트로] と発音。", targetWord: "바깥으로" }
         ],
-        level2HTML: `<div class="section-title"><span>レベル 2: 発音変化の掛け合い対話</span></div>`,
-        level3HTML: `<div class="section-title"><span>レベル 3: 動画内 4大発音変化総まとめ</span></div>`
+        level2HTML: `<div class="section-title"><span>レベル 2: 発音変化の掛け合い対話</span><span class="badge">実戦音</span></div><div class="kanji-card"><p style="font-size:0.9rem; color:var(--text-sub);">ネイティブの発音変化を耳で体感するコーナーです。</p></div>`,
+        level3HTML: `<div class="section-title"><span>レベル 3: 動画内 4大発音変化総まとめ</span><span class="badge">完全解説</span></div><div class="kanji-card"><h4>4大発音変化</h4><ul class="kanji-list"><li>⚡ 濃音化: 옆줄 [엽쭐], 갑자기 [갑짜기]</li><li>⚡ 激音化: 임박하면 [임바카면]</li><li>⚡ 連音化: 알겠어 [알게써], 바깥으로 [바까트로]</li><li>⚡ 複合変化: 퇴근하겠습니다 [퇴그나겓씀니다]</li></ul></div>`
       },
       unit9: {
         subtitle: "1,2,3 IVE EP.1（Unit 9：ボスバトル編・ディテール地獄の門番を倒せ！）",
@@ -1133,13 +1154,12 @@
       }
     };
 
-    let currentUnitKey = 'unit0';
+    let currentUnitKey = 'unit1';
     let phrases = unitsData[currentUnitKey].phrases || [];
     let currentPhraseIdx = 0;
     let isPlayingRepeat = false;
     let audioCtx = null;
 
-    // ボスバトル用ステート
     let bossHp = 100;
     let bossPhase = 1;
     let bossTurn = 0;
@@ -1254,6 +1274,7 @@
         document.getElementById('boss-viewport').style.display = 'none';
         document.getElementById('boss-control-panel').style.display = 'none';
         document.getElementById('unit10-lv1-view').style.display = 'none';
+        document.getElementById('step-1-panel').style.display = 'block';
         document.getElementById('level-1-title').textContent = "レベル 1: 実在セリフ特訓";
 
         phrases = data.phrases;
@@ -1301,7 +1322,6 @@
       });
     }
 
-    /* ---------------- Unit 0 専用レンダリング ---------------- */
     function renderUnit0() {
       const listContainer = document.getElementById('unit0-roadmap-list');
       listContainer.innerHTML = '';
@@ -1331,7 +1351,7 @@
           <h4>必須接続語尾・表現</h4>
           <ul class="kanji-list">
             <li>✅ <b>-아/어야 하다</b>（〜しなければならない） ➔ <button class="sound-btn" onclick="switchUnit('unit1')">Unit 1へ</button></li>
-            <li>✅ <b>-(으)면 안 되다</b>（〜してはならない） ➔ <button class="sound-btn" onclick="switchUnit('unit1')">Unit 1へ</button></li>
+            <li>✅ <b>-(으)면 안 되だ</b>（〜してはならない） ➔ <button class="sound-btn" onclick="switchUnit('unit1')">Unit 1へ</button></li>
             <li>✅ <b>-(으)니까</b>（〜だから、理由） ➔ <button class="sound-btn" onclick="switchUnit('unit2')">Unit 2へ</button></li>
             <li>✅ <b>-자</b>（〜しよう、パンマル勧誘） ➔ <button class="sound-btn" onclick="switchUnit('unit2')">Unit 2へ</button></li>
             <li>✅ <b>-아/어 보다</b>（〜してみる、経験） ➔ <button class="sound-btn" onclick="switchUnit('unit3')">Unit 3へ</button></li>
@@ -1364,7 +1384,6 @@
       `;
     }
 
-    /* ---------------- 目次モーダル開閉ロジック ---------------- */
     function openTocModal() {
       const modalList = document.getElementById('modal-toc-list');
       modalList.innerHTML = '';
@@ -1397,7 +1416,6 @@
       }
     }
 
-    /* ---------------- Unit 10 専用レンダリング ---------------- */
     function renderUnit10() {
       const lv1Box = document.getElementById('unit10-script-lv1');
       lv1Box.innerHTML = '';
@@ -1546,7 +1564,6 @@
       recognition.start();
     }
 
-    /* ---------------- ボスバトル専用ロジック ---------------- */
     function initBossBattle() {
       bossHp = 100;
       bossPhase = 1;
@@ -1726,7 +1743,6 @@
       setupBossPhase();
     }
 
-    /* ---------------- 通常ユニットUIロジック ---------------- */
     function updateLevel1UI() {
       if (!phrases || phrases.length === 0) return;
       const p = phrases[currentPhraseIdx];
@@ -1746,7 +1762,9 @@
 
     function goToStep1() {
       window.speechSynthesis.cancel();
+      document.getElementById('step-1-panel').style.display = 'block';
       document.getElementById('step-1-panel').classList.add('active');
+      document.getElementById('step-2-panel').style.display = 'none';
       document.getElementById('step-2-panel').classList.remove('active');
       document.getElementById('character-face').textContent = "👧";
       document.getElementById('character-face').classList.remove('speaking');
@@ -1756,7 +1774,9 @@
 
     function goToStep2() {
       window.speechSynthesis.cancel();
+      document.getElementById('step-1-panel').style.display = 'none';
       document.getElementById('step-1-panel').classList.remove('active');
+      document.getElementById('step-2-panel').style.display = 'block';
       document.getElementById('step-2-panel').classList.add('active');
     }
 
@@ -1844,6 +1864,22 @@
       }
     }
 
+    function speakSingleSentence(text, speaker) {
+      unlockAudioHardware();
+      const boxA = document.getElementById('char-a-box');
+      const boxB = document.getElementById('char-b-box');
+      if (boxA) boxA.classList.remove('speaking');
+      if (boxB) boxB.classList.remove('speaking');
+
+      const pitch = (speaker === 'B') ? 1.25 : 1.0;
+      const targetBox = (speaker === 'B') ? boxB : boxA;
+      if (targetBox) targetBox.classList.add('speaking');
+
+      playKoreanTTS(text, pitch, () => {
+        if (targetBox) targetBox.classList.remove('speaking');
+      });
+    }
+
     function startSpeechRecognition() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) {
@@ -1906,8 +1942,8 @@
       }
     }
 
-    // 初期起動時
-    switchUnit(document.getElementById('unit-select').value);
+    // 初期表示を Unit 1 に設定して起動
+    switchUnit('unit1');
   </script>
 </body>
 </html>
