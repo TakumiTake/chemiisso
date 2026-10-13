@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>韓国語学習ソフト チェミイッソ！</title>
+  <title>イッソのチェミイッソ！</title>
   <style>
     :root {
       --primary: #ff4d88;
@@ -781,8 +781,9 @@
 </head>
 <body>
 
+  <!-- ここがアプリタイトルです！ -->
   <header>
-    <h1>チェミイッソ！ <span>재미있어!</span></h1>
+    <h1>イッソのチェミイッソ！ <span>있어의 재미있어!</span></h1>
     <p id="unit-subtitle">1,2,3 IVE EP.1</p>
   </header>
 
@@ -969,7 +970,7 @@
       { key: "unit10", title: "Unit 10：全編総復習マスタークラス", desc: "全33行スクリプト（通常・漢字英語化・全文音読判定）", badge: "集大成" }
     ];
 
-    // 19:15〜21:40 の全編完全スクリプトデータ
+    // 19:15〜21:40 の全編完全スクリプトデータ（イソ発言修正済み）
     const fullScriptData = [
       { time: "19:15", speaker: "ユジン", ko: "일단 옆줄 맞추는 거 진짜 신경 써야 해.", mixed: "一旦 옆줄 맞추는 거 진짜 神經 써야 해.", ja: "まず横の列を合わせるの、本当に気をつけなきゃ。", target: "신경" },
       { time: "19:19", speaker: "テロップ", ko: "리더 공지 사항: 옆줄 맞추기", mixed: "Leader 告知 事項: 옆줄 맞추기", ja: "リーダー告知事項: 横列合わせ", target: "공지사항" },
@@ -986,14 +987,14 @@
       { time: "19:59", speaker: "ウォニョン", ko: "리즈야 내 뒤로 와!", mixed: "리즈야 내 뒤로 와!", ja: "リズ、私の後ろに来て！", target: "뒤로 와" },
       { time: "20:02", speaker: "ガウル", ko: "얘 얼굴이 홍당무 됐어~", mixed: "얘 顔이 紅唐武 됐어~", ja: "この子、顔が真っ赤になっちゃった〜", target: "홍당무" },
       { time: "20:08", speaker: "ユジン", ko: "알겠어 알겠어.", mixed: "알겠어 알겠어.", ja: "分かった 分かった。", target: "알겠어" },
-      { time: "20:09", speaker: "リズ", ko: "잠깐만 기다려 봐여..!", mixed: "暫間만 기다려 봐여..!", ja: "ちょっと待ってください…！", target: "기だ려" },
+      { time: "20:09", speaker: "リズ", ko: "잠깐만 기다려 봐여..!", mixed: "暫間만 기다려 봐여..!", ja: "ちょっと待ってください…！", target: "기다려" },
       { time: "20:10", speaker: "ガウル", ko: "아, 나 생각났어!", mixed: "아, 나 生覺났어!", ja: "あ、私思いついた！", target: "생각났어" },
       { time: "20:12", speaker: "ガウル", ko: "아이팅!", mixed: "IVETING!", ja: "アイティン！", target: "아이팅" },
       { time: "20:14", speaker: "妹たち", ko: "너무 좋아 언니, 너무 좋아!", mixed: "너무 좋아 언니, 너무 좋아!", ja: "すごくいいよオンニ、すごくいい！", target: "너무 좋아" },
       { time: "20:15", speaker: "テロップ", ko: "사회생활 만렙", mixed: "社會生活 萬Level", ja: "社会人生活レベルMAX", target: "사회생활" },
       { time: "20:22", speaker: "テロップ", ko: "불꽃연기 혼신의 리액션", mixed: "불꽃演技 渾身의 Reaction", ja: "迫真の演技 渾身のリアクション", target: "연기" },
       { time: "20:25", speaker: "ガウル", ko: "나 갑자기 생각났어!", mixed: "나 갑자기 生覺났어!", ja: "私、急に思いついた！", target: "갑자기" },
-      { time: "20:38", speaker: "リズ", ko: "음이 뭐였져?", mixed: "音이 뭐였져?", ja: "音程は何でしたっけ？", target: "뭐였져" },
+      { time: "20:38", speaker: "イソ", ko: "음이 뭐였져?", mixed: "音이 뭐였져?", ja: "音程は何でしたっけ？", target: "뭐였져" },
       { time: "20:40", speaker: "テロップ", ko: "디테일 지옥", mixed: "Detail 地獄", ja: "ディテール地獄", target: "지옥" },
       { time: "20:45", speaker: "ウォニョン", ko: "이거 가지는 거~", mixed: "이거 가지는 거~", ja: "こうやって掴むやつ〜", target: "가지는 거" },
       { time: "21:05", speaker: "ユジン", ko: "쿨하게 헤어지는 거야~", mixed: "Cool하게 헤어지는 거야~", ja: "クールに解散するんだよ〜", target: "쿨하게" },
@@ -1071,7 +1072,7 @@
         ytSeconds: 1236,
         ytDesc: "動画の 20:36〜21:21 を再生して、音程の調整や手元に引き寄せるジェスチャーなど、細部にこだわるメンバーの姿をチェックしましょう！",
         phrases: [
-          { hangul: "음이 뭐였져?", meaning: "音程は何でしたっけ？（20:38 リズ）", point: "「음이」は連音化して [으ミ]。「-죠」を可愛らしく「-져」と発音。", targetWord: "뭐였져" },
+          { hangul: "음이 뭐였져?", meaning: "音程は何でしたっけ？（20:38 イソ）", point: "「음이」は連音化して [으ミ]。「-죠」を可愛らしく「-져」と発音。", targetWord: "뭐였져" },
           { hangul: "이거 가지는 거~", meaning: "こうやって掴む（手に入れる）やつ〜（20:45 ウォニョン）", point: "「I have」にちなんで、手元に引き寄せるジェスチャーを説明する表現。", targetWord: "가지는 거" },
           { hangul: "쿨하게 헤어지는 거야~", meaning: "クールに解散するんだよ〜（21:05 ユジン）", point: "「쿨하게」の外来語の響きと、「헤어지는」の滑らかな連音を意識。", targetWord: "쿨하게" },
           { hangul: "바깥으로? 응, 도는 거", meaning: "外側に？ うん、回るの（21:15 レイ＆ユジン）", point: "「바깥으로」はパッチム「ㅌ」が連音化して [바까트로] と発音。", targetWord: "바깥으로" }
@@ -1086,7 +1087,7 @@
         phrases: [
           { hangul: "그럼 오늘은 퇴근이니까~", meaning: "それじゃあ 今日は退勤だから〜（21:22 ユジン）", point: "「퇴근」の「ㄴ」と「이」を滑らかに連音化。「-(으)니까」で理由を述べる。", targetWord: "퇴근이니까" },
           { hangul: "둘 셋! 아이~브!", meaning: "せーの！アイ〜ヴ！（21:28 全員）", point: "合図の「1」を省略して「둘, 셋!」と揃え、語尾の音程をグッと上げて発音。", targetWord: "아이브" },
-          { hangul: "나가, 빨리 나가!", meaning: "出て、早く出て！（21:30 メンバー）", point: "「빨리」のパッチム「ㄹ」と初声「ㄹ」を弾むように力強く発音。", targetWord: "빨리 나가" },
+          { hangul: "나가, 빨리 나가!", meaning: "出て、早く出て！（21:30 メンバー）", point: "「빨り」のパッチム「ㄹ」と初声「ㄹ」を弾むように力強く発音。", targetWord: "빨리 나가" },
           { hangul: "수고하셨습니다!", meaning: "お疲れ様でした！（21:35 全員）", point: "仕事や練習終わりで最もよく使う必須挨拶。元気よく挨拶！", targetWord: "수고하셨습니다" }
         ],
         level2HTML: `<div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>`,
@@ -1192,7 +1193,6 @@
       const data = unitsData[unitKey];
       document.getElementById('unit-subtitle').textContent = data.subtitle;
 
-      // タブのラベルをユニットごとに微調整
       const tabs = document.querySelectorAll('.tab-button');
       if (data.isUnit0) {
         tabs[0].textContent = "Lv 1. 全体目次";
@@ -1303,7 +1303,6 @@
 
     /* ---------------- Unit 0 専用レンダリング ---------------- */
     function renderUnit0() {
-      // Lv 1: 目次ロードマップ一覧
       const listContainer = document.getElementById('unit0-roadmap-list');
       listContainer.innerHTML = '';
       curriculumData.forEach((c) => {
@@ -1320,7 +1319,6 @@
         listContainer.appendChild(card);
       });
 
-      // Lv 2: TOPIK 2級文法達成チェック
       document.getElementById('level-2-container').innerHTML = `
         <div class="section-title">
           <span>レベル 2: TOPIK 2級文法達成度チェック</span>
@@ -1344,7 +1342,6 @@
         </div>
       `;
 
-      // Lv 3: 漢字語＆音声変化サマリー
       document.getElementById('level-3-container').innerHTML = `
         <div class="section-title">
           <span>レベル 3: 漢字語＆発音変化マスター表</span>
