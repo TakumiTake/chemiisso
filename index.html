@@ -1275,7 +1275,7 @@
             <p>21:40の公式オチテロップ「여기까지 아이브 구호 만들기였습니다 (feat. 나가는 것까지가 구호의 완성)」。</p>
           </div>`
       },
-     unit7: {
+    unit7: {
         subtitle: "1,2,3 IVE EP.1（同音異義語 徹底マスター編）",
         ytSeconds: 1217,
         ytDesc: "動画のテロップやセリフから生まれた4大同音異義語（사・신・연・점）を、Level 1と同じようにページめくりで完全制覇！",
@@ -1288,15 +1288,15 @@
         level2HTML: `
           <div class="section-title"><span>レベル 2: 同音異義語ネットワーク（全4ページ）</span></div>
           
-          <!-- ページナビゲーション（上部） -->
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; background:rgba(255,255,255,0.05); padding:8px 14px; border-radius:10px;">
-            <button class="sound-btn" onclick="switchKanjiPage(-1)" style="font-size:0.9rem; padding:6px 12px;">◀ 前のグループ</button>
-            <span id="kanji-page-indicator" style="font-weight:bold; color:var(--accent); font-size:1rem;">1 / 4 グループ</span>
-            <button class="sound-btn" onclick="switchKanjiPage(1)" style="font-size:0.9rem; padding:6px 12px;">次のグループ ▶</button>
+          <!-- ページナビゲーション（Lv2） -->
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; background:rgba(255,255,255,0.06); padding:8px 12px; border-radius:10px;">
+            <button class="sound-btn" onclick="window.switchKanjiPage(-1)" style="font-size:0.85rem; padding:6px 12px;">◀ 前のグループ</button>
+            <span class="kanji-indicator-text" style="font-weight:bold; color:var(--accent); font-size:0.95rem;">1 / 4: 사(社/事/死/使)</span>
+            <button class="sound-btn" onclick="window.switchKanjiPage(1)" style="font-size:0.85rem; padding:6px 12px;">次のグループ ▶</button>
           </div>
 
           <!-- 第1ページ: 사 (社/事/死/使) -->
-          <div id="kanji-group-1" class="kanji-group-page">
+          <div id="kanji-group-1" class="kanji-page-card" style="display:block;">
             <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:10px;">📺 20:17 テロップ「사회생활 만렙」の【社 (사)】から広がる世界！</p>
             <div class="kanji-group-container">
               <div class="kanji-card">
@@ -1328,7 +1328,7 @@
           </div>
 
           <!-- 第2ページ: 신 (信/身/神/新) -->
-          <div id="kanji-group-2" class="kanji-group-page" style="display:none;">
+          <div id="kanji-group-2" class="kanji-page-card" style="display:none;">
             <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:10px;">📺 19:45「무한 신뢰」& 20:19「혼신의 리액션」の【信・身 (신)】から広がる世界！</p>
             <div class="kanji-group-container">
               <div class="kanji-card">
@@ -1361,7 +1361,7 @@
           </div>
 
           <!-- 第3ページ: 연 (演/煙/連/年) -->
-          <div id="kanji-group-3" class="kanji-group-page" style="display:none;">
+          <div id="kanji-group-3" class="kanji-page-card" style="display:none;">
             <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:10px;">📺 20:32 テロップ「불꽃연기」の【演 (연)】から広がる世界！</p>
             <div class="kanji-group-container">
               <div class="kanji-card">
@@ -1391,7 +1391,7 @@
           </div>
 
           <!-- 第4ページ: 점 (點/店) -->
-          <div id="kanji-group-4" class="kanji-group-page" style="display:none;">
+          <div id="kanji-group-4" class="kanji-page-card" style="display:none;">
             <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:10px;">📺 21:28 テロップ「포인트（点・要点）」の【點 (점)】から広がる世界！</p>
             <div class="kanji-group-container">
               <div class="kanji-card">
@@ -1416,9 +1416,16 @@
         `,
         level3HTML: `
           <div class="section-title"><span>レベル 3: 漢字表記 リアル例文集（全4ページ連動）</span></div>
+
+          <!-- ページナビゲーション（Lv3） -->
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; background:rgba(255,255,255,0.06); padding:8px 12px; border-radius:10px;">
+            <button class="sound-btn" onclick="window.switchKanjiPage(-1)" style="font-size:0.85rem; padding:6px 12px;">◀ 前のグループ</button>
+            <span class="kanji-indicator-text" style="font-weight:bold; color:var(--accent); font-size:0.95rem;">1 / 4: 사(社/事/死/使)</span>
+            <button class="sound-btn" onclick="window.switchKanjiPage(1)" style="font-size:0.85rem; padding:6px 12px;">次のグループ ▶</button>
+          </div>
           
           <!-- 第1ページ例文: 사 (社/事/死/使) -->
-          <div id="kanji-sent-1" class="kanji-sent-page">
+          <div id="kanji-sent-1" class="kanji-sent-card" style="display:block;">
             <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【사】グループの例文です。漢字と音声（🔊）で意味を直感的に掴みましょう！</p>
             <div class="dialogue-item">
               <div class="dialogue-content">
@@ -1463,7 +1470,7 @@
           </div>
 
           <!-- 第2ページ例文: 신 (信/身/神/新) -->
-          <div id="kanji-sent-2" class="kanji-sent-page" style="display:none;">
+          <div id="kanji-sent-2" class="kanji-sent-card" style="display:none;">
             <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【신】グループの例文です。横列の神経や無限の信頼など生きた表現が満載！</p>
             <div class="dialogue-item">
               <div class="dialogue-content">
@@ -1508,7 +1515,7 @@
           </div>
 
           <!-- 第3ページ例文: 연 (演/煙/連/年) -->
-          <div id="kanji-sent-3" class="kanji-sent-page" style="display:none;">
+          <div id="kanji-sent-3" class="kanji-sent-card" style="display:none;">
             <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【연】グループの例文です。迫真の演技と同音同綴りの「煙」を聴き比べ！</p>
             <div class="dialogue-item">
               <div class="dialogue-content">
@@ -1548,12 +1555,12 @@
                 <div class="ja">コンサート公演の直前にはスタンバイが迫ります。</div>
                 <span class="grammar-tag">演 (연) ➔ 21:32 ガウル「스탠바이 임박하면!」</span>
               </div>
-              <button class="sound-btn" onclick="playKoreanTTS('콘서트 공연 직전에는 스탠바이가 임박해요.')">🔊</button>
+              <button class="sound-btn" onclick="playKoreanTTS('콘서트 공연 직전には 스탠바이가 임박해요.')">🔊</button>
             </div>
           </div>
 
           <!-- 第4ページ例文: 점 (點/店) -->
-          <div id="kanji-sent-4" class="kanji-sent-page" style="display:none;">
+          <div id="kanji-sent-4" class="kanji-sent-card" style="display:none;">
             <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【점】グループの例文です。ポイント（重点）と売店・書店の違いをマスター！</p>
             <div class="dialogue-item">
               <div class="dialogue-content">
@@ -1592,16 +1599,22 @@
           <script>
             window.currentKanjiPage = 1;
             window.switchKanjiPage = function(delta) {
-              var newPage = window.currentKanjiPage + delta;
+              var newPage = (window.currentKanjiPage || 1) + delta;
               if (newPage < 1) newPage = 1;
               if (newPage > 4) newPage = 4;
               window.currentKanjiPage = newPage;
               
-              var groupNames = ["1. 사 (社/事/死/使)", "2. 신 (信/身/神/新)", "3. 연 (演/煙/連/年)", "4. 점 (點/店)"];
-              var indicator = document.getElementById('kanji-page-indicator');
-              if (indicator) {
-                indicator.innerText = groupNames[newPage - 1] + " (" + newPage + "/4)";
-              }
+              var titles = [
+                "1 / 4: 사(社/事/死/使)",
+                "2 / 4: 신(信/身/神/新)",
+                "3 / 4: 연(演/煙/連/年)",
+                "4 / 4: 점(點/店)"
+              ];
+              
+              var indicators = document.querySelectorAll('.kanji-indicator-text');
+              indicators.forEach(function(el) {
+                el.innerText = titles[newPage - 1];
+              });
               
               for (var i = 1; i <= 4; i++) {
                 var g = document.getElementById('kanji-group-' + i);
