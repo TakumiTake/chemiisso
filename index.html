@@ -1947,12 +1947,24 @@
       document.getElementById('unit-subtitle').textContent = data.subtitle;
 
       // タブのラベルをユニットごとに微調整
+      // タブのラベルをユニットごとに書き換え
       const tabs = document.querySelectorAll('.tab-button');
-      if (data.isUnit10) {
+      if (unitKey === 'unit7') {
+        tabs[0].textContent = "Lv 1. 実在セリフ発音";
+        tabs[1].textContent = "Lv 2. 同音異義語";
+        tabs[2].textContent = "Lv 3. リアル例文集";
+        tabs[3].textContent = "Lv 4. 公式動画シンクロ";
+      } else if (data.isUnit10) {
         tabs[0].textContent = "Lv 1. 全スクリプト";
-        tabs[1].textContent = "Lv 2. 漢字・英語化";
+        tabs[1].textContent = "Lv 2. 漢字・単語化";
         tabs[2].textContent = "Lv 3. 全文音読判定";
         tabs[3].textContent = "Lv 4. 公式動画通し";
+      } else {
+        tabs[0].textContent = "Lv 1. 実在セリフ発音";
+        tabs[1].textContent = "Lv 2. 本編対話・漢字語";
+        tabs[2].textContent = "Lv 3. 音声変化・テロップ";
+        tabs[3].textContent = "Lv 4. 公式動画シンクロ";
+      }
       } else {
         tabs[0].textContent = "Lv 1. 実在セリフ発音";
         tabs[1].textContent = "Lv 2. 本編対話・漢字語";
