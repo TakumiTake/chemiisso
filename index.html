@@ -990,52 +990,43 @@
       },
       unit3: {
         subtitle: "1,2,3 IVE EP.1（19:45〜20:09 じゃんけん勝負＆リズを守れ編）",
-        ytSeconds: 1195,
+        ytSeconds: 1185,
         ytDesc: "動画の 19:45〜20:09 を再生して、学んだセリフとテロップを答え合わせしましょう！",
         phrases: [
-          { hangul: "리즈야 내 뒤로 와!", meaning: "リズ、私の後ろに来て！（19:59 ウォニョン）", point: "「뒤로」の二重母音「위」を滑らかに、「와」は口を大きく開いて発音。", targetWord: "뒤로 와" },
-          { hangul: "얘 얼굴이 홍당무 됐어~", meaning: "この子、顔が真っ赤になっちゃった〜（20:02 ガウル）", point: "「얼굴이」は連音化して [얼구리]。「홍당무」はリズが照れている様子。", targetWord: "홍당무" },
-          { hangul: "알겠어 알겠어", meaning: "分かった 分かった（20:08 ユジン）", point: "「알겠어」はパッチム「ㅆ」が連音化して [알게써] と発音。", targetWord: "알겠어" },
-          { hangul: "잠깐만 기다려 봐여..!", meaning: "ちょっと待ってください…！（20:09 リズ）", point: "「잠깐」の濃音「ㄲ」と、「기다려 봐여」の愛嬌ある語尾「여」を意識。", targetWord: "기다려" }
+          { hangul: "리즈야 내 뒤로 와!", meaning: "リズ、私の後ろに来て！（19:59 ウォニョン）", point: "「뒤로」の二重母音「위」を滑らかに、「와!」は口を大きく開いて発音。", targetWord: "뒤로" },
+          { hangul: "얘 얼굴이 홍당무 됐어~", meaning: "この子、顔が真っ赤になっちゃった〜（20:02 ガウル）", point: "「홍당무（赤カブ＝赤面）」。「됐어」は [뒈써] と濃音化。", targetWord: "홍당무" },
+          { hangul: "잠깐만 기다려 봐여..!", meaning: "ちょっと待ってください…！（20:08 リズ）", point: "「잠깐만（ちょっと）」＋「기다려（待って）」＋「봐여（みてよ/愛嬌）」。", targetWord: "기다려" },
+          { hangul: "알겠어 알겠어", meaning: "分かった分かった（20:08 ユジン）", point: "「알겠어」は代表音「ㄷ」の後ろで「어」が濃音化して [알겓써]。", targetWord: "알겠어" }
         ],
         level2HTML: `
           <div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>
           <div class="two-shot-frame">
-            <div class="character-box"><div class="icon">🐰</div><div class="name">ウォニョン</div></div>
+            <div class="character-box"><div class="icon">🐰</div><div class="name">ウォニョン (守る側)</div></div>
             <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
-            <div class="character-box"><div class="icon">🐥</div><div class="name">リズ</div></div>
+            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン (攻める側)</div></div>
           </div>
           <div class="dialogue-item">
             <div class="dialogue-content">
-              <div class="ko">안 내면 진 거 가위바위보!</div>
-              <div class="ja">出さなきゃ負けよ じゃんけんぽん！</div>
-              <span class="grammar-tag">안 내면 진 거（出さなければ負けたもの）</span>
+              <div class="ko">리즈야 내 뒤로 와! 우리 리즈 지켜!</div>
+              <div class="ja">リズ、私の後ろにおいで！うちのリズを守れ！</div>
+              <span class="grammar-tag">-(아/어) 지키다（守る / 庇う）</span>
             </div>
-            <button class="sound-btn" onclick="playKoreanTTS('안 내면 진 거 가위바위보!')">🔊</button>
+            <button class="sound-btn" onclick="playKoreanTTS('리즈야 내 뒤로 와! 우리 리즈 지켜!')">🔊</button>
           </div>
           <div class="dialogue-item speaker-b">
             <div class="dialogue-content">
-              <div class="ko">누가 졌어? 리즈 걸렸어?</div>
-              <div class="ja">誰が負けた？リズが引っかかった（負けた）？</div>
-              <span class="grammar-tag">걸리다（引っかかる・当たる）</span>
+              <div class="ko">응 빨리해. 한 번 봐줌!</div>
+              <div class="ja">うん、早くやって。一回大目に見てあげる！</div>
+              <span class="grammar-tag">봐주다（大目に見る・見逃す）</span>
             </div>
-            <button class="sound-btn" onclick="playKoreanTTS('누가 졌어? 리즈 걸렸어?')">🔊</button>
-          </div>
-          <div class="dialogue-item">
-            <div class="dialogue-content">
-              <div class="ko">안 돼, 우리 리즈 지켜줘야 해!</div>
-              <div class="ja">ダメ、私たちのリズを守ってあげなきゃ！</div>
-              <span class="grammar-tag">-아/어 줘야 해（〜してあげなきゃ）</span>
-            </div>
-            <button class="sound-btn" onclick="playKoreanTTS('안 돼, 우리 리즈 지켜줘야 해!')">🔊</button>
+            <button class="sound-btn" onclick="playKoreanTTS('응 빨리해. 한 번 봐줌!')">🔊</button>
           </div>
           <div class="kanji-group-container">
             <div class="kanji-card">
-              <h4>📖 勝負・保護 (승부/보호) グループ</h4>
+              <h4>📖 保護・信頼 グループ</h4>
               <ul class="kanji-list">
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('승부')">🔊 승부</button> <b>勝負</b> <span style="color:var(--text-sub); font-size:0.85rem;">(勝負・勝ち負け)</span></li>
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('보호')">🔊 보호</button> <b>保護</b> <span style="color:var(--text-sub); font-size:0.85rem;">(守ること・保護)</span></li>
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('탈락')">🔊 탈락</button> <b>脫落</b> <span style="color:var(--text-sub); font-size:0.85rem;">(脱落・負け)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('보호')">🔊 보호</button> <b>保護</b> <span style="color:var(--text-sub); font-size:0.85rem;">(リズを守ること・保護)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('신뢰')">🔊 신뢰</button> <b>信賴</b> <span style="color:var(--text-sub); font-size:0.85rem;">(リーダーへの信頼)</span></li>
               </ul>
             </div>
           </div>`,
@@ -1044,149 +1035,70 @@
           <div class="level-block">
             <div class="sound-change-tag">⚡ 濃音化</div>
             <div class="sound-change-row">
-              <span style="font-size: 1.05rem; font-weight: bold;">진 거</span>
+              <span style="font-size: 1.05rem; font-weight: bold;">알겠어</span>
               <span style="color: var(--text-sub);">➔</span>
-              <button class="sound-btn danger-btn" onclick="playKoreanTTS('진 꺼')">🔊 [진 꺼]</button>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('알겓써')">🔊 [알겓써]</button>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-sub);">連体形「-(으)ㄴ」の後ろの平音「ㄱ」が濃音化。</p>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㅆ」の後ろで母音が濃音化して力強く発音。</p>
           </div>
           <div class="level-block">
-            <div class="sound-change-tag">⚡ 激音化</div>
+            <div class="sound-change-tag">⚡ 濃音化</div>
             <div class="sound-change-row">
-              <span style="font-size: 1.05rem; font-weight: bold;">지켜</span>
+              <span style="font-size: 1.05rem; font-weight: bold;">됐어</span>
               <span style="color: var(--text-sub);">➔</span>
-              <button class="sound-btn danger-btn" onclick="playKoreanTTS('지켜')">🔊 [지켜]</button>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('뒈써')">🔊 [뒈써]</button>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-sub);">激音「ㅋ」を息を鋭く吐き出して発音。</p>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">「홍당무 됐어」の「됐어」。パッチム「ㅆ」による濃音化。</p>
           </div>
           <div class="telop-column">
             <div class="label">📺 本編テロップの生韓国語</div>
             <div class="telop-header-row">
-              <span class="screen-text" onclick="playKoreanTTS('치열한 가위바위보')">🔊 치열한 가위바위보</span>
-              <span class="screen-translation">(熾烈なじゃんけん)</span>
+              <span class="screen-text" onclick="playKoreanTTS('우리 리즈 지켜')">🔊 우리 리즈 지켜</span>
+              <span class="screen-translation">(うちのリズを守れ)</span>
             </div>
-            <p>誰が最初の掛け声を出すか決める白熱の勝負シーンです。</p>
+            <p>19:56の公式テロップ「우리 리즈 지켜 VS 응 빨리해（うちのリズを守れ VS うん早くやって）」。</p>
           </div>`
       },
-      unit4: {
+     unit4: {
         subtitle: "1,2,3 IVE EP.1（20:10〜20:35 ガウルの提案編）",
         ytSeconds: 1210,
         ytDesc: "動画の 20:10〜20:35 を再生して、ガウルの渾身提案「アイティング！」とメンバーのリアクションを答え合わせしましょう！",
         phrases: [
-          { hangul: "아, 나 생각났어!", meaning: "あ、私思いついた！（20:10 ガウル）", point: "「생각」の「ㄱ」と「났어」を滑らかに。「났어」は [나써] と濃音化。", targetWord: "생각났어" },
-          { hangul: "아이팅!", meaning: "アイティン！（20:12 ガウル渾身の提案）", point: "IVE（アイヴ）＋ファイティンを合体させた渾身の叫び！元気に発音。", targetWord: "아이팅" },
-          { hangul: "너무 좋아 언니, 너무 좋아", meaning: "すごくいいよオンニ、すごくいい（20:14 妹たち）", point: "「너무」を重ねて感情を込め、「좋아」はパッチム「ㅎ」を脱落させて [조아] と発音。", targetWord: "너무 좋아" },
-          { hangul: "나 갑자기 생각났어!", meaning: "私、急に思いついた！（20:25 ガウル）", point: "「갑자기」は濃音化して [갑짜기]。「急に」ひらめいた勢いを込めて。", targetWord: "갑자기" }
+          { hangul: "아 나 생각났어!", meaning: "あ、私思いついた！（20:10 ガウル）", point: "「생각」の「ㄱ」と「났어」を滑らかに。「났어」は [나써] と濃音化。", targetWord: "생각났어" },
+          { hangul: "아이팅!", meaning: "アイティン！（20:12 ガウル）", point: "IVEの「아이」＋ファイティンの「팅」を組み合わせた造語。", targetWord: "아이팅" },
+          { hangul: "아이팅 괜찮다 ㅎㅎ", meaning: "アイティンいいねｗｗ（20:19 ユジン）", point: "「괜찮다」はパッチム「ㄶ」と「ㄷ」が合体して激音化（[괜찬타]）。", targetWord: "괜찮다" },
+          { hangul: "너무 좋아 언니", meaning: "すごくいいよオンニ（20:18 イソ）", point: "感情を込めて「너무 좋아」を軽快に発音。", targetWord: "너무 좋아" }
         ],
         level2HTML: `
           <div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>
           <div class="two-shot-frame">
-            <div class="character-box"><div class="icon">🐿️</div><div class="name">ガウル</div></div>
+            <div class="character-box"><div class="icon">🐿️</div><div class="name">ガウル (提案)</div></div>
             <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
-            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン</div></div>
+            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン (反応)</div></div>
           </div>
           <div class="dialogue-item">
             <div class="dialogue-content">
-              <div class="ko">아이브의 '아이'랑 파이팅을 합쳐서 '아이팅' 어때?</div>
-              <div class="ja">IVEの『アイ』とファイティンを合わせて『アイティング』はどう？</div>
-              <span class="grammar-tag">-랑 합쳐서（〜と合わせて） / 어때?（どう？）</span>
+              <div class="ko">아 나 생각났어! 하나 둘 셋, 아이팅!</div>
+              <div class="ja">あ、私思いついた！せーの、アイティン！</div>
+              <span class="grammar-tag">생각이 나다（思いつく・ひらめく）</span>
             </div>
-            <button class="sound-btn" onclick="playKoreanTTS('아이브의 아이랑 파이팅을 합쳐서 아이팅 어때?')">🔊</button>
+            <button class="sound-btn" onclick="playKoreanTTS('아 나 생각났어! 하나 둘 셋, 아이팅!')">🔊</button>
           </div>
           <div class="dialogue-item speaker-b">
             <div class="dialogue-content">
-              <div class="ko">어? 언니, 그거 진짜 괜찮은데?</div>
-              <div class="ja">え？オンニ、それ本当にすごく良いんだけど？</div>
-              <span class="grammar-tag">-ㄴ/은데（〜だけど・〜なんだけど）</span>
+              <div class="ko">아이팅 괜찮다 ㅎㅎ 너무 좋아 언니!</div>
+              <div class="ja">アイティンいいね（笑）すごくいいよオンニ！</div>
+              <span class="grammar-tag">-다（独り言・感嘆） / 너무 좋아（すごくいい）</span>
             </div>
-            <button class="sound-btn" onclick="playKoreanTTS('어? 언니, 그거 진짜 괜찮은데?')">🔊</button>
-          </div>
-          <div class="dialogue-item">
-            <div class="dialogue-content">
-              <div class="ko">아이팅? 오, 귀엽다! 입에 착 붙네!</div>
-              <div class="ja">アイティング？おお、可愛い！口にぴったり馴染むね！</div>
-              <span class="grammar-tag">입에 착 붙다（口に馴染む・言いやすい）</span>
-            </div>
-            <button class="sound-btn" onclick="playKoreanTTS('아이팅? 오, 귀엽다! 입에 착 붙네!')">🔊</button>
+            <button class="sound-btn" onclick="playKoreanTTS('아이팅 괜찮다 ㅎㅎ 너무 좋아 언니!')">🔊</button>
           </div>
           <div class="kanji-group-container">
             <div class="kanji-card">
-              <h4>📖 提案・結合 (제안/결합) グループ</h4>
+              <h4>📖 提案・反応 グループ</h4>
               <ul class="kanji-list">
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('제안')">🔊 제안</button> <b>提案</b> <span style="color:var(--text-sub); font-size:0.85rem;">(提案・アイデア)</span></li>
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('결합')">🔊 결합</button> <b>結合</b> <span style="color:var(--text-sub); font-size:0.85rem;">(組み合わせること)</span></li>
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('반응')">🔊 반응</button> <b>反應</b> <span style="color:var(--text-sub); font-size:0.85rem;">(反応・手応え)</span></li>
-              </ul>
-            </div>
-          </div>`,
-        level3HTML: `
-          <div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>
-          <div class="level-block">
-            <div class="sound-change-tag">⚡ 濃音化・鼻音化</div>
-            <div class="sound-change-row">
-              <span style="font-size: 1.05rem; font-weight: bold;">착 붙네</span>
-              <span style="color: var(--text-sub);">➔</span>
-              <button class="sound-btn danger-btn" onclick="playKoreanTTS('착 뿐네')">🔊 [착 뿐네]</button>
-            </div>
-            <p style="font-size: 0.8rem; color: var(--text-sub);">「ㄱ」＋「ㅂ」濃音化、さらに「ㅌ」が「ㄴ」の前で鼻音化。</p>
-          </div>
-          <div class="telop-column">
-            <div class="label">📺 本編テロップの生韓国語</div>
-            <div class="telop-header-row">
-              <span class="screen-text" onclick="playKoreanTTS('가을 선배의 번뜩이는 아이디어')">🔊 가을 선배의 번뜩이는 아이디어</span>
-              <span class="screen-translation">(ガウル先輩のひらめくアイデア)</span>
-            </div>
-            <p>IVEならではの象徴的な掛け声『アイティング』が誕生した瞬間です。</p>
-          </div>`
-      },
-      unit5: {
-        subtitle: "1,2,3 IVE EP.1（20:36〜21:21 掛け声の演出・細部詰め編）",
-        ytSeconds: 1236,
-        ytDesc: "動画の 20:36〜21:21 を再生して、音程の調整や手元に引き寄せるジェスチャーなど、細部にこだわるメンバーの姿をチェックしましょう！",
-        phrases: [
-          { hangul: "음이 뭐였져?", meaning: "音程は何でしたっけ？（20:38 リズ）", point: "「음이」は連音化して [으ミ]。「-죠」を可愛らしく「-져」と発音。", targetWord: "뭐였져" },
-          { hangul: "이거 가지는 거~", meaning: "こうやって掴む（手に入れる）やつ〜（20:45 ウォニョン）", point: "「I have」にちなんで、手元に引き寄せるジェスチャーを説明する表現。", targetWord: "가지는 거" },
-          { hangul: "쿨하게 헤어지는 거야~", meaning: "クールに解散するんだよ〜（21:05 ユジン）", point: "「쿨하게」の外来語の響きと、「헤어지는」の滑らかな連音を意識。", targetWord: "쿨하게" },
-          { hangul: "바깥으로? 응, 도는 거", meaning: "外側に？ うん、回るの（21:15 レイ＆ユジン）", point: "「바깥으로」はパッチム「ㅌ」が連音化して [바까트로] と発音。", targetWord: "바깥으로" }
-        ],
-        level2HTML: `
-          <div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>
-          <div class="two-shot-frame">
-            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン</div></div>
-            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
-            <div class="character-box"><div class="icon">🐰</div><div class="name">ウォニョン</div></div>
-          </div>
-          <div class="dialogue-item">
-            <div class="dialogue-content">
-              <div class="ko">손을 이렇게 모았다가 '아이팅' 하면서 위로 뻗자.</div>
-              <div class="ja">手をこうやって集めてから『アイティング』と言いながら上に伸ばそう。</div>
-              <span class="grammar-tag">-았다가（〜してから） / -(으)면서（〜しながら）</span>
-            </div>
-            <button class="sound-btn" onclick="playKoreanTTS('손을 이렇게 모았다가 아이팅 하면서 위로 뻗자.')">🔊</button>
-          </div>
-          <div class="dialogue-item speaker-b">
-            <div class="dialogue-content">
-              <div class="ko">타이밍이 중요해. 하나, 둘, 셋에 바로 하는 거지?</div>
-              <div class="ja">タイミングが大事。1、2、3ですぐやるんだよね？</div>
-              <span class="grammar-tag">-는 거지?（〜するんだよね？）</span>
-            </div>
-            <button class="sound-btn" onclick="playKoreanTTS('타이밍이 중요해. 하나, 둘, 셋에 바로 하는 거지?')">🔊</button>
-          </div>
-          <div class="dialogue-item">
-            <div class="dialogue-content">
-              <div class="ko">각도도 맞추자. 너무 높이 들지 말고!</div>
-              <div class="ja">角度も合わせよう。あまり高く上げすぎないで！</div>
-              <span class="grammar-tag">-지 말고（〜しないで）</span>
-            </div>
-            <button class="sound-btn" onclick="playKoreanTTS('각도도 맞추자. 너무 높이 들지 말고!')">🔊</button>
-          </div>
-          <div class="kanji-group-container">
-            <div class="kanji-card">
-              <h4>📖 演出・細部 (연출/세부) グループ</h4>
-              <ul class="kanji-list">
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('연출')">🔊 연출</button> <b>演出</b> <span style="color:var(--text-sub); font-size:0.85rem;">(演出・見せ方)</span></li>
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('세부')">🔊 세부</button> <b>細部</b> <span style="color:var(--text-sub); font-size:0.85rem;">(細かいディテール)</span></li>
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('조율')">🔊 조율</button> <b>調律</b> <span style="color:var(--text-sub); font-size:0.85rem;">(すり合わせ・調整)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('제안')">🔊 제안</button> <b>提案</b> <span style="color:var(--text-sub); font-size:0.85rem;">(アイデアを出すこと・提案)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('반응')">🔊 반응</button> <b>反應</b> <span style="color:var(--text-sub); font-size:0.85rem;">(妹たちのリアクション)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('연기')">🔊 연기</button> <b>演技</b> <span style="color:var(--text-sub); font-size:0.85rem;">(20:32公式テロップ「불꽃연기」)</span></li>
               </ul>
             </div>
           </div>`,
@@ -1195,28 +1107,100 @@
           <div class="level-block">
             <div class="sound-change-tag">⚡ 激音化</div>
             <div class="sound-change-row">
-              <span style="font-size: 1.05rem; font-weight: bold;">이렇게</span>
+              <span style="font-size: 1.05rem; font-weight: bold;">괜찮다</span>
               <span style="color: var(--text-sub);">➔</span>
-              <button class="sound-btn danger-btn" onclick="playKoreanTTS('이러케')">🔊 [이러케]</button>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('괜찬타')">🔊 [괜찬타]</button>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㅎ」と平音「ㄱ」が合体して激音 [ㅋ] に変化。</p>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㄶ」の「ㅎ」と平音「ㄷ」が合体して激音 [ㅌ] に変化。</p>
           </div>
           <div class="level-block">
             <div class="sound-change-tag">⚡ 濃音化</div>
             <div class="sound-change-row">
-              <span style="font-size: 1.05rem; font-weight: bold;">모았다가</span>
+              <span style="font-size: 1.05rem; font-weight: bold;">생각났어</span>
               <span style="color: var(--text-sub);">➔</span>
-              <button class="sound-btn danger-btn" onclick="playKoreanTTS('모앋따가')">🔊 [모앋따가]</button>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('생각나써')">🔊 [생각나써]</button>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-sub);">過去形パッチム「ㅆ（代表音ㄷ）」の後ろで「ㄷ」が濃音化。</p>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">過去形パッチム「ㅆ」の後ろで母音が濃音化して [써] と発音。</p>
           </div>
           <div class="telop-column">
             <div class="label">📺 本編テロップの生韓国語</div>
             <div class="telop-header-row">
-              <span class="screen-text" onclick="playKoreanTTS('완벽을 기하는 디테일')">🔊 완벽을 기하는 디테일</span>
-              <span class="screen-translation">(完璧を期すディテール)</span>
+              <span class="screen-text" onclick="playKoreanTTS('사회생활 만렙')">🔊 사회생활 만렙</span>
+              <span class="screen-translation">(社会人生活 レベルMAX)</span>
             </div>
-            <p>手の動作ひとつまで完璧に合わせるプロの現場です。</p>
+            <p>20:17の公式テロップ「ガウルの提案に即座に大絶賛で合わせる妹たちの世渡り術」。</p>
+          </div>`
+      },
+     unit5: {
+        subtitle: "1,2,3 IVE EP.1（20:36〜21:21 掛け声の演出・細部詰め編）",
+        ytSeconds: 1236,
+        ytDesc: "動画の 20:36〜21:21 を再生して、音程の調整や手元に引き寄せるジェスチャーなど、細部にこだわるメンバーの姿をチェックしましょう！",
+        phrases: [
+          { hangul: "뭘 가졌다는 거잖아요~", meaning: "何かを手に入れたってことじゃないですか〜（21:06 ウォニョン）", point: "「가졌다는」はパッチム「ㅆ」の後ろで「ㄷ」が濃音化して [가젿따는]。", targetWord: "가졌다는" },
+          { hangul: "이거 가지는 거~", meaning: "こうやって掴むの〜（21:08 ウォニョン）", point: "胸元に引き寄せるジェスチャーを説明。「가지다（手に入れる・持つ）」。", targetWord: "가지는" },
+          { hangul: "그럼 빠져!", meaning: "じゃあ捌けよう！（21:10 ユジン）", point: "「빠져!（抜けて！/ 捌けて！）」。「빠」はしっかり息を止めて濃音。", targetWord: "빠져" },
+          { hangul: "쿨하게 헤어지는 거야~", meaning: "クールに解散するんだよ〜（21:17 ユジン）", point: "英語の「Cool」に「-하게」をつけた現代口語。「헤어지다（別れる）」。", targetWord: "쿨하게" }
+        ],
+        level2HTML: `
+          <div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>
+          <div class="two-shot-frame">
+            <div class="character-box"><div class="icon">🐰</div><div class="name">ウォニョン (振付担当)</div></div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
+            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン (リーダー)</div></div>
+          </div>
+          <div class="dialogue-item">
+            <div class="dialogue-content">
+              <div class="ko">우리 I have, 뭘 가졌다는 거잖아요~ 이거 가지는 거!</div>
+              <div class="ja">私たち I have、何かを手に入れたってことじゃないですか〜 こうやって掴むの！</div>
+              <span class="grammar-tag">-(ㄴ/는)다는 거잖아요（〜ということじゃないですか）</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('우리 아이 해브, 뭘 가졌다는 거잖아요~ 이거 가지는 거!')">🔊</button>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <div class="dialogue-content">
+              <div class="ko">그럼 빠져! 쿨하게 헤어지는 거야~</div>
+              <div class="ja">じゃあ捌けよう！クールに解散するんだよ〜</div>
+              <span class="grammar-tag">-게（〜く/副詞形） / -는 거야（〜するんだよ）</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('그럼 빠져! 쿨하게 헤어지는 거야~')">🔊</button>
+          </div>
+          <div class="kanji-group-container">
+            <div class="kanji-card">
+              <h4>📖 演出・担当 グループ</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('안무')">🔊 안무</button> <b>按舞</b> <span style="color:var(--text-sub); font-size:0.85rem;">(振り付け / 20:57テロップ「안무담당」)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('담당')">🔊 담당</button> <b>擔當</b> <span style="color:var(--text-sub); font-size:0.85rem;">(担当)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('감옥')">🔊 감옥</button> <b>監獄</b> <span style="color:var(--text-sub); font-size:0.85rem;">(20:56公式テロップ「디테일 감옥」)</span></li>
+              </ul>
+            </div>
+          </div>`,
+        level3HTML: `
+          <div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 濃音化</div>
+            <div class="sound-change-row">
+              <span style="font-size: 1.05rem; font-weight: bold;">가졌다는</span>
+              <span style="color: var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('가젿따는')">🔊 [가젿따는]</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㅆ」の後ろで平音「ㄷ」が濃音 [ㄸ] に変化。</p>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 単母音化</div>
+            <div class="sound-change-row">
+              <span style="font-size: 1.05rem; font-weight: bold;">빠져</span>
+              <span style="color: var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('빠저')">🔊 [빠저]</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">子音「ㅈ」に続く二重母音「ㅕ」は自然な会話で「ㅓ」に近く発音。</p>
+          </div>
+          <div class="telop-column">
+            <div class="label">📺 本編テロップの生韓国語</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playKoreanTTS('무심한 듯 시크하게 마무리')">🔊 시크하게 마무리</span>
+              <span class="screen-translation">(シックに締めくくり)</span>
+            </div>
+            <p>21:14の公式テロップ「1. 제스처와 함께 구호 외치고 / 2. 무심한 듯 시크하게 마무리（何事もなかったかのようにシックに締めくくり）」。</p>
           </div>`
       },
       unit6: {
@@ -1225,78 +1209,70 @@
         ytDesc: "動画の 21:22〜21:40 を再生して、ユジンの退勤宣言からスタジオ脱出ダッシュの完璧なオチを答え合わせしましょう！",
         phrases: [
           { hangul: "그럼 오늘은 퇴근이니까~", meaning: "それじゃあ 今日は退勤だから〜（21:22 ユジン）", point: "「퇴근」の「ㄴ」と「이」を滑らかに連音化。「-(으)니까」で理由を述べる。", targetWord: "퇴근이니까" },
-          { hangul: "둘 셋! 아이~브!", meaning: "せーの！アイ〜ヴ！（21:28 全員）", point: "合図の「1」を省略して「둘, 셋!」と揃え、語尾の音程をグッと上げて発音。", targetWord: "아이브" },
-          { hangul: "나가, 빨리 나가!", meaning: "出て、早く出て！（21:30 メンバー）", point: "「빨리」のパッチム「ㄹ」と初声「ㄹ」を弾むように力強く発音。", targetWord: "빨리 나가" },
-          { hangul: "수고하셨습니다!", meaning: "お疲れ様でした！（21:35 全員）", point: "仕事や練習終わりで最もよく使う必須挨拶。元気よく挨拶！", targetWord: "수고하셨습니다" }
+          { hangul: "구호 외치고 바로 퇴근", meaning: "掛け声を叫んですぐ退勤（21:24 ユジン）", point: "「외치고」の「외」は [웨] と発音。「바로（すぐに）」をリズミカルに。", targetWord: "외치고" },
+          { hangul: "저희 오늘 퇴근하겠습니다~", meaning: "私たち今日は退勤します〜（21:36 ウォニョン）", point: "「퇴근하겠습니다」は丁寧な意志表現（-겠습니다 [게씀니다]）。", targetWord: "퇴근하겠습니다" },
+          { hangul: "둘 셋! 아이~브!", meaning: "せーの！アイ〜ヴ！（21:38 全員）", point: "合図の「1」を省略して「둘, 셋!」と揃え、語尾の音程をグッと上げて発音。", targetWord: "아이~브" }
         ],
         level2HTML: `
           <div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>
           <div class="two-shot-frame">
-            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン</div></div>
+            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン (宣言)</div></div>
             <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
-            <div class="character-box"><div class="icon">🏃‍♀️</div><div class="name">全員</div></div>
+            <div class="character-box"><div class="icon">🐰</div><div class="name">全員・ウォニョン</div></div>
           </div>
           <div class="dialogue-item">
             <div class="dialogue-content">
-              <div class="ko">자, 카메라 보고 실전처럼 딱 한 번만!</div>
-              <div class="ja">さあ、カメラを見て本番みたいにきっかり1回だけ！</div>
-              <span class="grammar-tag">실전처럼（本番みたいに）</span>
+              <div class="ko">그럼 오늘은 퇴근이니까~ 구호 외치고 바로 퇴근!</div>
+              <div class="ja">それじゃあ今日は退勤だから〜 掛け声を叫んですぐ退勤！</div>
+              <span class="grammar-tag">-(으)니까（〜だから） / 바로（すぐに・直ちに）</span>
             </div>
-            <button class="sound-btn" onclick="playKoreanTTS('자, 카메라 보고 실전처럼 딱 한 번만!')">🔊</button>
+            <button class="sound-btn" onclick="playKoreanTTS('그럼 오늘은 퇴근이니까~ 구호 외치고 바로 퇴근!')">🔊</button>
           </div>
           <div class="dialogue-item speaker-b">
             <div class="dialogue-content">
-              <div class="ko">하나, 둘, 셋! 아이브 아이팅!!</div>
-              <div class="ja">1、2、3！IVE アイティング！！</div>
-              <span class="grammar-tag">완성된 구호（完成した掛け声）</span>
+              <div class="ko">저희 오늘 퇴근하겠습니다~ 둘 셋! 아이~브!</div>
+              <div class="ja">私たち今日は退勤します〜 せーの！アイ〜ヴ！</div>
+              <span class="grammar-tag">-겠습니다（〜いたします/公式な挨拶）</span>
             </div>
-            <button class="sound-btn" onclick="playKoreanTTS('하나, 둘, 셋! 아이브 아이팅!!')">🔊</button>
-          </div>
-          <div class="dialogue-item speaker-b">
-            <div class="dialogue-content">
-              <div class="ko">수고하셨습니다! 우와~ 퇴근이다!!</div>
-              <div class="ja">お疲れ様でした！うわ〜退勤だー！！</div>
-              <span class="grammar-tag">수고하셨습니다（お疲れ様でした）</span>
-            </div>
-            <button class="sound-btn" onclick="playKoreanTTS('수고하셨습니다! 우와~ 퇴근이다!!')">🔊</button>
+            <button class="sound-btn" onclick="playKoreanTTS('저희 오늘 퇴근하겠습니다~ 둘 셋! 아이~브!')">🔊</button>
           </div>
           <div class="kanji-group-container">
             <div class="kanji-card">
-              <h4>📖 實戰・退勤 (실전/퇴근) グループ</h4>
+              <h4>📖 退勤・完成 グループ</h4>
               <ul class="kanji-list">
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('실전')">🔊 실전</button> <b>實戰</b> <span style="color:var(--text-sub); font-size:0.85rem;">(本番・実戦)</span></li>
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('완성')">🔊 완성</button> <b>完成</b> <span style="color:var(--text-sub); font-size:0.85rem;">(出来上がること)</span></li>
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('퇴근')">🔊 퇴근</button> <b>退勤</b> <span style="color:var(--text-sub); font-size:0.85rem;">(仕事終わり・帰宅)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('퇴근')">🔊 퇴근</button> <b>退勤</b> <span style="color:var(--text-sub); font-size:0.85rem;">(仕事を終えて帰ること・退勤)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('완성')">🔊 완성</button> <b>完成</b> <span style="color:var(--text-sub); font-size:0.85rem;">(21:40テロップ「구호의 완성」)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('조절')">🔊 조절</button> <b>調節</b> <span style="color:var(--text-sub); font-size:0.85rem;">(21:34公式テロップ「길이 조절」)</span></li>
               </ul>
             </div>
           </div>`,
         level3HTML: `
           <div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>
           <div class="level-block">
-            <div class="sound-change-tag">⚡ 濃音化・鼻音化</div>
+            <div class="sound-change-tag">⚡ 鼻音化</div>
             <div class="sound-change-row">
-              <span style="font-size: 1.05rem; font-weight: bold;">수고하셨습니다</span>
+              <span style="font-size: 1.05rem; font-weight: bold;">퇴근하겠습니다</span>
               <span style="color: var(--text-sub);">➔</span>
-              <button class="sound-btn danger-btn" onclick="playKoreanTTS('수고하셛씀니다')">🔊 [수고하셛씀니다]</button>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('퇴근하겓씀니다')">🔊 [퇴근하겓씀니다]</button>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-sub);">「ㅆ」で後続が濃音 [씀] に、パッチム「ㅂ」が「ㄴ」の前で [ㅁ] に鼻音化。</p>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">「습」のパッチム「ㅂ」が後ろの「ㄴ」の影響で [ㅁ] に鼻音化。</p>
           </div>
           <div class="level-block">
-            <div class="sound-change-tag">⚡ 連音化</div>
+            <div class="sound-change-tag">⚡ 激音化</div>
             <div class="sound-change-row">
-              <span style="font-size: 1.05rem; font-weight: bold;">퇴근이다</span>
+              <span style="font-size: 1.05rem; font-weight: bold;">임박하면</span>
               <span style="color: var(--text-sub);">➔</span>
-              <button class="sound-btn danger-btn" onclick="playKoreanTTS('퇴그니다')">🔊 [퇴그니다]</button>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('임바카면')">🔊 [임바카면]</button>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㄴ」が次の初声母音「이」へ連音化。</p>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">21:32ガウル発言「스탠바이 임박하면!」。パッチム「ㄱ」＋「ㅎ」が激音 [ㅋ] に変化。</p>
           </div>
           <div class="telop-column">
             <div class="label">📺 本編テロップの生韓国語</div>
             <div class="telop-header-row">
-              <span class="screen-text" onclick="playKoreanTTS('빛보다 빠른 퇴근 행렬')">🔊 빛보다 빠른 퇴근 행렬</span>
-              <span class="screen-translation">(光より速い退勤の列)</span>
+              <span class="screen-text" onclick="playKoreanTTS('나가는 것까지가 구호의 완성')">🔊 구호의 완성</span>
+              <span class="screen-translation">(掛け声の完成)</span>
             </div>
-            <p>掛け声が終わるや否や、一斉にスタジオを飛び出していく名場面です。</p>
+            <p>21:40の公式オチテロップ「여기까지 아이브 구호 만들기였습니다 (feat. 나가는 것까지가 구호의 완성)」。</p>
           </div>`
       },
       unit7: {
