@@ -2467,7 +2467,12 @@
       btn.style.opacity = '0.6';
 
       const avatar = document.getElementById('character-face');
-      const p = phrases[currentPhraseIdx];
+     let p = phrases[currentPhraseIdx];
+        if (typeof isBossMode !== 'undefined' && isBossMode && typeof bossStages !== 'undefined' && bossStages[bossCurrentStage]) {
+          p = { hangul: bossStages[bossCurrentStage].target };
+        } else if (typeof currentUnitKey !== 'undefined' && currentUnitKey === 'unit9' && typeof bossStages !== 'undefined' && bossStages[0]) {
+          p = { hangul: bossStages[0].target };
+        }
       let currentCount = 0;
 
       function triggerNextRound() {
