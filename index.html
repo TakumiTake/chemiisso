@@ -922,49 +922,40 @@
         ytSeconds: 1173,
         ytDesc: "動画の 19:33〜19:44 を再生して、学んだセリフとテロップを答え合わせしましょう！",
         phrases: [
-          { hangul: "만들어야 해", meaning: "作らなきゃ（19:33 ガウル）", point: "「들」の「ㄹ」と「어」を滑らかに連音化（[드러]）。", targetWord: "만들어야" },
-          { hangul: "우리 파이팅도 없어~", meaning: "私たち掛け声もないじゃん〜（19:35 ユジン）", point: "助詞「도（〜も）」を軽く添え、「없어」は [업써] と濃音化して発音。", targetWord: "없어" },
+          { hangul: "만들어야 해", meaning: "作らなきゃ（19:33 ガウル）", point: "「들」のパッチム「ㄹ」と「어」を滑らかに連音化（[드러]）。", targetWord: "만들어야" },
+          { hangul: "우리 파이팅도 없어~", meaning: "私たち掛け声もないじゃん〜（19:35 ユジン）", point: "助詞「도（〜も）」を軽く添え、「없어」は [업써] と濃音化。", targetWord: "없어" },
           { hangul: "한 명씩 아이디어 내자", meaning: "1人ずつアイデアを出そう（19:42 ユジン）", point: "「한 명（1人）」＋「씩（〜ずつ：濃音）」＋「내자（出そう）」。", targetWord: "아이디어" },
           { hangul: "언니가 말했으니까!", meaning: "オンニが言い出したんだから！（19:44 ウォニョン）", point: "「말했으니까」は [말해쓰니까] と力強く発音。", targetWord: "말했으니까" }
         ],
         level2HTML: `
           <div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>
           <div class="two-shot-frame">
-            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン</div></div>
+            <div class="character-box"><div class="icon">🐰</div><div class="name">ウォニョン</div></div>
             <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
-            <div class="character-box"><div class="icon">🐱</div><div class="name">ガウル</div></div>
+            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン</div></div>
           </div>
           <div class="dialogue-item">
             <div class="dialogue-content">
-              <div class="ko">가위바위보 해서 한 명씩 하자.</div>
-              <div class="ja">じゃんけんして1人ずつやろう。</div>
+              <div class="ko">한 명씩 아이디어 내자.</div>
+              <div class="ja">1人ずつアイデアを出そう。</div>
               <span class="grammar-tag">한 명씩（1人ずつ / 씩＝〜ずつ）</span>
             </div>
-            <button class="sound-btn" onclick="playKoreanTTS('가위바위보 해서 한 명씩 하자.')">🔊</button>
+            <button class="sound-btn" onclick="playKoreanTTS('한 명씩 아이디어 내자.')">🔊</button>
           </div>
           <div class="dialogue-item speaker-b">
             <div class="dialogue-content">
-              <div class="ko">먼저 하는 게 나아, 아니면 나중에 하는 게 나아?</div>
-              <div class="ja">先にする方がマシ？それとも後でする方がマシ？</div>
-              <span class="grammar-tag">A, 아니면 B?（A、それともB？ / -는 게 낫다）</span>
+              <div class="ko">언니가 말했으니까!</div>
+              <div class="ja">言い出したのはユジンさんだから！（オンニが言ったんだから！）</div>
+              <span class="grammar-tag">-(으)니까（〜だから・理由）</span>
             </div>
-            <button class="sound-btn" onclick="playKoreanTTS('먼저 하는 게 나아, 아니면 나중에 하는 게 나아?')">🔊</button>
-          </div>
-          <div class="dialogue-item">
-            <div class="dialogue-content">
-              <div class="ko">순서 정하는 게 제일 어려워.</div>
-              <div class="ja">順番決めるのが一番難しい。</div>
-              <span class="grammar-tag">순서 정하기（順番決め / 정하다＝決める）</span>
-            </div>
-            <button class="sound-btn" onclick="playKoreanTTS('순서 정하는 게 제일 어려워.')">🔊</button>
+            <button class="sound-btn" onclick="playKoreanTTS('언니가 말했으니까!')">🔊</button>
           </div>
           <div class="kanji-group-container">
             <div class="kanji-card">
-              <h4>📖 順序・決定 (순서/결정) グループ</h4>
+              <h4>📖 掛け声・発言 グループ</h4>
               <ul class="kanji-list">
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('순서')">🔊 순서</button> <b>順序</b> <span style="color:var(--text-sub); font-size:0.85rem;">(順番・順序)</span></li>
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('결정')">🔊 결정</button> <b>決定</b> <span style="color:var(--text-sub); font-size:0.85rem;">(決定)</span></li>
-                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('양보')">🔊 양보</button> <b>讓步</b> <span style="color:var(--text-sub); font-size:0.85rem;">(譲歩・譲り合い)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('구호')">🔊 구호</button> <b>口號</b> <span style="color:var(--text-sub); font-size:0.85rem;">(掛け声・スローガン)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('발언')">🔊 발언</button> <b>發言</b> <span style="color:var(--text-sub); font-size:0.85rem;">(言い出すこと・発言)</span></li>
               </ul>
             </div>
           </div>`,
@@ -980,21 +971,21 @@
             <p style="font-size: 0.8rem; color: var(--text-sub);">接尾辞「-씩」の濃音。パッチム「ㅇ」の後ろで強く発音。</p>
           </div>
           <div class="level-block">
-            <div class="sound-change-tag">⚡ 激音化</div>
+            <div class="sound-change-tag">⚡ 濃音化・連音化</div>
             <div class="sound-change-row">
-              <span style="font-size: 1.05rem; font-weight: bold;">어떻게</span>
+              <span style="font-size: 1.05rem; font-weight: bold;">말했으니까</span>
               <span style="color: var(--text-sub);">➔</span>
-              <button class="sound-btn danger-btn" onclick="playKoreanTTS('어떠케')">🔊 [어떠케]</button>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('말해쓰니까')">🔊 [말해쓰니까]</button>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㅎ」と平音「ㄱ」が合体して激音 [ㅋ] に変化。</p>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">過去形パッチム「ㅆ」が母音に連音化して [쓰] と力強く発音。</p>
           </div>
           <div class="telop-column">
             <div class="label">📺 本編テロップの生韓国語</div>
             <div class="telop-header-row">
-              <span class="screen-text" onclick="playKoreanTTS('서로 미루는 중')">🔊 서로 미루는 중</span>
-              <span class="screen-translation">(お互いになすり合い中)</span>
+              <span class="screen-text" onclick="playKoreanTTS('파이팅 구호')">🔊 파이팅 구호</span>
+              <span class="screen-translation">(ファイトの掛け声)</span>
             </div>
-            <p>誰が最初に掛け声を提案するか、探り合いの心理戦が繰り広げられるテロップです。</p>
+            <p>19:40の公式テロップ「아이돌이라면 다들 한다는 그것（アイドルなら全員やっているというアレ）」。</p>
           </div>`
       },
       unit3: {
