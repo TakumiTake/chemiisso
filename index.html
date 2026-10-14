@@ -220,7 +220,7 @@
     }
 
     .step-panel.active {
-      display: block;
+      display: block !important;
     }
 
     .repeat-indicator {
@@ -860,7 +860,7 @@
         ytSeconds: 1155,
         ytDesc: "動画の 19:15〜19:30 を再生して、学んだセリフとテロップを答え合わせしましょう！",
         phrases: [
-          { hangul: "맞아", meaning: "そうそう（19:25 ユジン）", point: "「ㅁ」で口を閉じ、「자」は息を吐きすぎず弾むように発音。", targetWord: "맞아" },
+          { hangul: "맞아", meaning: "そうそう（19:25 ユジン）", point: "「ㅁ」で口を閉じ、「자」は息を吐きすぎず弾むように発音。", targetWord: "맞あ" },
           { hangul: "어떡해...", meaning: "どうしよう…（19:27 ユジン）", point: "「떡」の濃音「ㄸ」を詰まらせるように鋭く発音。", targetWord: "어떡해" },
           { hangul: "우리 파이팅 만들까?", meaning: "私たちの掛け声作ろうか？（19:29 ウォニョン）", point: "「들까」のパッチム「ㄹ」と濃音「ㄲ」をスムーズに繋げて発音。", targetWord: "만들까" },
           { hangul: "만들면 안 돼여?", meaning: "作っちゃダメですか？（19:30 リズ）", point: "「안」のパッチム「ㄴ」と「돼」をしっかり発音し、語尾は「여」と発音。", targetWord: "안 돼" }
@@ -1404,7 +1404,7 @@
       }
     };
 
-    let currentUnitKey = 'unit10';
+    let currentUnitKey = 'unit1';
     let phrases = unitsData[currentUnitKey].phrases || [];
     let currentPhraseIdx = 0;
     let isPlayingRepeat = false;
@@ -1905,8 +1905,13 @@
 
     function goToStep1() {
       window.speechSynthesis.cancel();
-      document.getElementById('step-1-panel').classList.add('active');
-      document.getElementById('step-2-panel').classList.remove('active');
+      const step1 = document.getElementById('step-1-panel');
+      const step2 = document.getElementById('step-2-panel');
+      step1.style.display = 'block';
+      step1.classList.add('active');
+      step2.style.display = 'none';
+      step2.classList.remove('active');
+
       document.getElementById('character-face').textContent = "👧";
       document.getElementById('character-face').classList.remove('speaking');
       document.getElementById('retry-actions').style.display = 'none';
@@ -1915,8 +1920,12 @@
 
     function goToStep2() {
       window.speechSynthesis.cancel();
-      document.getElementById('step-1-panel').classList.remove('active');
-      document.getElementById('step-2-panel').classList.add('active');
+      const step1 = document.getElementById('step-1-panel');
+      const step2 = document.getElementById('step-2-panel');
+      step1.style.display = 'none';
+      step1.classList.remove('active');
+      step2.style.display = 'block';
+      step2.classList.add('active');
     }
 
     function playKoreanTTS(text, pitch = 1.0, onComplete) {
