@@ -2468,10 +2468,11 @@
 
       const avatar = document.getElementById('character-face');
      let p = phrases[currentPhraseIdx];
-        if (typeof isBossMode !== 'undefined' && isBossMode && typeof bossStages !== 'undefined' && bossStages[bossCurrentStage]) {
-          p = { hangul: bossStages[bossCurrentStage].target };
-        } else if (typeof currentUnitKey !== 'undefined' && currentUnitKey === 'unit9' && typeof bossStages !== 'undefined' && bossStages[0]) {
-          p = { hangul: bossStages[0].target };
+        const bossTargetEl = document.querySelector('#boss-viewport .target-word, #boss-target-word, .boss-target, #step-1-panel [class*="target"]');
+        const unitSelect = document.getElementById('unit-select');
+        if ((unitSelect && unitSelect.value === 'unit9') || (typeof currentUnitKey !== 'undefined' && currentUnitKey === 'unit9')) {
+          const rawText = bossTargetEl ? bossTargetEl.textContent.trim() : "옆줄";
+          p = { hangul: rawText.replace(/[^가-힣]/g, '') || "옆줄" };
         }
       let currentCount = 0;
 
