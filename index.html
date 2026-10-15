@@ -2532,7 +2532,13 @@
 
       recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript.trim().replace(/\s+/g, '');
-        const target = phrases[currentPhraseIdx].targetWord.replace(/\s+/g, '');
+       let target = (phrases[currentPhraseIdx] && phrases[currentPhraseIdx].targetWord) ? phrases[currentPhraseIdx].targetWord.replace(/\s+/g, '') : '';
+          const unitSelect = document.getElementById('unit-select');
+          if ((unitSelect && unitSelect.value === 'unit9') || (typeof currentUnitKey !== 'undefined' && currentUnitKey === 'unit9')) {
+            const bossTargetEl = document.querySelector('#boss-viewport .target-word, #boss-target-word, .boss-target, #step-1-panel [class*="target"]');
+            const rawTarget = bossTargetEl ? bossTargetEl.textContent.trim() : "옆줄";
+            target = rawTarget.replace(/[^가-힣]/g, '') || "옆줄";
+          };
 
         if (transcript.includes(target) || target.includes(transcript)) {
           document.getElementById('character-face').textContent = "😆✨";
