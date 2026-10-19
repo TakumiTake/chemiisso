@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>韓国語学習ソフト チェミイッソ！</title>
+  <meta name="description" content="IVEのコンテンツで楽しく韓国語の発音・対話・漢字語・テロップ表現を学ぶ学習ソフト" />
+  <meta property="og:title" content="韓国語学習ソフト チェミイッソ！" />
+  <meta property="og:description" content="IVEのコンテンツで楽しく韓国語の発音・対話・漢字語・テロップ表現を学ぶ学習ソフト" />
+  <meta property="og:type" content="website" />
   <style>
     :root {
       --primary: #ff4d88;
@@ -54,6 +58,37 @@
       font-size: 0.85rem;
       color: var(--text-sub);
       margin-top: 2px;
+    }
+
+    /* シーン切り替えタブ */
+    .scene-tab-bar {
+      display: flex;
+      width: 100%;
+      max-width: 600px;
+      background: #e9ecef;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 10px;
+      gap: 4px;
+    }
+
+    .scene-tab-button {
+      flex: 1;
+      padding: 9px 8px;
+      border: none;
+      background: none;
+      font-size: 0.88rem;
+      font-weight: bold;
+      color: var(--text-sub);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    .scene-tab-button.active {
+      background: #ffffff;
+      color: var(--accent);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
     }
 
     .unit-selector-bar {
@@ -669,6 +704,12 @@
     <p id="unit-subtitle">1,2,3 IVE EP.1</p>
   </header>
 
+  <!-- シーン切り替えタブバー -->
+  <div class="scene-tab-bar" id="scene-tab-bar">
+    <button class="scene-tab-button active" onclick="switchScene('scene1')">シーン 1（Unit 1〜10）</button>
+    <button class="scene-tab-button" onclick="switchScene('scene2')">シーン 2 Part 1（Unit 1〜4）</button>
+  </div>
+
   <!-- ユニット切り替えドロップダウン -->
   <div class="unit-selector-bar">
     <select id="unit-select" class="unit-select" onchange="switchUnit(this.value)">
@@ -816,7 +857,7 @@
   </div>
 
   <script>
-    // 19:15〜21:40 の全編完全スクリプトデータ
+    // 19:15〜21:40 の全編完全スクリプトデータ（シーン1）
     const fullScriptData = [
       { time: "19:15", speaker: "ユジン", ko: "일단 옆줄 맞추는 거 진짜 신경 써야 해.", mixed: "一旦 옆줄 맞추는 거 진짜 神經 써야 해.", ja: "まず横の列を合わせるの、本当に気をつけなきゃ。", target: "신경" },
       { time: "19:19", speaker: "テロップ", ko: "리더 공지 사항: 옆줄 맞추기", mixed: "Leader 告知 事項: 옆줄 맞추기", ja: "リーダー告知事項: 横列合わせ", target: "공지사항" },
@@ -853,8 +894,9 @@
       { time: "21:35", speaker: "全員", ko: "수고하셨습니다!", mixed: "受苦하셨습니다!", ja: "お疲れ様でした！", target: "수고하셨습니다" }
     ];
 
-    // 全ユニットの教材データ
+    // 全ユニットの教材データ（シーン1 ＋ シーン2 Part 1 を完全統合）
     const unitsData = {
+      // --- シーン1（Unit 1〜10） ---
       unit1: {
         subtitle: "1,2,3 IVE EP.1（19:15〜19:30 かけ声を作ろう!提案編）",
         ytSeconds: 1155,
@@ -1059,7 +1101,7 @@
             <p>19:56の公式テロップ「우리 리즈 지켜 VS 응 빨리해（うちのリズを守れ VS うん早くやって）」。</p>
           </div>`
       },
-     unit4: {
+      unit4: {
         subtitle: "1,2,3 IVE EP.1（20:10〜20:35 ガウルの提案編）",
         ytSeconds: 1210,
         ytDesc: "動画の 20:10〜20:35 を再生して、ガウルの渾身提案「アイティング！」とメンバーのリアクションを答え合わせしましょう！",
@@ -1131,7 +1173,7 @@
             <p>20:17の公式テロップ「ガウルの提案に即座に大絶賛で合わせる妹たちの世渡り術」。</p>
           </div>`
       },
-     unit5: {
+      unit5: {
         subtitle: "1,2,3 IVE EP.1（20:36〜21:21 掛け声の演出・細部詰め編）",
         ytSeconds: 1236,
         ytDesc: "動画の 20:36〜21:21 を再生して、音程の調整や手元に引き寄せるジェスチャーなど、細部にこだわるメンバーの姿をチェックしましょう！",
@@ -1275,7 +1317,7 @@
             <p>21:40の公式オチテロップ「여기까지 아이브 구호 만들기였습니다 (feat. 나가는 것까지가 구호의 완성)」。</p>
           </div>`
       },
-    unit7: {
+      unit7: {
         subtitle: "1,2,3 IVE EP.1（同音異義語 徹底マスター編）",
         ytSeconds: 1217,
         ytDesc: "動画のテロップやセリフから生まれた4大同音異義語（사・신・연・점）を、タブ切り替えで完全制覇！",
@@ -1731,8 +1773,7 @@
             
             #tab-u8-1:checked ~ .k-nav-bar-u8 label[for="tab-u8-1"],
             #tab-u8-2:checked ~ .k-nav-bar-u8 label[for="tab-u8-2"],
-            #tab-u8-3:checked ~ .k-nav-bar-u8 label[for="tab-u8-3"],
-            #tab-u8-4:checked ~ .k-nav-bar-u8 label[for="tab-u8-4"] {
+            #tab-u8-3:checked ~ .k-nav-bar-u8 label[for="tab-u8-4"] {
               background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             }
             
@@ -1884,9 +1925,343 @@
         ytSeconds: 1155,
         ytDesc: "19:15〜21:40 の全編スクリプトをマスター！動画とシンクロして本物のネイティブスピードに挑戦しましょう！",
         isUnit10: true
+      },
+
+      // --- シーン2 Part 1（Unit 1〜4 / 12:48〜14:20）正式データ ---
+      s2_unit1: {
+        subtitle: "1,2,3 IVE EP.1（12:48〜13:05 イソのプリズム披露＆リーダーON/OFF編）",
+        ytSeconds: 768,
+        ytDesc: "動画の 12:48〜13:05 を再生して、イソの「プリズム」歌唱とユジンのリーダーON/OFFスイッチを答え合わせしましょう！",
+        phrases: [
+          { hangul: "맨날 얘가 부르는 거 있잖아", meaning: "昔にこの子が歌ってたのあるじゃん（12:48）", point: "文法: -는 거 있잖아（〜のがあるじゃん）。パッチム「ㄴ」と「얘」を滑らかに繋げて親しい口調で発音。", targetWord: "부르는 거" },
+          { hangul: "이서야 프리즘 불러주면 안 돼?", meaning: "イソ「プリズム」歌ってくれない？（12:50）", point: "文法: -아/어 주면 안 돼?（〜してくれたらダメ？/〜してくれない？）。親しい間柄での頼み込み表現。", targetWord: "불러주면" },
+          { hangul: "빨리 연습하자", meaning: "早く練習しよう（13:00 リーダー ON）", point: "「빨리（早く）」＋「연습하자（練習しよう）」。リーダーモードONへの即座の切り替え。", targetWord: "연습하자" },
+          { hangul: "레츠기릿 해야지!", meaning: "Let's get it しなきゃ！（13:05）", point: "文法: -아/어야지（〜しなきゃ）。気合いを込めて「해야지」を力強く発音。", targetWord: "해야지" }
+        ],
+        level2HTML: `
+          <div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>
+          <div class="two-shot-frame">
+            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン (リーダー)</div></div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
+            <div class="character-box"><div class="icon">🐱</div><div class="name">イソ (マンネ)</div></div>
+          </div>
+          <div class="dialogue-item">
+            <div class="dialogue-content">
+              <div class="ko">맨날 얘가 부르는 거 있잖아. 이서야 &lt;프리즘&gt; 불러주면 안 돼?</div>
+              <div class="ja">昔にこの子が歌ってたのあるじゃん。イソ「プリズム」歌ってくれない？</div>
+              <span class="grammar-tag">-는 거 있잖아（〜のあるじゃん） / -아/어 주면 안 돼?（〜してくれない？）</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('맨날 얘가 부르는 거 있잖아. 이서야 프리즘 불러주면 안 돼?')">🔊</button>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <div class="dialogue-content">
+              <div class="ko">(리더 OFF) 재미있어 ➔ (리더 ON) 빨리 연습하자! 연습 가자아~! 레츠기릿 해야지!</div>
+              <div class="ja">[(リーダー OFF)] 面白すぎる ➔ [(リーダー ON)] 早く練習しよう！練習しよう！Let's get it しなきゃ！</div>
+              <span class="grammar-tag">-자（〜しよう） / -아/어야지（〜しなきゃ）</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('재미있어. 빨리 연습하자. 연습 가자아! 레츠기릿 해야지!')">🔊</button>
+          </div>
+          <div class="kanji-group-container">
+            <div class="kanji-card">
+              <h4>📖 本人・練習 グループ</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('본인')">🔊 본인</button> <b>本人</b> <span style="color:var(--text-sub); font-size:0.85rem;">(12:58 テロップ「본인이 제일 놀람」)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('제일')">🔊 제일</button> <b>第一</b> <span style="color:var(--text-sub); font-size:0.85rem;">(一番・最も)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('연습')">🔊 연습</button> <b>練習</b> <span style="color:var(--text-sub); font-size:0.85rem;">(13:00「빨리 연습하자」)</span></li>
+              </ul>
+            </div>
+          </div>`,
+        level3HTML: `
+          <div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 名詞化（語幹＋ㅁ）</div>
+            <div class="sound-change-row">
+              <span style="font-size: 1.05rem; font-weight: bold;">놀람</span>
+              <span style="color: var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('놀람')">🔊 [놀람]</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">動詞「놀라다（驚く）」の語幹にパッチム「ㅁ」がついて名詞化（驚くこと・驚き）。12:58「본인이 제일 놀람」。</p>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 濃音化</div>
+            <div class="sound-change-row">
+              <span style="font-size: 1.05rem; font-weight: bold;">있잖아</span>
+              <span style="color: var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('읻짜나')">🔊 [읻짜나]</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㅆ」の後ろで「ㅈ」が濃音化して [짜] と発音。</p>
+          </div>
+          <div class="telop-column">
+            <div class="label">📺 本編テロップの生韓国語</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playKoreanTTS('본인이 제일 놀람')">🔊 본인이 제일 놀람</span>
+              <span class="screen-translation">([本人が一番驚いている])</span>
+            </div>
+            <div class="telop-header-row" style="margin-top: 6px;">
+              <span class="screen-text" onclick="playKoreanTTS('재미있어 빨리 연습하자')">🔊 (리더 OFF) 재미있어 / (리더 ON) 빨리 연습하자</span>
+            </div>
+            <p>12:58〜13:00 公式テロップ。イソのプリズム熱唱に本人が一番驚いた後、ユジンのリダースイッチが瞬時にOFFからONへと切り替わる名場面です。</p>
+          </div>`
+      },
+      s2_unit2: {
+        subtitle: "1,2,3 IVE EP.1（13:13〜13:35 パバッパバッシュウの定石＆ウォニョン花編）",
+        ytSeconds: 793,
+        ytDesc: "動画の 13:13〜13:35 を再生して、パバッパバッシュウの定石とウォニョン花のポイント指導を答え合わせしましょう！",
+        phrases: [
+          { hangul: "파박 파박 슈~", meaning: "パパッ パパッ シュウ（13:14）", point: "息を前に強く弾ませる激音「파（パ）」を意識し、リズムよく「슈」を伸ばして発音。", targetWord: "파박" },
+          { hangul: "찰떡같이 알아들은 파박파박슈", meaning: "一度で理解したパパッパパッシュウ（13:17 テロップ）", point: "文法: 찰떡같이（餅のように＝一発で、息ぴったりに）。「알아들은」の連音化。", targetWord: "찰떡같이" },
+          { hangul: "이것이 바로 파박파박슈의 정석", meaning: "これこそまさにパパッパパッ シュウの正解（13:20 テロップ）", point: "文法: 정석（定石＝お手本、正解）。「이것이 바로（これこそまさに）」。", targetWord: "정석" },
+          { hangul: "포인을 제대로 해야지 예쁜데~", meaning: "足をきちんと伸ばしてこそ綺麗なのに（13:28）", point: "文法: -아/어야지（〜してこそ）。「제대로（きちんと、正しく）」。", targetWord: "제대로" }
+        ],
+        level2HTML: `
+          <div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>
+          <div class="two-shot-frame">
+            <div class="character-box"><div class="icon">👯‍♀️</div><div class="name">メンバー (実践)</div></div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
+            <div class="character-box"><div class="icon">🐰</div><div class="name">ウォニョン (お手本)</div></div>
+          </div>
+          <div class="dialogue-item">
+            <div class="dialogue-content">
+              <div class="ko">파박 파박 슈~! 이것이 바로 파박파박슈의 정석!</div>
+              <div class="ja">パパッ パパッ シュウ〜！これこそまさにパパッパパッ シュウの正解！</div>
+              <span class="grammar-tag">찰떡같이（餅のように＝一発で） / 정석（定石）</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('파박 파박 슈~! 이것이 바로 파박파박슈의 정석!')">🔊</button>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <div class="dialogue-content">
+              <div class="ko">포인을 제대로 해야지 예쁜데~ (워뇽꽃) 이렇게!</div>
+              <div class="ja">足をきちんと伸ばしてこそ綺麗なのに〜 [ウォニョン花] こうやって！</div>
+              <span class="grammar-tag">-아/어야지（〜してこそ） / -는데（〜なのに）</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('포인을 제대로 해야지 예쁜데~ 이렇게!')">🔊</button>
+          </div>
+          <div class="kanji-group-container">
+            <div class="kanji-card">
+              <h4>📖 定石・正確 グループ</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('정석')">🔊 정석</button> <b>定石</b> <span style="color:var(--text-sub); font-size:0.85rem;">(13:20 テロップ「파박파박슈의 정석」＝お手本・正解)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('포인')">🔊 포인</button> <b>Point (포인)</b> <span style="color:var(--text-sub); font-size:0.85rem;">(つま先までピシッと伸ばすバレエ・ダンス用語)</span></li>
+              </ul>
+            </div>
+          </div>`,
+        level3HTML: `
+          <div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 激音の破裂</div>
+            <div class="sound-change-row">
+              <span style="font-size: 1.05rem; font-weight: bold;">파박</span>
+              <span style="color: var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('파박')">🔊 [파박]</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">息を力強く吹き出す激音「ㅍ」。擬音語のメリハリを効かせて発音。</p>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 連音化</div>
+            <div class="sound-change-row">
+              <span style="font-size: 1.05rem; font-weight: bold;">알아들은</span>
+              <span style="color: var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('알라드른')">🔊 [알라드른]</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㄹ」と「ㄷ」がそれぞれ後ろの母音へ滑らかに連音化。</p>
+          </div>
+          <div class="telop-column">
+            <div class="label">📺 本編テロップの生韓国語</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playKoreanTTS('찰떡같이 알아들은 파박파박슈')">🔊 찰떡같이 알아들은 파박파박슈</span>
+              <span class="screen-translation">([一度で理解したパパッパパッシュウ])</span>
+            </div>
+            <div class="telop-header-row" style="margin-top: 6px;">
+              <span class="screen-text" onclick="playKoreanTTS('이것이 바로 파박파박슈의 정석')">🔊 파박파박슈의 정석</span>
+              <span class="screen-translation">([これこそまさにパパッパパッ シュウの正解])</span>
+            </div>
+            <div class="telop-header-row" style="margin-top: 6px;">
+              <span class="screen-text" onclick="playKoreanTTS('워뇽꽃 이렇게')">🔊 (워뇽꽃) 이렇게</span>
+              <span class="screen-translation">([ウォニョン花] こうやって)</span>
+            </div>
+            <p>13:17〜13:31 公式テロップ。擬音語による振り付け伝達と、足先のディテールへのこだわりを表現した場面です。</p>
+          </div>`
+      },
+      s2_unit3: {
+        subtitle: "1,2,3 IVE EP.1（13:37〜14:00 退勤バイブで急激覚醒＆最後の練習GO編）",
+        ytSeconds: 817,
+        ytDesc: "動画の 13:37〜14:00 を再生して、退勤バイブによってメンバーのダンスが急激に研ぎ澄まされる瞬間を答え合わせしましょう！",
+        phrases: [
+          { hangul: "무슨 느낌인지 알죠", meaning: "どういうことか分かりますよね（13:37）", point: "文法: 間接疑問文 -인지（〜なのか）。「느낌（感覚・ニュアンス）」を自然に発音。", targetWord: "느낌인지" },
+          { hangul: "퇴근바이브잖아요", meaning: "退勤バイブじゃないですか（13:39）", point: "文法: -잖아요（〜じゃないですか）。「퇴근（退勤）」＋「바이브（Vibe）」。", targetWord: "퇴근바이브" },
+          { hangul: "갑자기 급 잘해져~", meaning: "急に上手くなる〜（13:44）", point: "文法: 급（急激に・一気に）, -아/어지다（〜になる / 状態変化）。", targetWord: "잘해져" },
+          { hangul: "뮤직 큐~! 퇴근바이브로 가~!", meaning: "ミュージック キュー！退勤バイブで行こう！（13:56）", point: "助詞「-(으)로（〜で/〜の勢いで）」＋「가（行こう）」。勢いよく叫ぶ。", targetWord: "퇴근바이브로" }
+        ],
+        level2HTML: `
+          <div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>
+          <div class="two-shot-frame">
+            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン (共感)</div></div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
+            <div class="character-box"><div class="icon">🐰</div><div class="name">ウォニョン (退勤バイブ)</div></div>
+          </div>
+          <div class="dialogue-item">
+            <div class="dialogue-content">
+              <div class="ko">무슨 느낌인지 알죠? 무슨 느낌이에요? / 알죠 알죠, 퇴근바이브잖아요!</div>
+              <div class="ja">どういうことか分かりますよね？ どういうことですか？ / 分かります分かります、退勤バイブじゃないですか！</div>
+              <span class="grammar-tag">間接疑問文 -인지 / -잖아요（〜じゃないですか）</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('무슨 느낌인지 알죠? 무슨 느낌이에요? 알죠 알죠, 퇴근바이브잖아요!')">🔊</button>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <div class="dialogue-content">
+              <div class="ko">갑자기 급 잘해져~ 아 지금 퇴근바이브야? / 항상. 언제나. (리더 on) 뮤직 큐~! 퇴근바이브로 가~!</div>
+              <div class="ja">急に上手くなる〜 今退勤バイブなの？ / いつでも常に (リーダー on) ミュージック キュー！退勤バイブで行こう！</div>
+              <span class="grammar-tag">급（急激に） / -아/어지다（〜になる） / 항상・언제나（いつでも常に）</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('갑자기 급 잘해져. 아 지금 퇴근바이브야? 항상. 언제나. 뮤직 큐! 퇴근바이브로 가!')">🔊</button>
+          </div>
+          <div class="kanji-group-container">
+            <div class="kanji-card">
+              <h4>📖 退勤・恒常 グループ</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('퇴근')">🔊 퇴근</button> <b>退勤</b> <span style="color:var(--text-sub); font-size:0.85rem;">(仕事を終えて帰ること・退勤)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('항상')">🔊 항상</button> <b>恒常</b> <span style="color:var(--text-sub); font-size:0.85rem;">(いつも・常に / 13:49「항상. 언제나.」)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('연습')">🔊 연습</button> <b>練習</b> <span style="color:var(--text-sub); font-size:0.85rem;">(14:00 テロップ「마지막 연습 GO」)</span></li>
+              </ul>
+            </div>
+          </div>`,
+        level3HTML: `
+          <div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 連音化</div>
+            <div class="sound-change-row">
+              <span style="font-size: 1.05rem; font-weight: bold;">느낌인지</span>
+              <span style="color: var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('느끼민지')">🔊 [느끼민지]</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㅁ」が後ろの母音「이」へスムーズに連音化。</p>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 濃音化</div>
+            <div class="sound-change-row">
+              <span style="font-size: 1.05rem; font-weight: bold;">알죠</span>
+              <span style="color: var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('알쪼')">🔊 [알쪼]</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㄹ」の後ろで平音「ㅈ」が濃音 [ㅉ] に変化。</p>
+          </div>
+          <div class="telop-column">
+            <div class="label">📺 本編テロップの生韓国語</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playKoreanTTS('퇴근 바이브로 마지막 연습 GO')">🔊 퇴근 바이브로 마지막 연습 GO</span>
+              <span class="screen-translation">([退勤バイブで最後の練習 GO])</span>
+            </div>
+            <div class="telop-header-row" style="margin-top: 6px;">
+              <span class="screen-text" onclick="playKoreanTTS('항상 언제나')">🔊 항상. 언제나. (리더 on)</span>
+              <span class="screen-translation">(いつでも常に)</span>
+            </div>
+            <p>13:37〜14:00 公式テロップ。「退勤」の2文字を聞いた瞬間、メンバーのダンスのキレが一気に爆発する痛快な場面です。</p>
+          </div>`
+      },
+      s2_unit4: {
+        subtitle: "1,2,3 IVE EP.1（14:01〜14:20 退勤を望む眼差し＆バッテリー切れ編）",
+        ytSeconds: 841,
+        ytDesc: "動画の 14:01〜14:20 を再生して、退勤を望む燃えるような眼差しと、その後の後遺症（バッテリー切れ）を答え合わせしましょう！",
+        phrases: [
+          { hangul: "퇴근을 원하는 눈빛", meaning: "退勤を望む眼差し（14:01 テロップ）", point: "文法: 원하다（望む・願う）＋冠形詞形「-는」、눈빛（眼差し・目つき）。", targetWord: "원하는" },
+          { hangul: "과연 그들은 퇴근에 이를 수 있을 것인가", meaning: "果たして彼女たちは退勤できるのか（14:09 テロップ）", point: "文法: -(으)ㄹ 수 있을 것인가（果たして〜できるであろうか）。番組ナレーション調の文語表現。", targetWord: "퇴근에" },
+          { hangul: "퇴근 바이브 후유증", meaning: "退勤バイブの後遺症（14:13 テロップ）", point: "漢字語「後遺症 (후유증)」。「후유（後遺）」＋「증（症）」の発音。", targetWord: "후유증" },
+          { hangul: "너무 너무 힘들어", meaning: "すごく すごく しんどい（14:15）", point: "文法: 너무（すごく・とても）、힘들다（しんどい・大変だ）。疲労困憊の感情を込めて発音。", targetWord: "힘들어" }
+        ],
+        level2HTML: `
+          <div class="section-title"><span>レベル 2: 本編対話・漢字語</span></div>
+          <div class="two-shot-frame">
+            <div class="character-box"><div class="icon">🔥</div><div class="name">退勤渇望</div></div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">➔</div>
+            <div class="character-box"><div class="icon">🪫</div><div class="name">バッテリー切れ</div></div>
+          </div>
+          <div class="dialogue-item">
+            <div class="dialogue-content">
+              <div class="ko">퇴근을 원하는 눈빛 🔥 과연 그들은 퇴근에 이를 수 있을 것인가...</div>
+              <div class="ja">[退勤を望む眼差し 🔥] 果たして彼女たちは退勤できるのか…</div>
+              <span class="grammar-tag">원하다（望む） / -(으)ㄹ 수 있을 것인가（〜できるであろうか）</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('퇴근을 원하는 눈빛. 과연 그들은 퇴근에 이를 수 있을 것인가')">🔊</button>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <div class="dialogue-content">
+              <div class="ko">퇴근 바이브 후유증... 너무 너무 힘들어...</div>
+              <div class="ja">[退勤バイブの後遺症]… すごく すごく [しんどい]…</div>
+              <span class="grammar-tag">後遺症（후유증） / 너무（すごく） / 힘들다（しんどい）</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('퇴근 바이브 후유증. 너무 너무 힘들어')">🔊</button>
+          </div>
+          <div class="kanji-group-container">
+            <div class="kanji-card">
+              <h4>📖 後遺症・退勤 グループ</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('후유증')">🔊 후유증</button> <b>後遺症</b> <span style="color:var(--text-sub); font-size:0.85rem;">(14:13 公式テロップ「퇴근 바이브 후유증」)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('퇴근')">🔊 퇴근</button> <b>退勤</b> <span style="color:var(--text-sub); font-size:0.85rem;">(仕事を終えて帰ること)</span></li>
+              </ul>
+            </div>
+          </div>`,
+        level3HTML: `
+          <div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 濃音化</div>
+            <div class="sound-change-row">
+              <span style="font-size: 1.05rem; font-weight: bold;">눈빛</span>
+              <span style="color: var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('눈삗')">🔊 [눈삗]</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">合成名詞においてパッチム「ㄴ」の後ろで「ㅂ」が [ㅃ] に濃音化。</p>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 連音化</div>
+            <div class="sound-change-row">
+              <span style="font-size: 1.05rem; font-weight: bold;">힘들어</span>
+              <span style="color: var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playKoreanTTS('힘드러')">🔊 [힘드러]</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-sub);">パッチム「ㄹ」が後ろの母音「어」へスムーズに引っ越して発音。</p>
+          </div>
+          <div class="telop-column">
+            <div class="label">📺 本編テロップの生韓国語</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playKoreanTTS('퇴근을 원하는 눈빛')">🔊 퇴근을 원하는 눈빛 🔥</span>
+              <span class="screen-translation">([退勤を望む眼差し])</span>
+            </div>
+            <div class="telop-header-row" style="margin-top: 6px;">
+              <span class="screen-text" onclick="playKoreanTTS('과연 그들은 퇴근에 이를 수 있을 것인가')">🔊 과연 그들은 퇴근에 이를 수 있을 것인가</span>
+              <span class="screen-translation">([果たして彼女たちは退勤できるのか])</span>
+            </div>
+            <div class="telop-header-row" style="margin-top: 6px;">
+              <span class="screen-text" onclick="playKoreanTTS('퇴근 바이브 후유증')">🔊 퇴근 바이브 후유증</span>
+              <span class="screen-translation">([退勤バイブの後遺症])</span>
+            </div>
+            <p>14:01〜14:20 公式テロップ。全力疾走の末にエネルギーがゼロになり、退勤を渇望する生々しく愛らしい姿が描かれた名シーンです。</p>
+          </div>`
       }
     };
 
+    // シーンごとのユニット一覧定義
+    const sceneUnits = {
+      scene1: [
+        { value: "unit1", label: "Unit 1：かけ声を作ろう!提案編（19:15〜19:30）" },
+        { value: "unit2", label: "Unit 2：順番決めのなすり合い編（19:33〜19:44）" },
+        { value: "unit3", label: "Unit 3：じゃんけん勝負＆リズを守れ編（19:45〜20:09）" },
+        { value: "unit4", label: "Unit 4：ガウルの提案編（20:10〜20:35）" },
+        { value: "unit5", label: "Unit 5：掛け声の演出・細部詰め編（20:36〜21:21）" },
+        { value: "unit6", label: "Unit 6：本番実践＆即退勤ダッシュ編（21:22〜21:40）" },
+        { value: "unit7", label: "Unit 7：漢字語マスター編" },
+        { value: "unit8", label: "Unit 8：発音変化特訓編" },
+        { value: "unit9", label: "Unit 9：ボスバトル編（門番を倒して即退勤せよ！）" },
+        { value: "unit10", label: "Unit 10：復習マスタークラス" }
+      ],
+      scene2: [
+        { value: "s2_unit1", label: "Unit 1：イソのプリズム披露＆リーダーON/OFF編（12:48〜13:05）" },
+        { value: "s2_unit2", label: "Unit 2：パバッパバッシュウの定石＆ウォニョン花編（13:13〜13:35）" },
+        { value: "s2_unit3", label: "Unit 3：退勤バイブで急激覚醒＆最後の練習GO編（13:37〜14:00）" },
+        { value: "s2_unit4", label: "Unit 4：退勤を望む眼差し＆バッテリー切れ編（14:01〜14:20）" }
+      ]
+    };
+
+    let currentScene = 'scene1';
     let currentUnitKey = 'unit1';
     let phrases = unitsData[currentUnitKey].phrases || [];
     let currentPhraseIdx = 0;
@@ -1940,16 +2315,38 @@
     window.addEventListener('click', unlockAudioHardware, { once: true });
     window.addEventListener('touchstart', unlockAudioHardware, { once: true });
 
+    // シーン切り替え関数
+    function switchScene(sceneId) {
+      currentScene = sceneId;
+      const buttons = document.querySelectorAll('.scene-tab-button');
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle('active', (sceneId === 'scene1' && idx === 0) || (sceneId === 'scene2' && idx === 1));
+      });
+
+      const select = document.getElementById('unit-select');
+      select.innerHTML = '';
+      sceneUnits[sceneId].forEach(u => {
+        const opt = document.createElement('option');
+        opt.value = u.value;
+        opt.textContent = u.label;
+        select.appendChild(opt);
+      });
+
+      const firstUnit = sceneUnits[sceneId][0].value;
+      select.value = firstUnit;
+      switchUnit(firstUnit);
+    }
+
     function switchUnit(unitKey) {
       window.speechSynthesis.cancel();
       currentUnitKey = unitKey;
       const data = unitsData[unitKey];
+      if (!data) return;
       document.getElementById('unit-subtitle').textContent = data.subtitle;
 
       // タブのラベルをユニットごとに微調整
-      // タブのラベルをユニットごとに書き換え
       const tabs = document.querySelectorAll('.tab-button');
-     if (unitKey === 'unit7') {
+      if (unitKey === 'unit7') {
         tabs[0].textContent = "Lv 1. 実在セリフ発音";
         tabs[1].textContent = "Lv 2. 同音異義語";
         tabs[2].textContent = "Lv 3. リアル例文集";
@@ -1964,12 +2361,13 @@
         tabs[1].textContent = "Lv 2. 漢字・単語化";
         tabs[2].textContent = "Lv 3. 全文音読判定";
         tabs[3].textContent = "Lv 4. 公式動画通し";
-     } else {
+      } else {
         tabs[0].textContent = "Lv 1. 実在セリフ発音";
         tabs[1].textContent = "Lv 2. 本編対話・漢字語";
         tabs[2].textContent = "Lv 3. 音声変化・テロップ";
         tabs[3].textContent = "Lv 4. 公式動画シンクロ";
       }
+
       if (data.isBossUnit) {
         document.getElementById('normal-viewport').style.display = 'none';
         document.getElementById('boss-viewport').style.display = 'block';
@@ -1999,10 +2397,10 @@
         document.getElementById('unit10-lv1-view').style.display = 'none';
         document.getElementById('level-1-title').textContent = "レベル 1: 実在セリフ特訓";
 
-        phrases = data.phrases;
+        phrases = data.phrases || [];
         currentPhraseIdx = 0;
-        document.getElementById('level-2-container').innerHTML = data.level2HTML;
-        document.getElementById('level-3-container').innerHTML = data.level3HTML;
+        document.getElementById('level-2-container').innerHTML = data.level2HTML || '';
+        document.getElementById('level-3-container').innerHTML = data.level3HTML || '';
 
         updateLevel1UI();
       }
@@ -2018,7 +2416,7 @@
           <span class="badge">${timeStr}〜 再生</span>
         </div>
         <div class="level-block" style="text-align: center; padding: 20px;">
-          <div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 8px;">🎬 1,2,3 IVE EP.1 練習室ミーティング</div>
+          <div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 8px;">🎬 1,2,3 IVE EP.1</div>
           <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 20px; line-height: 1.5;">
             ${data.ytDesc}
           </p>
@@ -2467,13 +2865,13 @@
       btn.style.opacity = '0.6';
 
       const avatar = document.getElementById('character-face');
-     let p = phrases[currentPhraseIdx];
-        const bossTargetEl = document.querySelector('#boss-viewport .target-word, #boss-target-word, .boss-target, #step-1-panel [class*="target"]');
-        const unitSelect = document.getElementById('unit-select');
-        if ((unitSelect && unitSelect.value === 'unit9') || (typeof currentUnitKey !== 'undefined' && currentUnitKey === 'unit9')) {
-          const rawText = bossTargetEl ? bossTargetEl.textContent.trim() : "옆줄";
-          p = { hangul: rawText.replace(/[^가-힣]/g, '') || "옆줄" };
-        }
+      let p = phrases[currentPhraseIdx];
+      const bossTargetEl = document.querySelector('#boss-viewport .target-word, #boss-target-word, .boss-target, #step-1-panel [class*="target"]');
+      const unitSelect = document.getElementById('unit-select');
+      if ((unitSelect && unitSelect.value === 'unit9') || (typeof currentUnitKey !== 'undefined' && currentUnitKey === 'unit9')) {
+        const rawText = bossTargetEl ? bossTargetEl.textContent.trim() : "옆줄";
+        p = { hangul: rawText.replace(/[^가-힣]/g, '') || "옆줄" };
+      }
       let currentCount = 0;
 
       function triggerNextRound() {
@@ -2532,13 +2930,13 @@
 
       recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript.trim().replace(/\s+/g, '');
-       let target = (phrases[currentPhraseIdx] && phrases[currentPhraseIdx].targetWord) ? phrases[currentPhraseIdx].targetWord.replace(/\s+/g, '') : '';
-          const unitSelect = document.getElementById('unit-select');
-          if ((unitSelect && unitSelect.value === 'unit9') || (typeof currentUnitKey !== 'undefined' && currentUnitKey === 'unit9')) {
-            const bossTargetEl = document.querySelector('#boss-viewport .target-word, #boss-target-word, .boss-target, #step-1-panel [class*="target"]');
-            const rawTarget = bossTargetEl ? bossTargetEl.textContent.trim() : "옆줄";
-            target = rawTarget.replace(/[^가-힣]/g, '') || "옆줄";
-          };
+        let target = (phrases[currentPhraseIdx] && phrases[currentPhraseIdx].targetWord) ? phrases[currentPhraseIdx].targetWord.replace(/\s+/g, '') : '';
+        const unitSelect = document.getElementById('unit-select');
+        if ((unitSelect && unitSelect.value === 'unit9') || (typeof currentUnitKey !== 'undefined' && currentUnitKey === 'unit9')) {
+          const bossTargetEl = document.querySelector('#boss-viewport .target-word, #boss-target-word, .boss-target, #step-1-panel [class*="target"]');
+          const rawTarget = bossTargetEl ? bossTargetEl.textContent.trim() : "옆줄";
+          target = rawTarget.replace(/[^가-힣]/g, '') || "옆줄";
+        }
 
         if (transcript.includes(target) || target.includes(transcript)) {
           document.getElementById('character-face').textContent = "😆✨";
@@ -2581,7 +2979,7 @@
       }
     }
 
-    // 初期起動時
+    // 初期起動時（シーン1の初期ユニットを読み込み）
     switchUnit(document.getElementById('unit-select').value);
   </script>
 </body>
