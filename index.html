@@ -41,23 +41,59 @@
     header {
       width: 100%;
       max-width: 600px;
-      text-align: center;
       margin-bottom: 12px;
     }
 
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .header-titles {
+      text-align: left;
+    }
+
     header h1 {
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       color: var(--primary);
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
+      margin: 0;
     }
 
     header p {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-sub);
       margin-top: 2px;
+    }
+
+    .header-roadmap-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: #ffffff;
+      border: 1.5px solid #ffd3e2;
+      border-radius: 14px;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(255, 77, 136, 0.12);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .header-roadmap-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(255, 77, 136, 0.22);
     }
 
     /* ステージ・シーン統合ナビゲーションパネル */
@@ -73,111 +109,804 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      position: relative;
     }
 
-    /* 第1段: メインシーン選択タブ（大分類） */
-    .main-scene-bar {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .main-scene-pill {
+    /* 常設：シーン選択アコーディオン・トグルバー */
+    .scene-accordion-toggle {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 10px;
-      padding: 9px 12px;
-      border: 1.5px solid #ffd3e2;
+      padding: 10px 14px;
       background: #fff8fa;
-      border-radius: 12px;
+      border: 1.5px solid #ffd3e2;
+      border-radius: 14px;
       cursor: pointer;
       transition: all 0.25s ease;
-      color: var(--text);
-      text-align: left;
+      user-select: none;
     }
 
-    .main-scene-pill:hover {
+    .scene-accordion-toggle:hover {
       border-color: var(--primary);
       background: #fff0f5;
       transform: translateY(-1px);
     }
 
-    .main-scene-pill.active {
-      background: linear-gradient(135deg, #ff4d88 0%, #6c5ce7 100%);
-      border-color: transparent;
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(255, 77, 136, 0.35);
+    .scene-accordion-toggle.is-open {
+      border-color: var(--primary);
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(255, 77, 136, 0.15);
     }
 
-    .main-scene-pill .pill-icon {
-      font-size: 1.3rem;
+    .current-scene-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .cur-scene-icon {
+      font-size: 1.5rem;
       line-height: 1;
+      flex-shrink: 0;
     }
 
-    .main-scene-pill .pill-info {
+    .cur-scene-info {
       display: flex;
       flex-direction: column;
-      line-height: 1.25;
+      gap: 2px;
       overflow: hidden;
     }
 
-    .main-scene-pill .pill-title {
+    .cur-scene-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+    }
+
+    .cur-scene-title {
       font-size: 0.95rem;
       font-weight: 800;
+      color: var(--text);
       white-space: nowrap;
-    }
-
-    .main-scene-pill .pill-desc {
-      font-size: 0.72rem;
-      opacity: 0.85;
-      font-weight: 500;
-      margin-top: 1px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* 第2段: パート選択サブタブ（小分類） */
-    .sub-part-bar {
+    .cur-scene-badge-pill {
+      font-size: 0.68rem;
+      background: #ffe3ec;
+      color: var(--primary);
+      padding: 2px 7px;
+      border-radius: 8px;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .cur-part-title {
+      font-size: 0.76rem;
+      color: var(--text-sub);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .drawer-arrow-pill {
       display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      padding: 2px 0 4px 0;
-    }
-
-    .sub-part-bar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .sub-part-pill {
-      flex: 1 0 auto;
-      min-width: fit-content;
-      padding: 7px 12px;
-      border: 1px solid #e9ecef;
-      background: #f8f9fa;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      background: linear-gradient(135deg, #ff4d88 0%, #6c5ce7 100%);
+      color: #ffffff;
       border-radius: 20px;
       font-size: 0.78rem;
-      font-weight: bold;
-      color: var(--text-sub);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-      text-align: center;
+      font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(255, 77, 136, 0.3);
+      transition: all 0.25s ease;
     }
 
-    .sub-part-pill:hover {
+    .drawer-arrow-pill .arrow-icon {
+      font-size: 0.72rem;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+
+    .scene-accordion-toggle.is-open .drawer-arrow-pill .arrow-icon {
+      transform: rotate(180deg);
+    }
+
+    /* 展開式シーン一覧ドロワー */
+    .scene-drawer-container {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    }
+
+    .scene-drawer-container.is-open {
+      max-height: 900px;
+      opacity: 1;
+      padding: 10px 0 4px 0;
+      border-top: 1px dashed #ffd6e5;
+    }
+
+    .drawer-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .drawer-header-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text-sub);
+    }
+
+    .drawer-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .drawer-roadmap-link-btn {
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      background: #fff0f5;
+      border: 1px solid #ffd3e2;
+      border-radius: 12px;
       color: var(--primary);
-      border-color: #ffd3e2;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .drawer-roadmap-link-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .drawer-close-btn {
+      width: 24px;
+      height: 24px;
+      background: #f1f2f6;
+      border: none;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-sub);
+      transition: all 0.2s;
+    }
+
+    .drawer-close-btn:hover {
+      background: #ffe3ec;
+      color: var(--primary);
+    }
+
+    .drawer-scenes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 540px) {
+      .drawer-scenes-grid {
+        grid-template-columns: 1fr 1.2fr;
+      }
+    }
+
+    .drawer-scene-card {
+      background: #ffffff;
+      border: 1.5px solid #ffe3ec;
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: left;
+    }
+
+    .drawer-scene-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 14px rgba(255, 77, 136, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .drawer-scene-card.active {
+      border: 2px solid var(--primary);
+      background: #fff8fa;
+    }
+
+    .drawer-scene-card .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .drawer-scene-card .card-icon {
+      font-size: 1.4rem;
+    }
+
+    .drawer-scene-card .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .drawer-scene-card .card-badge {
+      font-size: 0.68rem;
+      background: #ffe3ec;
+      color: var(--primary);
+      padding: 2px 7px;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .drawer-scene-card .card-unit-count {
+      font-size: 0.68rem;
+      color: var(--text-sub);
+      background: #f1f2f6;
+      padding: 2px 7px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .drawer-scene-card .card-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .drawer-scene-card .card-desc {
+      font-size: 0.72rem;
+      color: var(--text-sub);
+      line-height: 1.4;
+    }
+
+    .drawer-scene-card .card-action-bar {
+      margin-top: 4px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .drawer-scene-card .card-select-btn {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: var(--primary);
+      padding: 4px 8px;
+      border-radius: 8px;
       background: #fff0f5;
     }
 
-    .sub-part-pill.active {
+    .drawer-parts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed #ffd6e5;
+    }
+
+    .drawer-part-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
       background: #ffffff;
+      border: 1px solid #ffe3ec;
+      border-radius: 8px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .drawer-part-item:hover {
+      border-color: var(--primary);
+      background: #fff0f5;
       color: var(--primary);
-      border: 1.5px solid var(--primary);
-      box-shadow: 0 2px 8px rgba(255, 77, 136, 0.2);
+    }
+
+    .drawer-part-item.active {
+      background: #ffe3ec;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .drawer-part-item .part-item-num {
+      font-size: 0.68rem;
+      background: #fff0f5;
+      color: var(--primary);
+      padding: 2px 6px;
+      border-radius: 6px;
       font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .drawer-part-item .part-item-name {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .drawer-part-item .part-item-arrow {
+      color: var(--text-sub);
+      font-weight: bold;
+    }
+
+    /* 互換用メインシーンタブ＆サブパートバー（必要に応じて非表示） */
+    .main-scene-bar {
+      display: none;
+    }
+
+    .sub-part-bar {
+      display: none;
+    }
+
+    /* ロードマップ・全体目次モーダル */
+    .roadmap-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(45, 52, 54, 0.65);
+      backdrop-filter: blur(5px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .roadmap-modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .roadmap-modal-container {
+      background: #ffffff;
+      width: 100%;
+      max-width: 660px;
+      max-height: 90vh;
+      border-radius: 22px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: transform 0.25s ease;
+    }
+
+    .roadmap-modal-overlay.is-open .roadmap-modal-container {
+      transform: translateY(0);
+    }
+
+    .roadmap-modal-header {
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #fff0f5 0%, #ffffff 100%);
+      border-bottom: 1.5px solid #ffe3ec;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-title-group h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-title-group p {
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      margin-top: 3px;
+    }
+
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      background: #f1f2f6;
+      border: none;
+      border-radius: 50%;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-sub);
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .modal-close-btn:hover {
+      background: #ffe3ec;
+      color: var(--primary);
+    }
+
+    .roadmap-progress-card {
+      margin: 14px 18px 8px 18px;
+      padding: 14px 16px;
+      background: #fff8fa;
+      border: 1.5px solid #ffd3e2;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .progress-info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .progress-info-row .progress-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .progress-info-row .progress-percent {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--primary);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      background: #e9ecef;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff4d88 0%, #a29bfe 100%);
+      border-radius: 10px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-stats-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid #e9ecef;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .progress-filter-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed #ffd6e5;
+      margin-top: 2px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn-group {
+      display: flex;
+      gap: 4px;
+    }
+
+    .filter-btn {
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border: 1px solid #e9ecef;
+      background: #ffffff;
+      border-radius: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .reset-progress-btn {
+      font-size: 0.72rem;
+      background: none;
+      border: none;
+      color: var(--text-sub);
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 2px 4px;
+    }
+
+    .reset-progress-btn:hover {
+      color: var(--danger);
+    }
+
+    .roadmap-tree-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 18px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .roadmap-scene-section {
+      background: #ffffff;
+      border: 1.5px solid #ffe3ec;
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .roadmap-scene-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid #fff0f5;
+    }
+
+    .roadmap-scene-header h3 {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .roadmap-scene-badge {
+      font-size: 0.7rem;
+      background: #ffe3ec;
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .roadmap-part-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .roadmap-part-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      padding: 4px 8px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .roadmap-unit-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    @media (min-width: 500px) {
+      .roadmap-unit-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .roadmap-unit-card {
+      background: #ffffff;
+      border: 1.5px solid #f1f2f6;
+      border-radius: 12px;
+      padding: 9px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .roadmap-unit-card:hover {
+      border-color: var(--primary);
+      background: #fff8fa;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 77, 136, 0.12);
+    }
+
+    .roadmap-unit-card.is-current {
+      border-color: #ffd166;
+      background: #fffdf5;
+      box-shadow: 0 0 0 2px rgba(255, 209, 102, 0.35);
+    }
+
+    .roadmap-unit-card.is-completed {
+      border-color: var(--success);
+      background: #f6fffa;
+    }
+
+    .unit-card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .unit-card-key-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: #fff0f5;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+
+    .unit-card-status-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .unit-card-status-pill.completed {
+      background: #e6fffa;
+      color: var(--success);
+      border: 1px solid #b2f5ea;
+    }
+
+    .unit-card-status-pill.current {
+      background: #fff9db;
+      color: #d97706;
+      border: 1px solid #fde68a;
+    }
+
+    .unit-card-status-pill.unopened {
+      background: #f1f2f6;
+      color: #a0aec0;
+      border: 1px solid #e2e8f0;
+    }
+
+    .unit-card-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .unit-card-jump-btn {
+      margin-top: 4px;
+      align-self: flex-end;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: #ffe3ec;
+      padding: 3px 8px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .roadmap-unit-card:hover .unit-card-jump-btn {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .roadmap-modal-footer {
+      padding: 12px 20px;
+      background: #f8f9fa;
+      border-top: 1px solid #e9ecef;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .modal-footer-close {
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: #dfe6e9;
+      color: var(--text);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .modal-footer-close:hover {
+      background: #b2bec3;
+    }
+
+    /* フローティング目次ボタン */
+    .floating-roadmap-btn {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 950;
+      background: linear-gradient(135deg, #ff4d88 0%, #6c5ce7 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      padding: 11px 18px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 6px 20px rgba(255, 77, 136, 0.45);
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 0.9rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .floating-roadmap-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 8px 26px rgba(255, 77, 136, 0.6);
+    }
+
+    .floating-roadmap-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* Toast 通知 */
+    .chemisso-toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: rgba(45, 52, 54, 0.92);
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .chemisso-toast.is-show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
 
     /* 第3段: セレクター行（2段ドロップダウン） */
@@ -672,34 +1401,49 @@
       margin-bottom: 16px;
       background: #fff8fa;
       padding: 10px;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1.5px solid #ffe3ec;
       box-shadow: 0 2px 8px rgba(255, 77, 136, 0.06);
     }
 
     @media (min-width: 520px) {
       .sound-chapter-bar {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 12px;
       }
     }
 
     .sound-chapter-btn {
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 8px 4px;
+      padding: 9px 4px;
+      min-height: 42px;
       background: #ffffff;
       border: 1.5px solid #e9ecef;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: 700;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       cursor: pointer;
       color: var(--text-sub);
       transition: all 0.2s ease;
-      line-height: 1.25;
+      white-space: nowrap;
+      word-break: keep-all;
       box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    @media (max-width: 380px) {
+      .sound-chapter-bar {
+        padding: 6px;
+        gap: 4px;
+      }
+      .sound-chapter-btn {
+        font-size: 0.71rem;
+        padding: 7px 2px;
+        min-height: 38px;
+      }
     }
 
     .sound-chapter-btn:hover {
@@ -1080,37 +1824,117 @@
 </head>
 <body>
 
-  <header>
-    <h1>チェミイッソ！ <span>재미있어!</span></h1>
-    <p id="unit-subtitle">1,2,3 IVE EP.1</p>
+  <header class="app-header">
+    <div class="header-content">
+      <div class="header-titles">
+        <h1>チェミイッソ！ <span>재미있어!</span></h1>
+        <p id="unit-subtitle">1,2,3 IVE EP.1</p>
+      </div>
+      <button type="button" class="header-roadmap-btn" onclick="openRoadmapModal()" title="全体目次（学習マップ）を開く">
+        <span>🗺️</span>
+        <span>目次マップ</span>
+      </button>
+    </div>
   </header>
 
-  <!-- ステージ・シーン統合ナビゲーションパネル -->
+  <!-- ステージ・シーン統合ナビゲーションパネル（アコーディオン＆ドロワー式） -->
   <div class="nav-control-panel">
-    <!-- 第1段: メインシーン選択タブ（大分類） -->
-    <div class="main-scene-bar" id="main-scene-bar">
-      <button type="button" class="main-scene-pill scene-btn scene-tab active" id="btn-scene-1" data-id="btn-scene-main1" data-scene="scene1" onclick="switchScene('scene1')">
-        <span class="pill-icon">🌸</span>
-        <div class="pill-info">
-          <span class="pill-title">シーン 1</span>
-          <span class="pill-desc">かけ声決め＆即退勤（Unit 1〜10）</span>
+    <!-- 常設：シーン選択アコーディオン・トグルバー -->
+    <div class="scene-accordion-toggle" id="scene-accordion-toggle" onclick="toggleSceneDrawer()">
+      <div class="current-scene-badge">
+        <span class="cur-scene-icon" id="cur-scene-icon">🌸</span>
+        <div class="cur-scene-info">
+          <div class="cur-scene-title-row">
+            <span class="cur-scene-title" id="cur-scene-title">シーン 1：かけ声決め＆即退勤</span>
+            <span class="cur-scene-badge-pill" id="cur-scene-badge-pill">19:15〜21:40</span>
+          </div>
+          <div class="cur-part-title" id="cur-part-title">全編（Unit 1〜10）</div>
         </div>
-      </button>
-      <button type="button" class="main-scene-pill scene-btn scene-tab" id="btn-scene-2" data-id="btn-scene-main2" data-scene="scene2" onclick="switchScene('scene2')">
-        <span class="pill-icon">🎀</span>
-        <div class="pill-info">
-          <span class="pill-title">シーン 2</span>
-          <span class="pill-desc">ダンス練習＆ディテール（Unit 1〜15）</span>
-        </div>
-      </button>
+      </div>
+      <div class="drawer-arrow-pill" id="drawer-arrow-pill">
+        <span class="arrow-text">シーン切替</span>
+        <span class="arrow-icon" id="drawer-arrow-icon">▼</span>
+      </div>
     </div>
 
-    <!-- 第2段: パート選択サブタブ（小分類） -->
-    <div class="sub-part-bar" id="sub-part-bar">
-      <!-- JSで動的更新 -->
+    <!-- 展開式シーン一覧ドロワー（カード型ポップアップ・アコーディオン） -->
+    <div class="scene-drawer-container" id="scene-drawer-container">
+      <div class="drawer-header-row">
+        <span class="drawer-header-title">🎬 学習シーン＆パートを選択</span>
+        <div class="drawer-header-actions">
+          <button type="button" class="drawer-roadmap-link-btn" onclick="openRoadmapModal(); closeSceneDrawer();">
+            🗺️ 全体目次マップ
+          </button>
+          <button type="button" class="drawer-close-btn" onclick="closeSceneDrawer()" title="閉じる">✕</button>
+        </div>
+      </div>
+
+      <div class="drawer-scenes-grid">
+        <!-- シーン1 カード（btn-scene-1保持で互換性完全担保） -->
+        <div class="drawer-scene-card active" id="btn-scene-1" data-id="btn-scene-main1" data-scene="scene1" onclick="selectSceneAndClose('scene1')">
+          <div class="card-top">
+            <span class="card-icon">🌸</span>
+            <div class="card-meta">
+              <span class="card-badge">19:15〜21:40</span>
+              <span class="card-unit-count">全10ユニット</span>
+            </div>
+          </div>
+          <div class="card-title">シーン 1：かけ声決め＆即退勤</div>
+          <div class="card-desc">かけ声の提案から順番決め、じゃんけん、即退勤ダッシュ、漢字語・発音・門番バトル・復習まで！</div>
+          <div class="card-action-bar">
+            <span class="card-select-btn">このシーンを学習 ➔</span>
+          </div>
+        </div>
+
+        <!-- シーン2 大カード（btn-scene-2保持で互換性完全担保） -->
+        <div class="drawer-scene-card" id="btn-scene-2" data-id="btn-scene-main2" data-scene="scene2">
+          <div class="card-top" onclick="selectSceneAndClose('scene2')">
+            <span class="card-icon">🎀</span>
+            <div class="card-meta">
+              <span class="card-badge">12:48〜19:08</span>
+              <span class="card-unit-count">全26ユニット</span>
+            </div>
+          </div>
+          <div class="card-title" onclick="selectSceneAndClose('scene2')">シーン 2：ダンス＆退勤大討論</div>
+          <div class="card-desc" onclick="selectSceneAndClose('scene2')">プリズム披露から親友ノート、受難、エンディングポーズ激論、写真確認、感動の即退勤まで！</div>
+          
+          <!-- シーン2 各パート直接選択ピル群 -->
+          <div class="drawer-parts-list">
+            <div class="drawer-part-item" id="drawer-part-s2p1" onclick="selectSceneAndClose('scene2')">
+              <span class="part-item-num">Part 1</span>
+              <span class="part-item-name">プリズム＆退勤バイブ（Unit 1〜4）</span>
+              <span class="part-item-arrow">›</span>
+            </div>
+            <div class="drawer-part-item" id="drawer-part-s2p2" onclick="selectSceneAndClose('scene2_part2')">
+              <span class="part-item-num">Part 2</span>
+              <span class="part-item-name">親友ノート＆小休止（Unit 5〜8）</span>
+              <span class="part-item-arrow">›</span>
+            </div>
+            <div class="drawer-part-item" id="drawer-part-s2p3" onclick="selectSceneAndClose('scene2_part3')">
+              <span class="part-item-num">Part 3</span>
+              <span class="part-item-name">特別特訓＆ボスバトル（Unit 9〜11）</span>
+              <span class="part-item-arrow">›</span>
+            </div>
+            <div class="drawer-part-item" id="drawer-part-s2p4" onclick="selectSceneAndClose('scene2_part4')">
+              <span class="part-item-num">Part 4</span>
+              <span class="part-item-name">狭い列＆受難ハプニング（Unit 12〜15）</span>
+              <span class="part-item-arrow">›</span>
+            </div>
+            <div class="drawer-part-item" id="drawer-part-s2p5" onclick="selectSceneAndClose('scene2_part5')">
+              <span class="part-item-num">Part 5</span>
+              <span class="part-item-name">エンディングポーズ大討論＆退勤（Unit 16〜26）</span>
+              <span class="part-item-arrow">›</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- 第3段: セレクター行（2段ドロップダウン＆ステップ移動ボタン） -->
+    <!-- 互換性維持のための非表示メインシーン・サブパートバー -->
+    <div class="main-scene-bar" id="main-scene-bar" style="display: none;"></div>
+    <div class="sub-part-bar" id="sub-part-bar" style="display: none;"></div>
+
+    <!-- セレクター行（2段ドロップダウン＆ステップ移動ボタン） -->
     <div class="selectors-row">
       <div class="select-field">
         <label class="select-label" for="scene-part-select">
@@ -1123,9 +1947,9 @@
           <optgroup label="🎀 シーン 2（12:48〜19:08）">
             <option value="scene2">Part 1：プリズム＆退勤バイブ（Unit 1〜4）</option>
             <option value="scene2_part2">Part 2：親友ノート＆小休止（Unit 5〜8）</option>
-            <option value="scene2_part3">Part 3：漢字語・発音・覚醒ボス（Unit 9〜11）</option>
+            <option value="scene2_part3">Part 3：特別特訓＆ボスバトル（Unit 9〜11）</option>
             <option value="scene2_part4">Part 4：狭い列＆受難ハプニング（Unit 12〜15）</option>
-            <option value="scene2_part5">Part 5：エンディングポーズ大討論＆退勤（Unit 16〜22）</option>
+            <option value="scene2_part5">Part 5：エンディングポーズ大討論＆退勤（Unit 16〜26）</option>
           </optgroup>
         </select>
       </div>
@@ -2289,22 +3113,22 @@
           <div class="section-title"><span>レベル 3: 韓国語発音変化マスター特訓（全10章カリキュラム）</span></div>
 
           <div class="sound-change-wrapper">
-            <!-- 10章 ナビゲーションバー -->
+            <!-- ①〜⑩ ナビゲーションバー -->
             <div class="sound-chapter-bar">
-              <button type="button" class="sound-chapter-btn active" onclick="switchSoundChapter('sc-u8-ch1', this)">1章：有声化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch2', this)">2章：連音化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch3', this)">3章：鼻音化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch4', this)">4章：流音化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch5', this)">5章：L挿入</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch6', this)">6章：激音化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch7', this)">7・8章：濃音化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch8', this)">9章：口蓋音・口語</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch9', this)">10章：100本ノック</button>
+              <button type="button" class="sound-chapter-btn active" onclick="switchSoundChapter('sc-u8-ch1', this)">① 有声化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch2', this)">② 連音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch3', this)">③ 鼻音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch4', this)">④ 流音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch5', this)">⑤ L挿入</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch6', this)">⑥ 激音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch7', this)">⑦・⑧ 濃音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch8', this)">⑨ 口蓋音・口語</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-u8-ch9', this)">⑩ 練習</button>
             </div>
 
-            <!-- 1章：有声化 -->
+            <!-- ① 有声化 -->
             <div id="sc-u8-ch1" class="sound-chapter-page active">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【1章：有声化（濁音化）】平音（ㄱ, ㄷ, ㅂ, ㅈ）が語頭では澄んだ音（k, t, p, ch）、母音や有声音（ㄴ, ㄹ, ㅁ, ㅇ）に挟まれると濁音（g, d, b, j）に変化します。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【① 有声化（濁音化）】平音（ㄱ, ㄷ, ㅂ, ㅈ）が語頭では澄んだ音（k, t, p, ch）、母音や有声音（ㄴ, ㄹ, ㅁ, ㅇ）に挟まれると濁音（g, d, b, j）に変化します。</p>
               <div class="level-block">
                 <div class="sound-change-tag">🎵 가을 ➔ [가을] vs 우리 가을이 ➔ [우리 가으리]</div>
                 <div class="sound-change-row">
@@ -2331,9 +3155,9 @@
               </div>
             </div>
 
-            <!-- 2章：連音化 -->
+            <!-- ② 連音化 -->
             <div id="sc-u8-ch2" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【2章：連音化】パッチムの後ろに母音（ㅇ）が来ると、パッチムの音が次の音節の先頭へ滑らかに引っ越します。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【② 連音化】パッチムの後ろに母音（ㅇ）が来ると、パッチムの音が次の音節の先頭へ滑らかに引っ越します。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 바깥으로 ➔ [바까트로]（外側へ）</div>
                 <div class="sound-change-row">
@@ -2368,9 +3192,9 @@
               </div>
             </div>
 
-            <!-- 3章：鼻音化 -->
+            <!-- ③ 鼻音化 -->
             <div id="sc-u8-ch3" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【3章：鼻音化】詰まるパッチム（ㄱ, ㄷ, ㅂ）が鼻音（ㄴ, ㅁ）の前で、同じ口の構えのまま鼻に抜ける音 [ㅇ, ㄴ, ㅁ] に変化します。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【③ 鼻音化】詰まるパッチム（ㄱ, ㄷ, ㅂ）が鼻音（ㄴ, ㅁ）の前で、同じ口の構えのまま鼻に抜ける音 [ㅇ, ㄴ, ㅁ] に変化します。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 퇴근하겠습니다 ➔ [퇴그나겓씀니다]</div>
                 <div class="sound-change-row">
@@ -2397,9 +3221,9 @@
               </div>
             </div>
 
-            <!-- 4章：流音化 -->
+            <!-- ④ 流音化 -->
             <div id="sc-u8-ch4" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【4章：流音化】「ㄴ」と「ㄹ」が隣り合うと、発音を滑らかにするため「ㄴ」が「ㄹ」に引っ張られて [ㄹ＋ㄹ]（ll音）になります。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【④ 流音化】「ㄴ」と「ㄹ」が隣り合うと、発音を滑らかにするため「ㄴ」が「ㄹ」に引っ張られて [ㄹ＋ㄹ]（ll音）になります。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 횡열 ➔ [횡렬]（横列）</div>
                 <div class="sound-change-row">
@@ -2426,9 +3250,9 @@
               </div>
             </div>
 
-            <!-- 5章：L挿入 -->
+            <!-- ⑤ L挿入 -->
             <div id="sc-u8-ch5" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【5章：L挿入（ㄴ挿入）】合成語や派生語で、前の単語が子音パッチムで終わり、後ろの単語が「야, 여, 요, 유, 이」で始まる場合、[ㄴ]（パッチムㄹの後では[ㄹ]）が挿入されます。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑤ L挿入（ㄴ挿入）】合成語や派生語で、前の単語が子音パッチムで終わり、後ろの単語が「야, 여, 요, 유, 이」で始まる場合、[ㄴ]（パッチムㄹの後では[ㄹ]）が挿入されます。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 맨얼굴 ➔ [맨널굴]（すっぴん）</div>
                 <div class="sound-change-row">
@@ -2455,9 +3279,9 @@
               </div>
             </div>
 
-            <!-- 6章：激音化 -->
+            <!-- ⑥ 激音化 -->
             <div id="sc-u8-ch6" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【6章：激音化】「ㅎ」と「ㄱ, ㄷ, ㅂ, ㅈ」が合体し、息が強く吹き出す音 [ㅋ, ㅌ, ㅍ, ㅊ] に変化します。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑥ 激音化】「ㅎ」と「ㄱ, ㄷ, ㅂ, ㅈ」が合体し、息が強く吹き出す音 [ㅋ, ㅌ, ㅍ, ㅊ] に変化します。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 임박하면 ➔ [임바카면]（差し迫ったら）</div>
                 <div class="sound-change-row">
@@ -2492,9 +3316,9 @@
               </div>
             </div>
 
-            <!-- 7・8章：濃音化（前編・後編） -->
+            <!-- ⑦・⑧ 濃音化（前編・後編） -->
             <div id="sc-u8-ch7" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【7・8章：濃音化（前編・後編）】詰まる音（ㄱ, ㄷ, ㅂなど）の後ろ、または漢字語パッチム「ㄹ」の後ろで平音が [ㄲ, ㄸ, ㅃ, ㅆ, ㅉ] に強まります。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑦・⑧ 濃音化（前編・後編）】詰まる音（ㄱ, ㄷ, ㅂなど）の後ろ、または漢字語パッチム「ㄹ」の後ろで平音が [ㄲ, ㄸ, ㅃ, ㅆ, ㅉ] に強まります。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ [前編] 옆줄 ➔ [엽쭐]（横列）</div>
                 <div class="sound-change-row">
@@ -2545,9 +3369,9 @@
               </div>
             </div>
 
-            <!-- 9章：口蓋音化・口語表記 -->
+            <!-- ⑨ 口蓋音化・口語表記 -->
             <div id="sc-u8-ch8" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【9章：口蓋音化・口語表記】パッチム「ㄷ, ㅌ」が「이」に出会うと舌が上あごについて [ㅈ, ㅊ] に変化。またバラエティ特有の愛嬌テロップ表記も網羅！</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑨ 口蓋音化・口語表記】パッチム「ㄷ, ㅌ」が「이」に出会うと舌が上あごについて [ㅈ, ㅊ] に変化。またバラエティ特有の愛嬌テロップ表記も網羅！</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 굳이 ➔ [구지]（あえて・わざわざ）</div>
                 <div class="sound-change-row">
@@ -2590,9 +3414,9 @@
               </div>
             </div>
 
-            <!-- 10章：発音変化100本ノック（総まとめ） -->
+            <!-- ⑩ 練習（総まとめ） -->
             <div id="sc-u8-ch9" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:8px;">【10章：発音変化100本ノック（総まとめ）】シーン1本編の頻出単語をワンタップで連続発音チェック！耳と口を鍛え上げましょう。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:8px;">【⑩ 練習（総まとめ）】シーン1本編の頻出単語をワンタップで連続発音チェック！耳と口を鍛え上げましょう。</p>
               <div class="knock-grid">
                 <div class="knock-card" onclick="playSingleWordTTS('엽쭐')">
                   <div class="knock-word">옆줄</div>
@@ -3814,22 +4638,22 @@
           <div class="section-title"><span>レベル 3: 韓国語発音変化マスター特訓（全10章カリキュラム・シーン2版）</span></div>
 
           <div class="sound-change-wrapper">
-            <!-- 10章 ナビゲーションバー -->
+            <!-- ①〜⑩ ナビゲーションバー -->
             <div class="sound-chapter-bar">
-              <button type="button" class="sound-chapter-btn active" onclick="switchSoundChapter('sc-s2u10-ch1', this)">1章：有声化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch2', this)">2章：連音化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch3', this)">3章：鼻音化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch4', this)">4章：流音化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch5', this)">5章：L挿入</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch6', this)">6章：激音化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch7', this)">7・8章：濃音化</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch8', this)">9章：口蓋音・口語</button>
-              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch9', this)">10章：100本ノック</button>
+              <button type="button" class="sound-chapter-btn active" onclick="switchSoundChapter('sc-s2u10-ch1', this)">① 有声化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch2', this)">② 連音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch3', this)">③ 鼻音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch4', this)">④ 流音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch5', this)">⑤ L挿入</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch6', this)">⑥ 激音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch7', this)">⑦・⑧ 濃音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch8', this)">⑨ 口蓋音・口語</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u10-ch9', this)">⑩ 練習</button>
             </div>
 
-            <!-- 1章：有声化 -->
+            <!-- ① 有声化 -->
             <div id="sc-s2u10-ch1" class="sound-chapter-page active">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【1章：有声化（濁音化）】平音（ㄱ, ㄷ, ㅂ, ㅈ）が語頭では澄んだ音（k, t, p, ch）、母音や有声音（ㄴ, ㄹ, ㅁ, ㅇ）に挟まれると濁音（g, d, b, j）に変化します。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【① 有声化（濁音化）】平音（ㄱ, ㄷ, ㅂ, ㅈ）が語頭では澄んだ音（k, t, p, ch）、母音や有声音（ㄴ, ㄹ, ㅁ, ㅇ）に挟まれると濁音（g, d, b, j）に変化します。</p>
               <div class="level-block">
                 <div class="sound-change-tag">🎵 비교 ➔ [비교]（比較：語頭「비[ピ]」vs 2文字目「교[ギョ]」）</div>
                 <div class="sound-change-row">
@@ -3856,9 +4680,9 @@
               </div>
             </div>
 
-            <!-- 2章：連音化 -->
+            <!-- ② 連音化 -->
             <div id="sc-s2u10-ch2" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【2章：連音化】二重パッチムの後ろに母音（ㅇ）が来ると、右側のパッチムが次の音節の初声へ引っ越します。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【② 連音化】二重パッチムの後ろに母音（ㅇ）が来ると、右側のパッチムが次の音節の初声へ引っ越します。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 밟았어 ➔ [발바써]（踏んじゃった ※母音の前）</div>
                 <div class="sound-change-row">
@@ -3893,9 +4717,9 @@
               </div>
             </div>
 
-            <!-- 3章：鼻音化 -->
+            <!-- ③ 鼻音化 -->
             <div id="sc-s2u10-ch3" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【3章：鼻音化】パッチム（ㄱ, ㄷ, ㅂ）が鼻音（ㄴ, ㅁ）の前で、鼻に抜ける音 [ㅇ, ㄴ, ㅁ] に変化します。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【③ 鼻音化】パッチム（ㄱ, ㄷ, ㅂ）が鼻音（ㄴ, ㅁ）の前で、鼻に抜ける音 [ㅇ, ㄴ, ㅁ] に変化します。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 맞는다 ➔ [만는다]（合っている）</div>
                 <div class="sound-change-row">
@@ -3922,9 +4746,9 @@
               </div>
             </div>
 
-            <!-- 4章：流音化 -->
+            <!-- ④ 流音化 -->
             <div id="sc-s2u10-ch4" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【4章：流音化】「ㄴ」と「ㄹ」が隣り合うと、発音を滑らかにするため「ㄴ」が「ㄹ」に引っ張られて [ㄹ＋ㄹ]（ll音）になります。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【④ 流音化】「ㄴ」と「ㄹ」が隣り合うと、発音を滑らかにするため「ㄴ」が「ㄹ」に引っ張られて [ㄹ＋ㄹ]（ll音）になります。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 관리 ➔ [괄리]（管理・ケア）</div>
                 <div class="sound-change-row">
@@ -3951,9 +4775,9 @@
               </div>
             </div>
 
-            <!-- 5章：L挿入 -->
+            <!-- ⑤ L挿入 -->
             <div id="sc-s2u10-ch5" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【5章：L挿入（ㄴ挿入）】合成語や派生語で、前の単語が子音パッチムで終わり、後ろが「야, 여, 요, 유, 이」で始まる場合、[ㄴ]（パッチムㄹの後では[ㄹ]）が挿入されます。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑤ L挿入（ㄴ挿入）】合成語や派生語で、前の単語が子音パッチムで終わり、後ろが「야, 여, 요, 유, 이」で始まる場合、[ㄴ]（パッチムㄹの後では[ㄹ]）が挿入されます。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 맨입 ➔ [맨닙]（ただ・手ぶら・素口）</div>
                 <div class="sound-change-row">
@@ -3980,9 +4804,9 @@
               </div>
             </div>
 
-            <!-- 6章：激音化 -->
+            <!-- ⑥ 激音化 -->
             <div id="sc-s2u10-ch6" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【6章：激音化】「ㅎ」と「ㄱ, ㄷ, ㅂ, ㅈ」が合体し、息が強く吹き出す音 [ㅋ, ㅌ, ㅍ, ㅊ] に変化します。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑥ 激音化】「ㅎ」と「ㄱ, ㄷ, ㅂ, ㅈ」が合体し、息が強く吹き出す音 [ㅋ, ㅌ, ㅍ, ㅊ] に変化します。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 집히다 ➔ [지피다]（つねられる・挟まれる）</div>
                 <div class="sound-change-row">
@@ -4017,9 +4841,9 @@
               </div>
             </div>
 
-            <!-- 7・8章：濃音化（前編・後編） -->
+            <!-- ⑦・⑧ 濃音化（前編・後編） -->
             <div id="sc-s2u10-ch7" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【7・8章：濃音化（前編・後編）】詰まる音（ㄱ, ㄷ, ㅂなど）の後ろ、または二重パッチム「ㄼ」や漢字語「ㄹ」の後ろで平音が [ㄲ, ㄸ, ㅃ, ㅆ, ㅉ] に強まります。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑦・⑧ 濃音化（前編・後編）】詰まる音（ㄱ, ㄷ, ㅂなど）の後ろ、または二重パッチム「ㄼ」や漢字語「ㄹ」の後ろで平音が [ㄲ, ㄸ, ㅃ, ㅆ, ㅉ] に強まります。</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ [前編] 직각 ➔ [직깍]（直角）</div>
                 <div class="sound-change-row">
@@ -4078,9 +4902,9 @@
               </div>
             </div>
 
-            <!-- 9章：口蓋音化・口語表記 -->
+            <!-- ⑨ 口蓋音化・口語表記 -->
             <div id="sc-s2u10-ch8" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【9章：口蓋音化・口語表記】パッチム「ㄷ, ㅌ」の口蓋音化と、練習室で炸裂するリアルな若者言葉・造語テロップです！</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑨ 口蓋音化・口語表記】パッチム「ㄷ, ㅌ」の口蓋音化と、練習室で炸裂するリアルな若者言葉・造語テロップです！</p>
               <div class="level-block">
                 <div class="sound-change-tag">⚡ 굳이 ➔ [구지]（わざわざ・あえて）</div>
                 <div class="sound-change-row">
@@ -4131,9 +4955,9 @@
               </div>
             </div>
 
-            <!-- 10章：発音変化100本ノック（総まとめ） -->
+            <!-- ⑩ 練習（総まとめ） -->
             <div id="sc-s2u10-ch9" class="sound-chapter-page">
-              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:8px;">【10章：発音変化100本ノック（総まとめ）】シーン2本編の頻出単語をワンタップで連続発音チェック！耳と口を鍛え上げましょう。</p>
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:8px;">【⑩ 練習（総まとめ）】シーン2本編の頻出単語をワンタップで連続発音チェック！耳と口を鍛え上げましょう。</p>
               <div class="knock-grid">
                 <div class="knock-card" onclick="playSingleWordTTS('직깍')">
                   <div class="knock-word">직각</div>
@@ -5252,6 +6076,897 @@
             </div>
             <p>18:54〜19:08 公式テロップ。すべてのディテール討論とフォーメーション調整を乗り越え、ついに勝ち取った退勤の喜び！心からの笑顔が輝く大団円のフィナーレです。</p>
           </div>`
+      },
+      s2_unit23: {
+        subtitle: "1,2,3 IVE EP.1（シーン2 Unit 23：漢字語マスター編・実在テロップ＆セリフ全16語）",
+        ytSeconds: 1100,
+        ytDesc: "シーン2（12:48〜19:08）に登場した重要漢字語（定石、決定、意見、対立、犠牲、真心、家内手工業、退勤、争取など）の漢字構造を完全マスター！",
+        phrases: [
+          {
+            hangul: "이것이 바로 파박파박슈의 정석",
+            meaning: "これこそまさにパパッパパッシュウの定石（13:20 テロップ）",
+            point: "漢字語「定石（정석）」。「정」で口を丸め、「석」のパッチム [ㄱ] をしっかり止めて発音。",
+            targetWord: "정석"
+          },
+          {
+            hangul: "토기파 vs 시안파의 팽팽한 의견 대립",
+            meaning: "土器派 vs 試案派の拮抗した意見対立（17:56 テロップ）",
+            point: "漢字語「意見（의견）」＋「對立（대립）」。「대립」のパッチム「ㅂ」で口を閉じる。",
+            targetWord: "의견 대립"
+          },
+          {
+            hangul: "포메이션 완성 위해 리즈를 희생해야",
+            meaning: "フォーメーション完成のためにリズを犠牲に（17:44 ユジン）",
+            point: "漢字語「犧牲（희생）」＋「眞心（진심）」。「희생」は息を抜いて柔らかく発音。",
+            targetWord: "희생"
+          },
+          {
+            hangul: "가내수공업급 디테일로 마침내 퇴근 쟁취!",
+            meaning: "家内手工業級のディテールでついに退勤を争取！（18:22 / 19:04）",
+            point: "漢字語「家內手工業（가내수공업）」＋「退勤（퇴근）」＋「爭取（쟁취＝戦い取ること）」。",
+            targetWord: "가내수공업"
+          }
+        ],
+        level2HTML: `
+          <div class="section-title">
+            <span>レベル 2: 本編対話・重要漢字語ネットワーク</span>
+            <span class="badge">語源構造の可視化</span>
+          </div>
+          <div class="two-shot-frame">
+            <div class="character-box">
+              <div class="icon">🐶</div>
+              <div class="name">ユジン (リーダー)</div>
+            </div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
+            <div class="character-box">
+              <div class="icon">🌸</div>
+              <div class="name">IVEメンバー全員</div>
+            </div>
+          </div>
+          <div class="dialogue-item">
+            <div class="dialogue-content">
+              <div class="ko">이것이 바로 파박파박슈의 정석(定石)! 귀에 대는 걸로 결정(決定)했어요.</div>
+              <div class="ja">これこそまさにパパッパパッシュウの定石！耳につけることに決定しました。</div>
+              <span class="grammar-tag">定石 (정석) ➔ 13:20 公式テロップ / 決定 (결정) ➔ 15:57 公式テロップ</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('이것이 바로 파박파박슈의 정석! 귀에 대는 걸로 결정했어요.')">🔊</button>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <div class="dialogue-content">
+              <div class="ko">새로운 안건(案件) 제시와 의견(意見) 대립(對立)을 거쳐 가내수공업(家內手工業)급 디테일로 퇴근(退勤)을 쟁취(爭取)해요!</div>
+              <div class="ja">新たな案件の提示と意見対立を経て、家内手工業級のディテールで退勤を勝ち取ります！</div>
+              <span class="grammar-tag">案件・意見・對立 (17:52〜17:56) / 家內手工業・爭取・退勤 (18:22〜19:04)</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('새로운 안건 제시와 의견 대립을 거쳐 가내수공업급 디테일로 퇴근을 쟁취해요!')">🔊</button>
+          </div>
+
+          <div class="kanji-group-container">
+            <div class="kanji-card">
+              <h4>📐 1. 定・石・正 (정/석) グループ</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('정석')">🔊 정석</button> <b>定石</b> <span style="color:var(--text-sub); font-size:0.85rem;">(13:20「파박파박슈의 정석」＝お手本・定石)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('결정')">🔊 결정</button> <b>決定</b> <span style="color:var(--text-sub); font-size:0.85rem;">(15:57「귀에 대는 걸로 결정」＝方針決定)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('열정')">🔊 열정</button> <b>熱情</b> <span style="color:var(--text-sub); font-size:0.85rem;">(14:21「열정막내 등판」＝燃える情熱)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('직각')">🔊 직각</button> <b>直角</b> <span style="color:var(--text-sub); font-size:0.85rem;">(15:44「너 약간 직각이 아닌데」＝直角・90度)</span></li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>💡 2. 意・見・案 (의/견/안) グループ</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('의견')">🔊 의견</button> <b>意見</b> <span style="color:var(--text-sub); font-size:0.85rem;">(17:56「팽팽한 의견 대립」＝メンバーの考え)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('대립')">🔊 대립</button> <b>對立</b> <span style="color:var(--text-sub); font-size:0.85rem;">(17:56「토기파 vs 시안파 대립」＝対立・議論)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('안건')">🔊 안건</button> <b>案件</b> <span style="color:var(--text-sub); font-size:0.85rem;">(17:52「새로운 안건 제시」＝提起された議題)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('시안')">🔊 시안</button> <b>視案</b> <span style="color:var(--text-sub); font-size:0.85rem;">(17:54「시안대로 해야지」＝当初の参考案)</span></li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>💖 3. 犧・牲・心 (희/생/심) グループ</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('희생')">🔊 희생</button> <b>犧牲</b> <span style="color:var(--text-sub); font-size:0.85rem;">(17:44「리즈를 희생해야 돼」＝大のための犠牲)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('진심')">🔊 진심</button> <b>眞心</b> <span style="color:var(--text-sub); font-size:0.85rem;">(19:00「진심으로 웃고 있는」＝本気・真心)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('목격자')">🔊 목격자</button> <b>目擊者</b> <span style="color:var(--text-sub); font-size:0.85rem;">(17:57「시안 목격자 리즈」＝目撃者)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('장인정신')">🔊 장인정신</button> <b>匠人精神</b> <span style="color:var(--text-sub); font-size:0.85rem;">(18:46「놓치지 않는 장인정신」＝職人魂)</span></li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>🚪 4. 業・爭・退 (업/쟁/퇴) グループ</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('가내수공업')">🔊 가내수공업</button> <b>家內手工業</b> <span style="color:var(--text-sub); font-size:0.85rem;">(18:22「가내수공업급 디테일」＝手作り微調整)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('쟁취')">🔊 쟁취</button> <b>爭取</b> <span style="color:var(--text-sub); font-size:0.85rem;">(19:04「마침내 쟁취한 퇴근」＝自ら戦い取ること)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('퇴근')">🔊 퇴근</button> <b>退勤</b> <span style="color:var(--text-sub); font-size:0.85rem;">(13:39〜19:04「퇴근바이브 / 마침내 퇴근」)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('수고')">🔊 수고</button> <b>受苦</b> <span style="color:var(--text-sub); font-size:0.85rem;">(19:07「수고하셨습니다」＝お疲れ様でした)</span></li>
+              </ul>
+            </div>
+          </div>`,
+        level3HTML: `
+          <div class="section-title"><span>レベル 3: 重要漢字語 実例対話マスター（4大グループ切り替え）</span></div>
+
+          <style>
+            .k-tab-input-s2u23 { display: none; }
+            .k-nav-bar-s2u23 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 16px; }
+            .k-nav-btn-s2u23 { display: block; text-align: center; padding: 10px 4px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; font-weight: bold; font-size: 0.85rem; cursor: pointer; color: var(--text-sub); transition: 0.2s; }
+            .k-page-content-s2u23 { display: none; }
+            
+            #tab-s2u23-1:checked ~ .k-nav-bar-s2u23 label[for="tab-s2u23-1"],
+            #tab-s2u23-2:checked ~ .k-nav-bar-s2u23 label[for="tab-s2u23-2"],
+            #tab-s2u23-3:checked ~ .k-nav-bar-s2u23 label[for="tab-s2u23-3"],
+            #tab-s2u23-4:checked ~ .k-nav-bar-s2u23 label[for="tab-s2u23-4"] {
+              background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            }
+            
+            #tab-s2u23-1:checked ~ #page-s2u23-1,
+            #tab-s2u23-2:checked ~ #page-s2u23-2,
+            #tab-s2u23-3:checked ~ #page-s2u23-3,
+            #tab-s2u23-4:checked ~ #page-s2u23-4 {
+              display: block; animation: fadeIn 0.3s ease;
+            }
+          </style>
+
+          <input type="radio" name="s2u23_kanji_tabs" id="tab-s2u23-1" class="k-tab-input-s2u23" checked>
+          <input type="radio" name="s2u23_kanji_tabs" id="tab-s2u23-2" class="k-tab-input-s2u23">
+          <input type="radio" name="s2u23_kanji_tabs" id="tab-s2u23-3" class="k-tab-input-s2u23">
+          <input type="radio" name="s2u23_kanji_tabs" id="tab-s2u23-4" class="k-tab-input-s2u23">
+
+          <div class="k-nav-bar-s2u23">
+            <label for="tab-s2u23-1" class="k-nav-btn-s2u23">1. 정/석 (定/石)</label>
+            <label for="tab-s2u23-2" class="k-nav-btn-s2u23">2. 의/안 (意/案)</label>
+            <label for="tab-s2u23-3" class="k-nav-btn-s2u23">3. 희/심 (犧/心)</label>
+            <label for="tab-s2u23-4" class="k-nav-btn-s2u23">4. 업/퇴 (業/退)</label>
+          </div>
+
+          <!-- 第1グループ例文: 정/석 -->
+          <div id="page-s2u23-1" class="k-page-content-s2u23">
+            <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【정/석】グループの例文です。定石・決定・熱情・直角の生きたテロップ表現！</p>
+            <div class="dialogue-item">
+              <div class="dialogue-content">
+                <div class="ko">이것이 바로 파박파박슈의 정석(定石)이에요!</div>
+                <div class="ja">これこそまさにパパッパパッシュウの定石（正解）です！</div>
+                <span class="grammar-tag">定 (정)・石 (석) ➔ 13:20 公式テロップ「파박파박슈의 정석」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('이것이 바로 파박파박슈의 정석이에요!')">🔊</button>
+            </div>
+            <div class="dialogue-item speaker-b">
+              <div class="dialogue-content">
+                <div class="ko">동작을 귀에 대는 걸로 결정(決定)했어요.</div>
+                <div class="ja">動作を耳につけることに決定しました。</div>
+                <span class="grammar-tag">決 (결)・定 (정) ➔ 15:57 公式テロップ「귀에 대는 걸로 결정」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('동작을 귀에 대는 걸로 결정했어요.')">🔊</button>
+            </div>
+            <div class="dialogue-item">
+              <div class="dialogue-content">
+                <div class="ko">휴식 시간이 끝나자마자 열정(熱情)막내가 등판해요.</div>
+                <div class="ja">休憩時間が終わるやいなや情熱マンネが登板します。</div>
+                <span class="grammar-tag">情 (정) ➔ 14:21 公式テロップ「열정막내 등판」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('휴식 시간이 끝나자마자 열정막내가 등판해요.')">🔊</button>
+            </div>
+            <div class="dialogue-item speaker-b">
+              <div class="dialogue-content">
+                <div class="ko">너 약간 직각(直角)이 아닌데 이게? 각을 정확히 맞춰요.</div>
+                <div class="ja">あなた これのときに少し直角じゃないね？ 角度を正確に合わせます。</div>
+                <span class="grammar-tag">直 (직)・角 (각) ➔ 15:44 ユジンセリフ「너 약간 직각이 아닌데」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('너 약간 직각이 아닌데 이게? 각을 정확히 맞춰요.')">🔊</button>
+            </div>
+          </div>
+
+          <!-- 第2グループ例文: 의/안 -->
+          <div id="page-s2u23-2" class="k-page-content-s2u23">
+            <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【의/안】グループの例文です。意見・対立・案件・視案の白熱トーク！</p>
+            <div class="dialogue-item">
+              <div class="dialogue-content">
+                <div class="ko">토기파와 시안파의 팽팽한 의견(意見) 대립(對立)이 펼쳐져요.</div>
+                <div class="ja">土器派と試案派の拮抗した意見対立が繰り広げられます。</div>
+                <span class="grammar-tag">意 (의)・見 (견) / 對 (대)・立 (립) ➔ 17:56 公式テロップ</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('토기파와 시안파의 팽팽한 의견 대립이 펼쳐져요.')">🔊</button>
+            </div>
+            <div class="dialogue-item speaker-b">
+              <div class="dialogue-content">
+                <div class="ko">직선만 아니면 된다며 새로운 안건(案件)을 제시(提示)해요.</div>
+                <div class="ja">直線でさえなければいいと新たな案件を提示します。</div>
+                <span class="grammar-tag">案 (안)・件 (건) ➔ 17:52 公式テロップ「새로운 안건 제시」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('직선만 아니면 된다며 새로운 안건을 제시해요.')">🔊</button>
+            </div>
+            <div class="dialogue-item">
+              <div class="dialogue-content">
+                <div class="ko">가을 언니는 원래 시안(視案)대로 해야 한다고 주장해요.</div>
+                <div class="ja">ガウルオンニはもともとの試案通りにすべきだと主張します。</div>
+                <span class="grammar-tag">視 (시)・案 (안) ➔ 17:54 セリフ「시안대로 해야지」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('가을 언니는 원래 시안대로 해야 한다고 주장해요.')">🔊</button>
+            </div>
+            <div class="dialogue-item speaker-b">
+              <div class="dialogue-content">
+                <div class="ko">잊힌 줄 알았던 안건(案件)이 다시 떠올라 대토론이 돼요.</div>
+                <div class="ja">忘れられたと思っていた案件が再び浮上して大討論になります。</div>
+                <span class="grammar-tag">案 (안) ➔ 18:15 公式テロップ「잊힌 줄 알았던 안건」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('잊힌 줄 알았던 안건이 다시 떠올라 대토론이 돼요.')">🔊</button>
+            </div>
+          </div>
+
+          <!-- 第3グループ例文: 희/심 -->
+          <div id="page-s2u23-3" class="k-page-content-s2u23">
+            <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【희/심】グループの例文です。犠牲・真心・目撃者・職人精神の実在表現！</p>
+            <div class="dialogue-item">
+              <div class="dialogue-content">
+                <div class="ko">櫛目文土器にならないようリズを희생(犧牲)하기로 해요.</div>
+                <div class="ja">櫛目文土器にならないようリズを犠牲にすることにします。</div>
+                <span class="grammar-tag">犧 (희)・牲 (생) ➔ 17:44 公式テロップ「리즈 희생 결정」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('빗살무늬토기 대형을 피하려고 리즈를 희생하기로 해요.')">🔊</button>
+            </div>
+            <div class="dialogue-item speaker-b">
+              <div class="dialogue-content">
+                <div class="ko">시안 목격자(目擊者) 리즈가 등판해 당시 상황을 설명해요.</div>
+                <div class="ja">試案目撃者リズが登板して当時の状況を説明します。</div>
+                <span class="grammar-tag">目 (목)・擊 (격)・者 (자) ➔ 17:57 公式テロップ「시안 목격자 리즈」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('시안 목격자 리즈가 등판해 당시 상황을 설명해요.')">🔊</button>
+            </div>
+            <div class="dialogue-item">
+              <div class="dialogue-content">
+                <div class="ko">끝까지 디테일 놓치지 않는 장인정신(匠人精神)을 보여줘요.</div>
+                <div class="ja">最後までディテールを見逃さない職人精神を見せてくれます。</div>
+                <span class="grammar-tag">匠 (장)・人 (인)・精 (정)・神 (신) ➔ 18:46 公式テロップ</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('끝까지 디테일 놓치지 않는 장인정신을 보여줘요.')">🔊</button>
+            </div>
+            <div class="dialogue-item speaker-b">
+              <div class="dialogue-content">
+                <div class="ko">진심(眞心)으로 웃고 있는 완성 컷이 탄생했어요!</div>
+                <div class="ja">心から笑っている完成カットが誕生しました！</div>
+                <span class="grammar-tag">眞 (진)・心 (심) ➔ 19:00 公式テロップ「진심으로 웃고 있는 완성 컷」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('진심으로 웃고 있는 완성 컷이 탄생했어요!')">🔊</button>
+            </div>
+          </div>
+
+          <!-- 第4グループ例文: 업/퇴 -->
+          <div id="page-s2u23-4" class="k-page-content-s2u23">
+            <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【업/퇴】グループの例文です。家内手工業・争取・退勤・受苦の歓喜！</p>
+            <div class="dialogue-item">
+              <div class="dialogue-content">
+                <div class="ko">가내수공업(家內手工業)급 디테일 맞추기로 엔딩을 완성해요.</div>
+                <div class="ja">家内手工業級のディテール合わせでエンディングを完成させます。</div>
+                <span class="grammar-tag">家內手工業 (가내수공업) ➔ 18:22 公式テロップ</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('가내수공업급 디테일 맞추기로 엔딩을 완성해요.')">🔊</button>
+            </div>
+            <div class="dialogue-item speaker-b">
+              <div class="dialogue-content">
+                <div class="ko">온갖 디테일 고비를 넘겨 마침내 퇴근(退勤)을 쟁취(爭取)해요!</div>
+                <div class="ja">あらゆるディテールの難関を乗り越え、ついに退勤を勝ち取ります！</div>
+                <span class="grammar-tag">爭 (쟁)・取 (취) / 退 (퇴)・勤 (근) ➔ 19:04 公式テロップ</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('온갖 디테일 고비를 넘겨 마침내 퇴근을 쟁취해요!')">🔊</button>
+            </div>
+            <div class="dialogue-item">
+              <div class="dialogue-content">
+                <div class="ko">퇴근바이브(退勤 Vibe)로 마지막 스퍼트를 올려요!</div>
+                <div class="ja">退勤バイブで最後のスパートをかけます！</div>
+                <span class="grammar-tag">退勤 (퇴근) ➔ 13:39 ウォニョン「퇴근바이브잖아요」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('퇴근바이브로 마지막 스퍼트를 올려요!')">🔊</button>
+            </div>
+            <div class="dialogue-item speaker-b">
+              <div class="dialogue-content">
+                <div class="ko">모두 수고(受苦)하셨습니다~! 큰 소리로 외치며 퇴근해요.</div>
+                <div class="ja">皆さん本当にお疲れ様でした〜！大声で叫びながら退勤します。</div>
+                <span class="grammar-tag">受 (수)・苦 (고) ➔ 19:07 全員「수고하셨습니다~!」</span>
+              </div>
+              <button class="sound-btn" onclick="playKoreanTTS('모두 수고하셨습니다~! 큰 소리로 외치며 퇴근해요.')">🔊</button>
+            </div>
+          </div>
+        `
+      },
+      s2_unit24: {
+        subtitle: "1,2,3 IVE EP.1（シーン2 Unit 24：発音変化特訓編・全10章＆練習総復習）",
+        ytSeconds: 944,
+        ytDesc: "12:48〜19:08 で実際に起きた全カテゴリーの発音変化（有声化・連音化・鼻音化・流音化・L挿入・激音化・濃音化・口蓋音化・口語・練習）を徹底攻略！",
+        phrases: [
+          {
+            hangul: "너 약간 직각이 아닌데 이게?",
+            meaning: "あなた これのときに直角じゃないね？（15:44 ユジン）",
+            point: "【濃音化】「직각」は代表音 [ㄱ] の後ろで平音「각」が濃音化して [직깍]。",
+            targetWord: "직각"
+          },
+          {
+            hangul: "나 맨날 맞거나 집히거나",
+            meaning: "私 毎日誰かに叩かれたりつねられたり…（16:23 ウォニョン）",
+            point: "【激音化】「집히다」はパッチム「ㅂ」と「ㅎ」が合体して激音 [지피다]。",
+            targetWord: "집히다"
+          },
+          {
+            hangul: "제가 워녕이 언니 발을 밟았어요",
+            meaning: "私 ウォニョンさんの足を踏んじゃいました（16:16 イソ）",
+            point: "【二重パッチム・連音化】「밟았어」は母音「아」の前で連音化して [발바써]。",
+            targetWord: "밟았어"
+          },
+          {
+            hangul: "마침내 쟁취한 퇴근 수고하셨습니다",
+            meaning: "ついに勝ち取った退勤 お疲れ様でした（19:04 / 19:07）",
+            point: "【鼻音化複合】「-습니다」はパッチム「ㅂ」が「ㄴ」の前で鼻音化して [씀니다]。",
+            targetWord: "수고하셨습니다"
+          }
+        ],
+        level2HTML: `
+          <div class="section-title">
+            <span>レベル 2: 本編対話・発音変化実践掛け合い</span>
+            <span class="badge">音変化のリアル対話</span>
+          </div>
+          <div class="two-shot-frame">
+            <div class="character-box">
+              <div class="icon">🐱</div>
+              <div class="name">イソ (マンネ)</div>
+            </div>
+            <div style="font-weight: bold; color: var(--accent);">VS</div>
+            <div class="character-box">
+              <div class="icon">🐰</div>
+              <div class="name">ウォニョン＆ユジン</div>
+            </div>
+          </div>
+          <div class="dialogue-item">
+            <div class="dialogue-content">
+              <div class="ko">제가 워녕이 언니 허벅지 밟은 것[발븐 것] 같은데? 밟았어[발바써]요!</div>
+              <div class="ja">私 ウォニョンさんの太ももを踏んじゃった気がするんですけど？ 踏んじゃいました！</div>
+              <span class="grammar-tag">밟다 [밥따] / 밟았어 [발바써] (二重パッチム音変化)</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('제가 워녕이 언니 허벅지 밟은 것 같은데? 밟았어요!')">🔊</button>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <div class="dialogue-content">
+              <div class="ko">나 맨날 맞거나 집히거나[지피거나]... 너 약간 직각[직깍]이 아닌데 이게? ㅎㅎ</div>
+              <div class="ja">私 毎日叩かれたり、つねられたり… あなたこれのときに少し直角じゃないね？（笑）</div>
+              <span class="grammar-tag">집히다 [지피다] (激音化) / 직각 [직깍] (濃音化)</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('나 맨날 맞거나 집히거나 골반이 치이거나... 너 약간 직각이 아닌데 이게?')">🔊</button>
+          </div>
+          <div class="dialogue-item">
+            <div class="dialogue-content">
+              <div class="ko">하나 둘 셋 맞춰봐[마춰봐]! 진심으로[진시므로] 웃으며 수고하셨습니다[수고하셛씀니다]!</div>
+              <div class="ja">せーの合わせてみて！ 心から笑いながらお疲れ様でした！</div>
+              <span class="grammar-tag">맞춰봐 [마춰봐] (連音化) / 진심으로 [진시므로] / 수고하셨습니다 [수고하셛씀니다]</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('하나 둘 셋 맞춰봐! 진심으로 웃으며 수고하셨습니다!')">🔊</button>
+          </div>`,
+        level3HTML: `
+          <div class="section-title"><span>レベル 3: 韓国語発音変化マスター特訓（全10章カリキュラム）</span></div>
+
+          <div class="sound-change-wrapper">
+            <!-- ①〜⑩ ナビゲーションバー -->
+            <div class="sound-chapter-bar">
+              <button type="button" class="sound-chapter-btn active" onclick="switchSoundChapter('sc-s2u24-ch1', this)">① 有声化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u24-ch2', this)">② 連音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u24-ch3', this)">③ 鼻音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u24-ch4', this)">④ 流音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u24-ch5', this)">⑤ L挿入</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u24-ch6', this)">⑥ 激音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u24-ch7', this)">⑦・⑧ 濃音化</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u24-ch8', this)">⑨ 口蓋音・口語</button>
+              <button type="button" class="sound-chapter-btn" onclick="switchSoundChapter('sc-s2u24-ch9', this)">⑩ 練習</button>
+            </div>
+
+            <!-- ① 有声化 -->
+            <div id="sc-s2u24-ch1" class="sound-chapter-page active">
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【① 有声化（濁音化）】平音（ㄱ, ㄷ, ㅂ, ㅈ）が語頭では澄んだ清音、母音や有声音（ㄴ, ㄹ, ㅁ, ㅇ）に挟まれると自然に濁音（g, d, b, j）に変化します。</p>
+              <div class="level-block">
+                <div class="sound-change-tag">🎵 직각 ➔ 語頭「직」vs 2文字目「각」</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">너 약간 직각이</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('직깍')">🔊 [직깍]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">15:44 ユジン発言。語頭の「직」は澄んだ [ch] 音で発音され、後ろの「각」は詰まるパッチムにより濃音化します。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">🎵 제대로 ➔ [제대로]（語頭「제」vs 2文字目「대」）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">제대로</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('제대로')">🔊 [제대로]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">13:28 ウォニョン「포인을 제대로 해야지」。「제」はチェ、「대」は母音の後で有声化してデ音（チェデロ）。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">🎵 비교해보세요 ➔ [비교해보세요]</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">비교</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('비교')">🔊 [비교]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">14:36 イソ「아침과 비교해보세요」。「비」はピ音、「교」は母音の後ろでギョ音に有声化。</p>
+              </div>
+            </div>
+
+            <!-- ② 連音化 -->
+            <div id="sc-s2u24-ch2" class="sound-chapter-page">
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【② 連音化】パッチムの後ろに母音（ㅇ）が来ると、パッチムの音が次の音節の先頭へ滑らかに引っ越します。</p>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 진심으로 ➔ [진시므로]（心から）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">진심으로</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('진시므로')">🔊 [진시므로]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">19:00 テロップ「진심으로 웃고 있는 완성 컷」。「심」のパッチム「ㅁ」が母音「으」に連音化。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 앉아서 ➔ [안자서]（座って）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">앉아서</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('안자서')">🔊 [안자서]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">14:54 ユジン「앉아서 모니터링하는 건데」。二重パッチム「ㄵ」の「ㅈ」が母音「아」に連音化して [안자서]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 맞춰봐 ➔ [마춰봐]（合わせてみて）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">맞춰봐</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('마춰봐')">🔊 [마춰봐]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">18:07 ユジン「하나 둘 셋 맞춰봐」。「맞」のパッチム「ㅈ」が後ろの母音に連音化して [마춰봐]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 밟은 것 ➔ [발븐 것]（踏んだこと）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">밟은 것</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('발븐 것')">🔊 [발븐 것]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">16:16 イソ「허벅지 밟은 것 같은데」。「ㄼ」の「ㅂ」が連音化して [발븐 것]。</p>
+              </div>
+            </div>
+
+            <!-- ③ 鼻音化 -->
+            <div id="sc-s2u24-ch3" class="sound-chapter-page">
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【③ 鼻音化】詰まるパッチム（ㄱ, ㄷ, ㅂ）が鼻音（ㄴ, ㅁ）の前で、鼻に抜ける音 [ㅇ, ㄴ, ㅁ] に変化します。</p>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 맞는다 ➔ [만는다]（合っている）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">맞는다</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('만는다')">🔊 [만는다]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">16:03 ガウル「옆줄은 진짜 안 맞는다」。パッチム「ㅈ（代表音ㄷ）」が「ㄴ」の前で鼻音化して [만는다]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 밟는 ➔ [밤는]（踏む〜）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">밟는</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('밤는')">🔊 [밤는]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">16:16 踏む場面「밟는 순간」。「ㄼ」の「ㅂ」が鼻音「ㄴ」の前で [ㅁ] に鼻音化して [밤는]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 국민 ➔ [궁민]（国民）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">국민</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('궁민')">🔊 [궁민]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">13:20 テロップ「국민 댄스」。パッチム「ㄱ」が「ㅁ」の前で [ㅇ] に鼻音化して [궁민]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 수고하셨습니다 ➔ [수고하셛씀니다]（お疲れ様でした）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">수고하셨습니다</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('수고하셛씀니다')">🔊 [수고하셛씀니다]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">19:07 全員挨拶。「-습니다」の「ㅂ」が「ㄴ」の前で鼻音化して [씀니다]。</p>
+              </div>
+            </div>
+
+            <!-- ④ 流音化 -->
+            <div id="sc-s2u24-ch4" class="sound-chapter-page">
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【④ 流音化】「ㄴ」と「ㄹ」が隣り合うと、発音を滑らかにするため「ㄴ」が「ㄹ」に引っ張られて [ㄹ＋ㄹ]（ll音）になります。</p>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 관리 ➔ [괄리]（管理・ケア）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">관리</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('괄리')">🔊 [괄리]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">14:30 イソ「붓기 관리」。「ㄴ」＋「ㄹ」が [ㄹ＋ㄹ] に流音化して [괄리]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 원래 ➔ [월래]（もともと・元来）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">원래</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('월래')">🔊 [월래]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">15:30 セリフ「원래 이렇게 하는 거잖아」。「ㄴ」＋「ㄹ」が [ㄹ＋ㄹ] に流音化。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 결론 ➔ [결론]（結論）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">결론</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('결론')">🔊 [결론]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">17:15 テロップ「결론 도출」。流音「ㄹ」の連続により舌先を上あごに弾いて発音。</p>
+              </div>
+            </div>
+
+            <!-- ⑤ L挿入 -->
+            <div id="sc-s2u24-ch5" class="sound-chapter-page">
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑤ L挿入（ㄴ挿入）】合成語や派生語で、前の単語が子音パッチムで終わり、後ろが「야, 여, 요, 유, 이」で始まる場合、[ㄴ]（パッチムㄹの後では[ㄹ]）が挿入されます。</p>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 맨입 ➔ [맨닙]（ただ・素口）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">맨입</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('맨닙')">🔊 [맨닙]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">14:00 会話「맨입으로 안 되지」。「맨」＋「입」で [ㄴ] が挿入されて [맨닙]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 알약 ➔ [알략]（錠剤）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">알약</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('알략')">🔊 [알략]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">14:40 ビタミン補給「알약」。「알」＋「약」でㄴ挿入後、前のパッチム「ㄹ」により流音化して [알략]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 들일 ➔ [들릴]（手間をかけること）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">들일</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('들릴')">🔊 [들릴]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">18:00 会話「공들일 시간」。「들」＋「일」で [ㄹ] が挿入されて [들릴]。</p>
+              </div>
+            </div>
+
+            <!-- ⑥ 激音化 -->
+            <div id="sc-s2u24-ch6" class="sound-chapter-page">
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑥ 激音化】「ㅎ」と「ㄱ, ㄷ, ㅂ, ㅈ」が合体し、息が強く吹き出す音 [ㅋ, ㅌ, ㅍ, ㅊ] に変化します。</p>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 집히다 ➔ [지피다]（つねられる・挟まれる）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">집히다</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('지피다')">🔊 [지피다]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">16:23 ウォニョン「누구한테 맞거나 집히거나」。パッチム「ㅂ」と「ㅎ」が合体して激音 [지피다]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 잊힌 ➔ [이친]（忘れられた）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">잊힌</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('이친')">🔊 [이친]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">18:15 公式テロップ「잊힌 줄 알았던 안건」。パッチム「ㅈ」と「ㅎ」が合体して激音 [이친]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 밟히다 ➔ [발피다]（踏まれる）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">밟히다</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('발피다')">🔊 [발피다]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">16:16 太ももを踏まれた場面の受動形。「ㄼ」の「ㅂ」と「ㅎ」が合体して激音 [발피다]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 박차를 ➔ [박차를]（拍車を）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">박차를</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('박차를')">🔊 [박차를]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">18:40 テロップ「연습에 박차를 가하다」。「박」＋激音「차」の切れ味鋭い破裂音。</p>
+              </div>
+            </div>
+
+            <!-- ⑦・⑧ 濃音化（前編・後編） -->
+            <div id="sc-s2u24-ch7" class="sound-chapter-page">
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑦・⑧ 濃音化（前編・後編）】詰まる音（ㄱ, ㄷ, ㅂなど）の後ろ、または漢字語パッチム「ㄹ」の後ろで平音が [ㄲ, ㄸ, ㅃ, ㅆ, ㅉ] に強まります。</p>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 직각 ➔ [직깍]（直角）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">직각</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('직깍')">🔊 [직깍]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">15:44 ユジン「너 약간 직각이 아닌데」。「직」のパッチム「ㄱ」により後ろの「각」が濃音化。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 열정 ➔ [열쩡]（熱情）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">열정</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('열쩡')">🔊 [열쩡]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">14:21 公式テロップ「열정막내 등판」。漢字語パッチム「ㄹ」の後ろで「정」が濃音化して [열쩡]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 빗살무늬 ➔ [비쌀무늬]（櫛目文）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">빗살무늬</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('비쌀무늬')">🔊 [비쌀무늬]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">17:40 ユジン「빗살무늬토기 안 되려면」。合成語のサイシオッにより [비쌀무늬] と濃音化。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 목격자 ➔ [목껵짜]（目撃者）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">목격자</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('목껵짜')">🔊 [목껵짜]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">17:57 テロップ「시안 목격자 리즈」。連続する閉鎖音により2重に濃音化して [목껵짜]。</p>
+              </div>
+            </div>
+
+            <!-- ⑨ 口蓋音化・口語表記 -->
+            <div id="sc-s2u24-ch8" class="sound-chapter-page">
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:12px;">【⑨ 口蓋音化・口語表記】パッチム「ㄷ, ㅌ」が母音「이」に出会って [ㅈ, ㅊ] に変化する口蓋音化や、動画特有の生きた口語表現！</p>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 굳이 ➔ [구지]（あえて）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">굳이</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('구지')">🔊 [구지]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">パッチム「ㄷ」が母音「이」と出会い、発音しやすい口蓋音 [ㅈ] に変化して [구지]。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 같이 ➔ [가치]（一緒に）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">같이</span> <span style="color:var(--text-sub);">➔</span>
+                  <button class="sound-btn danger-btn" onclick="playSingleWordTTS('가치')">🔊 [가치]</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">13:00「연습 같이 하자」。パッチム「ㅌ」が母音「이」と出会って激音の口蓋音 [ㅊ] に変化。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 쿨타임 제안（30秒クールタイム提案 / 14:43）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">쿨타임 제안</span> <span style="color:var(--text-sub);">➔ テロップ:</span>
+                  <button class="sound-btn accent-btn" onclick="playKoreanTTS('30초 쿨타임 제안')">🔊 쿨타임 제안</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">ゲーム用語「Cool Time」を取り入れたテロップ。「30秒だけ休もう！」と可愛く提案。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 파박파박슈의 정석（パパッパパッシュウの定石 / 13:20）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">파박파박슈</span> <span style="color:var(--text-sub);">➔ テロップ:</span>
+                  <button class="sound-btn accent-btn" onclick="playKoreanTTS('이것이 바로 파박파박슈의 정석')">🔊 파박파박슈</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">素早い振り付けの擬音語「파박（パパッ）」に「슈（シュウ）」を合わせたリズミカルなテロップ。</p>
+              </div>
+              <div class="level-block">
+                <div class="sound-change-tag">⚡ 퇴근바이브（退勤バイブ / 13:42 セリフ）</div>
+                <div class="sound-change-row">
+                  <span style="font-weight:bold;">퇴근바이브</span> <span style="color:var(--text-sub);">➔ セリフ:</span>
+                  <button class="sound-btn accent-btn" onclick="playKoreanTTS('퇴근바이브에 항상 우리 초능력 쓰잖아~')">🔊 퇴근바이브</button>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-sub);">「退勤」＋英語「Vibe（雰囲気・ノリ）」を合成した若者口語。「早く帰りたいパワー」を表す言葉。</p>
+              </div>
+            </div>
+
+            <!-- ⑩ 練習（総まとめ） -->
+            <div id="sc-s2u24-ch9" class="sound-chapter-page">
+              <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:8px;">【⑩ 練習（総まとめ）】シーン2本編の頻出単語をワンタップで連続発音チェック！耳と口を鍛え上げましょう。</p>
+              <div class="knock-grid">
+                <div class="knock-card" onclick="playSingleWordTTS('직깍')">
+                  <div class="knock-word">직각</div>
+                  <div class="knock-pronun">[직깍]</div>
+                  <div class="knock-rule">濃音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('열쩡')">
+                  <div class="knock-word">열정</div>
+                  <div class="knock-pronun">[열쩡]</div>
+                  <div class="knock-rule">濃音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('비쌀무늬')">
+                  <div class="knock-word">빗살무늬</div>
+                  <div class="knock-pronun">[비쌀무늬]</div>
+                  <div class="knock-rule">濃音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('각썽')">
+                  <div class="knock-word">각성</div>
+                  <div class="knock-pronun">[각썽]</div>
+                  <div class="knock-rule">濃音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('밥따')">
+                  <div class="knock-word">밟다</div>
+                  <div class="knock-pronun">[밥따]</div>
+                  <div class="knock-rule">二重パッチム</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('지피다')">
+                  <div class="knock-word">집히다</div>
+                  <div class="knock-pronun">[지피다]</div>
+                  <div class="knock-rule">激音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('이친')">
+                  <div class="knock-word">잊힌</div>
+                  <div class="knock-pronun">[이친]</div>
+                  <div class="knock-rule">激音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('발피다')">
+                  <div class="knock-word">밟히다</div>
+                  <div class="knock-pronun">[발피다]</div>
+                  <div class="knock-rule">激音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('발바써')">
+                  <div class="knock-word">밟았어</div>
+                  <div class="knock-pronun">[발바써]</div>
+                  <div class="knock-rule">連音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('발븐 것')">
+                  <div class="knock-word">밟은 것</div>
+                  <div class="knock-pronun">[발븐 것]</div>
+                  <div class="knock-rule">連音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('안자서')">
+                  <div class="knock-word">앉아서</div>
+                  <div class="knock-pronun">[안자서]</div>
+                  <div class="knock-rule">連音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('걸로 결정')">
+                  <div class="knock-word">걸로 결정</div>
+                  <div class="knock-pronun">[걸로 결정]</div>
+                  <div class="knock-rule">連音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('만는다')">
+                  <div class="knock-word">맞는다</div>
+                  <div class="knock-pronun">[만는다]</div>
+                  <div class="knock-rule">鼻音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('밤는')">
+                  <div class="knock-word">밟는</div>
+                  <div class="knock-pronun">[밤는]</div>
+                  <div class="knock-rule">鼻音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('괄리')">
+                  <div class="knock-word">관리</div>
+                  <div class="knock-pronun">[괄리]</div>
+                  <div class="knock-rule">流音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('월래')">
+                  <div class="knock-word">원래</div>
+                  <div class="knock-pronun">[월래]</div>
+                  <div class="knock-rule">流音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('구지')">
+                  <div class="knock-word">굳이</div>
+                  <div class="knock-pronun">[구지]</div>
+                  <div class="knock-rule">口蓋音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('갈뜽')">
+                  <div class="knock-word">갈등</div>
+                  <div class="knock-pronun">[갈뜽]</div>
+                  <div class="knock-rule">濃音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('목껵짜')">
+                  <div class="knock-word">목격자</div>
+                  <div class="knock-pronun">[목껵짜]</div>
+                  <div class="knock-rule">連続濃音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('마춰봐')">
+                  <div class="knock-word">맞춰봐</div>
+                  <div class="knock-pronun">[마춰봐]</div>
+                  <div class="knock-rule">連音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('진시므로')">
+                  <div class="knock-word">진심으로</div>
+                  <div class="knock-pronun">[진시므로]</div>
+                  <div class="knock-rule">連音化</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('수고하셛씀니다')">
+                  <div class="knock-word">수고하셨습니다</div>
+                  <div class="knock-pronun">[수고하셛씀니다]</div>
+                  <div class="knock-rule">鼻音化複合</div>
+                </div>
+                <div class="knock-card" onclick="playSingleWordTTS('장인정신')">
+                  <div class="knock-word">장인정신</div>
+                  <div class="knock-pronun">[장인정신]</div>
+                  <div class="knock-rule">有声連音</div>
+                </div>
+                <div class="knock-card" onclick="playKoreanTTS('퇴근바이브에 항상 우리 초능력 쓰잖아~')">
+                  <div class="knock-word">퇴근바이브</div>
+                  <div class="knock-pronun">[퇴근바이브]</div>
+                  <div class="knock-rule">若者口語</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      s2_unit25: {
+        subtitle: "1,2,3 IVE EP.1（シーン2 Unit 25：ボスバトル編・門番を倒して即退勤せよ！〜最終決戦〜）",
+        ytSeconds: 1100,
+        ytDesc: "ディテール地獄の門番との最終決戦！17:05〜19:08 の大激論を乗り越え、完璧な発音と叫びで退勤を쟁취（勝ち取り）ましょう！",
+        isBossUnit: true,
+        phrases: [
+          {
+            hangul: "하나 둘 셋 맞춰봐",
+            meaning: "せーの、合わせてみて（18:07 ユジン指揮）",
+            point: "発音: [마춰봐]（連音化・ディテール合わせの合図）",
+            targetWord: "맞춰봐"
+          },
+          {
+            hangul: "시안 목격자 리즈 등판",
+            meaning: "試案目撃者リズ登板（17:57 テロップ）",
+            point: "発音: [목껵짜]（パッチム閉鎖音による連続濃音化）",
+            targetWord: "목격자"
+          },
+          {
+            hangul: "가내수공업급 디테일 맞추기",
+            meaning: "家内手工業級のディテール合わせ（18:22 テロップ）",
+            point: "漢字語:「家內手工業（가내수공업）」の精密な発音",
+            targetWord: "가내수공업"
+          },
+          {
+            hangul: "마침내 쟁취한 퇴근!",
+            meaning: "ついに勝ち取った退勤！（19:04 フィナーレ）",
+            point: "決着ワード:「마침내 쟁취한 퇴근!」歓喜の叫び",
+            targetWord: "쟁취한"
+          }
+        ],
+        level2HTML: `
+          <div class="section-title"><span>レベル 2: 本編対話・最終決戦突破ワード</span></div>
+          <div class="two-shot-frame">
+            <div class="character-box"><div class="icon">🐶</div><div class="name">ユジン (マエストロ)</div></div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">VS</div>
+            <div class="character-box"><div class="icon">🌸</div><div class="name">IVEメンバー全員</div></div>
+          </div>
+          <div class="dialogue-item">
+            <div class="dialogue-content">
+              <div class="ko">시안 목격자[목껵짜] 리즈의 증언과 가내수공업[가내수공업]급 디테일로 포즈를 완성하자!</div>
+              <div class="ja">試案目撃者リズの証言と家内手工業級のディテールでポーズを完成させよう！</div>
+              <span class="grammar-tag">목격자 [목껵짜] / 가내수공업 [가내수공업] (17:57〜18:22)</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('시안 목격자 리즈의 증언과 가내수공업급 디테일로 포즈를 완성하자!')">🔊</button>
+          </div>
+          <div class="dialogue-item speaker-b">
+            <div class="dialogue-content">
+              <div class="ko">하나 둘 셋 맞춰봐[마춰봐]! 진심으로[진시므로] 웃으며 마침내 퇴근 쟁취! 수고하셨습니다~!</div>
+              <div class="ja">せーの合わせてみて！ 心から笑いながらついに退勤を勝ち取り！ お疲れ様でした〜！</div>
+              <span class="grammar-tag">맞춰봐 [마춰봐] / 진심으로 [진시므로] / 수고하셨습니다 (18:07〜19:07)</span>
+            </div>
+            <button class="sound-btn" onclick="playKoreanTTS('하나 둘 셋 맞춰봐! 진심으로 웃으며 마침내 퇴근 쟁취! 수고하셨습니다~!')">🔊</button>
+          </div>
+          <div class="kanji-group-container">
+            <div class="kanji-card">
+              <h4>🎯 Phase 1 突破ターゲット（発音変化アタック）</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('마춰봐')">🔊 맞춰봐 [마춰봐]</button> <b>合わせてみて</b> <span style="color:var(--text-sub); font-size:0.85rem;">(18:07 ユジン指揮・連音化)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('목껵짜')">🔊 목격자 [목껵짜]</button> <b>目撃者</b> <span style="color:var(--text-sub); font-size:0.85rem;">(17:57 試案目撃者リズ・連続濃音化)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('장인정신')">🔊 장인정신 [장인정신]</button> <b>匠人精神</b> <span style="color:var(--text-sub); font-size:0.85rem;">(18:46 職人精神・有声連音)</span></li>
+              </ul>
+            </div>
+            <div class="kanji-card">
+              <h4>🛡️ Phase 2 突破ターゲット（ディテール決戦重要ワード）</h4>
+              <ul class="kanji-list">
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('가내수공업')">🔊 가내수공업</button> <b>家内手工業</b> <span style="color:var(--text-sub); font-size:0.85rem;">(18:22 家内手工業級ディテール)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('의견 대립')">🔊 의견 대립</button> <b>意見対立</b> <span style="color:var(--text-sub); font-size:0.85rem;">(17:56 土器派 vs 試案派の対立)</span></li>
+                <li><button class="sound-btn accent-btn" onclick="playSingleWordTTS('쟁취한 퇴근')">🔊 쟁취한 퇴근</button> <b>勝ち取った退勤</b> <span style="color:var(--text-sub); font-size:0.85rem;">(19:04 爭取＝戦い取ること)</span></li>
+              </ul>
+            </div>
+          </div>`,
+        level3HTML: `
+          <div class="section-title"><span>レベル 3: ネイティブのリアル音</span></div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 連音化: 맞춰봐 ➔ [마춰봐] / 진심으로 ➔ [진시므로]</div>
+            <div class="sound-change-row">
+              <span style="font-weight:bold;">맞춰봐</span> <span style="color:var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playSingleWordTTS('마춰봐')">🔊 [마춰봐]</button>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-sub);">18:07 ユジン「하나 둘 셋 맞춰봐」。「맞」の「ㅈ」が母音に連音化して [마춰봐]。</p>
+          </div>
+          <div class="level-block">
+            <div class="sound-change-tag">⚡ 連続濃音化: 목격자 ➔ [목껵짜]</div>
+            <div class="sound-change-row">
+              <span style="font-weight:bold;">목격자</span> <span style="color:var(--text-sub);">➔</span>
+              <button class="sound-btn danger-btn" onclick="playSingleWordTTS('목껵짜')">🔊 [목껵짜]</button>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-sub);">パッチム「ㄱ」により後ろの「격」が濃音化し、さらに「격」のパッチム「ㄱ」により「자」も濃音化して [목껵짜]。</p>
+          </div>
+          <div class="telop-column">
+            <div class="label">📺 本編テロップの生韓国語</div>
+            <div class="telop-header-row">
+              <span class="screen-text" onclick="playKoreanTTS('마침내 쟁취한 퇴근!')">🔊 마침내 쟁취한 퇴근!</span>
+              <span class="screen-translation">(ついに勝ち取った退勤！)</span>
+            </div>
+            <div class="telop-header-row" style="margin-top: 6px;">
+              <span class="screen-text" onclick="playKoreanTTS('수고하셨습니다~!')">🔊 수고하셨습니다~!</span>
+              <span class="screen-translation">(お疲れ様でした〜！)</span>
+            </div>
+            <p>19:04〜19:08 公式テロップ。門番を倒して即座に練習室を飛び出す感動の退勤フィナーレです。</p>
+          </div>`
+      },
+      s2_unit26: {
+        subtitle: "1,2,3 IVE EP.1（シーン2 Unit 26：全編総復習マスタークラス 12:48〜19:08）",
+        ytSeconds: 768,
+        ytDesc: "12:48〜19:08（シーン2全48行）のスクリプトを完全網羅！イソのプリズム披露からエンディングポーズ激論、そして勝ち取った退勤まで通しで完全マスター！",
+        isUnit10: true
       }
     };
 
@@ -5321,8 +7036,8 @@
       },
       {
         id: "scene2_part5",
-        label: "Part 5：エンディングポーズ大討論＆退勤（Unit 16〜22）",
-        shortLabel: "Part 5 (16〜22)",
+        label: "Part 5：エンディングポーズ大討論＆退勤（Unit 16〜26）",
+        shortLabel: "Part 5 (16〜26)",
         firstUnit: "s2_unit16",
         units: [
           { value: "s2_unit16", label: "Unit 16：イソのおもちゃの手＆雪だるま目線説明・Behind指の隙間編（17:05〜17:31）" },
@@ -5331,12 +7046,16 @@
           { value: "s2_unit19", label: "Unit 19：試案目撃者リズ＆マエストロユジン指揮編（17:57〜18:08）" },
           { value: "s2_unit20", label: "Unit 20：ディテール狂気＆家内手工業級ポーズ完成編（18:10〜18:30）" },
           { value: "s2_unit21", label: "Unit 21：流行の予感「어때요?」＆写真覗き込み地獄編（18:31〜18:54）" },
-          { value: "s2_unit22", label: "Unit 22：作品名「어때요」＆ついに勝ち取った退勤編（18:54〜19:08）" }
+          { value: "s2_unit22", label: "Unit 22：作品名「어때요」＆ついに勝ち取った退勤編（18:54〜19:08）" },
+          { value: "s2_unit23", label: "Unit 23：漢字語マスター編（実在テロップ＆セリフ全16語）" },
+          { value: "s2_unit24", label: "Unit 24：発音変化特訓編（シーン2全10章・練習総まとめ）" },
+          { value: "s2_unit25", label: "Unit 25：ボスバトル編（門番を倒して即退勤せよ！〜シーン2最終決戦〜）" },
+          { value: "s2_unit26", label: "Unit 26：復習マスタークラス（シーン2全体総まとめ：12:48〜19:08）" }
         ]
       }
     ];
 
-    // シーン2全22ユニット統合リスト
+    // シーン2全26ユニット統合リスト
     const scene2AllUnits = scene2Parts.flatMap(p => p.units);
 
     // シーンごとのユニット一覧定義（全パート・全編への完全後方互換性）
@@ -5380,76 +7099,76 @@
 
     // シーン2全編スクリプトデータ
     const scene2ScriptData = [
-      { time: "12:48", speaker: "ユジン", ko: "맨날 얘가 부르는 거 있잖아.", ja: "昔にこの子が歌ってたのあるじゃん。", target: "부르는 거" },
-      { time: "12:50", speaker: "ユジン", ko: "이서야 프리즘 불러주면 안 돼?", ja: "イソ「プリズム」歌ってくれない？", target: "불러주면" },
-      { time: "12:58", speaker: "テロップ", ko: "본인이 제일 놀람", ja: "本人が一番驚いている", target: "놀람" },
-      { time: "13:00", speaker: "ユジン", ko: "빨리 연습하자. 연습 가자아~!", ja: "早く練習しよう。練習しよう！", target: "연습" },
-      { time: "13:05", speaker: "ユジン", ko: "레츠기릿 해야지!", ja: "Let's get it しなきゃ！", target: "해야지" },
-      { time: "13:14", speaker: "全員", ko: "파박 파박 슈~", ja: "パパッ パパッ シュウ", target: "파박" },
-      { time: "13:17", speaker: "テロップ", ko: "찰떡같이 알아들은 파박파박슈", ja: "一度で理解したパパッパパッシュウ", target: "찰떡같이" },
-      { time: "13:20", speaker: "テロップ", ko: "이것이 바로 파박파박슈의 정석", ja: "これこそまさにパパッパパッ シュウの正解", target: "정석" },
-      { time: "13:28", speaker: "ウォニョン", ko: "포인을 제대로 해야지 예쁜데~", ja: "足をきちんと伸ばしてこそ綺麗なのに", target: "제대로" },
-      { time: "13:37", speaker: "ウォニョン", ko: "무슨 느낌인지 알죠", ja: "どういうことか分かりますよね", target: "느낌인지" },
-      { time: "13:39", speaker: "ウォニョン", ko: "퇴근바이브잖아요", ja: "退勤バイブじゃないですか", target: "퇴근바이브" },
-      { time: "13:44", speaker: "メンバー", ko: "갑자기 급 잘해져~", ja: "急に上手くなる〜", target: "잘해져" },
-      { time: "13:56", speaker: "ユジン", ko: "뮤직 큐~! 퇴근바이브로 가~!", ja: "ミュージック キュー！退勤バイブで行こう！", target: "퇴근바이브로" },
-      { time: "14:01", speaker: "テロップ", ko: "퇴근을 원하는 눈빛", ja: "退勤を望む眼差し", target: "원하는" },
-      { time: "14:13", speaker: "テロップ", ko: "퇴근 바이브 후유증", ja: "退勤バイブの後遺症", target: "후유증" },
-      { time: "14:15", speaker: "メンバー", ko: "너무 너무 힘들어", ja: "すごく すごく しんどい", target: "힘들어" },
-      { time: "14:21", speaker: "テロップ", ko: "열정막내 등판", ja: "情熱末っ子登板", target: "열정막내" },
-      { time: "14:32", speaker: "イソ", ko: "유진 언니 부기가 짱 많이 빠졌네요?", ja: "ユジンさん 浮腫みがすごく取れましたね？", target: "빠졌네요" },
-      { time: "14:36", speaker: "イソ", ko: "아침과 비교해보세요!", ja: "朝と比べてみてください！", target: "비교해보세요" },
-      { time: "14:45", speaker: "イソ", ko: "30초 후 모니터링 하는 건 어때요?", ja: "あと30秒したらモニタリングするのはどう？", target: "어때요" },
-      { time: "14:48", speaker: "ユジン", ko: "어차피 모니터링할 때 쉬잖아~", ja: "どうせモニタリング中は休めるじゃん〜", target: "어차피" },
-      { time: "14:54", speaker: "ユジン", ko: "앉아서 모니터링하는 건데", ja: "座ってモニタリングするんだから", target: "앉아서" },
-      { time: "14:57", speaker: "ガウル", ko: "쉬는 거랑 뭔 상관...", ja: "休憩と何の関係が…", target: "상관" },
-      { time: "15:00", speaker: "ウォニョン", ko: "너무 팩트였어요", ja: "ド正論でした", target: "팩트였어요" },
-      { time: "15:02", speaker: "ガウル", ko: "진짜 딱 마지막 5초!", ja: "本当にあと最後の5秒だけ！", target: "마지막" },
-      { time: "15:07", speaker: "ウォニョン", ko: "됐다! 하자!", ja: "よし！やろう！", target: "하자" },
-      { time: "15:10", speaker: "ユジン", ko: "모니터링 해야지", ja: "モニタリングしないと", target: "모니터링" },
-      { time: "15:18", speaker: "メンバー", ko: "시작해요! 네~", ja: "始めますよ！はーい", target: "시작해요" },
-      { time: "15:25", speaker: "ガウル", ko: "자리가 좁아서 줄이 좀 안 맞을 것 같은 점..", ja: "狭いせいで列が少し合わないような点…", target: "좁아서" },
-      { time: "15:40", speaker: "ユジン", ko: "제대로 돌려주세요. 네~", ja: "きちんと回すようにしてください。はい〜", target: "돌려주세요" },
-      { time: "15:48", speaker: "テロップ", ko: "옆으로 큰 무브", ja: "横に大きいムーヴ", target: "무브" },
-      { time: "15:52", speaker: "ユジン", ko: "너 약간 직각이 아닌데 이게?", ja: "あなた これのときに直角じゃないね？", target: "직각" },
-      { time: "15:57", speaker: "テロップ", ko: "귀에 대는 걸로 결정", ja: "耳につけることに決定", target: "결정" },
-      { time: "16:03", speaker: "ガウル", ko: "근데 옆줄은 진짜 안 맞는다.", ja: "でも横列は本当に合わないね", target: "안 맞는다" },
-      { time: "16:07", speaker: "リズ", ko: "내가 너무 힘차게 뒤로 갔나?", ja: "私が後ろに行きすぎたかな？", target: "힘차게" },
-      { time: "16:09", speaker: "テロップ", ko: "파워 백스텝", ja: "パワーバックステップ", target: "백스텝" },
-      { time: "16:14", speaker: "テロップ", ko: "무언가 발견한 언니들", ja: "何かを発見したお姉さんたち", target: "발견한" },
-      { time: "16:15", speaker: "メンバー", ko: "이게 뭐야 / 죄송해요", ja: "何これ / ごめんなさい", target: "죄송해요" },
-      { time: "16:16", speaker: "イソ", ko: "제가 워녕이 언니 허벅지 밟은 것 같은데?", ja: "私 ウォニョンさんの太ももを踏んじゃった気がします", target: "밟은 것" },
-      { time: "16:23", speaker: "ウォニョン", ko: "나 맨날 누구한테 맞거나 집히거나 골반이 치이거나...", ja: "私 毎日誰かに踏まれたり、つねられたり、骨盤を蹴られたり…", target: "골반" },
-      { time: "16:30", speaker: "レイ", ko: "우리가 뒤에서 어떻게 하는지 알아?", ja: "私たちが後ろでどうしてるか知ってる？", target: "어떻게" },
-      { time: "16:34", speaker: "テロップ", ko: "안무하면서 운동하는 4인 후우~", ja: "振り付けしながら運動する4人 ふう〜", target: "운동하는" },
-      { time: "17:07", speaker: "テロップ", ko: "눈사람 장갑 낀 줄", ja: "雪だるまの手袋はめたかと思った", target: "낀 줄" },
-      { time: "17:10", speaker: "メンバー", ko: "장난감 손 같다", ja: "おもちゃの手みたい", target: "장난감" },
-      { time: "17:22", speaker: "テロップ", ko: "손가락 사이로 얼굴 보여주기", ja: "指の隙間から顔を見せること", target: "손가락" },
-      { time: "17:28", speaker: "テロップ", ko: "어느새 잊힌 퇴근바이브", ja: "いつの間にか忘れ去られた退勤バイブ", target: "잊힌" },
-      { time: "17:36", speaker: "テロップ", ko: "리더 유진 출동", ja: "リーダー ユジン出動", target: "출동" },
-      { time: "17:40", speaker: "ユジン", ko: "빗살무늬토기 안 되려면", ja: "櫛目文土器にならないためには", target: "되려면" },
-      { time: "17:44", speaker: "ユジン", ko: "리즈를 희생해야 돼", ja: "リズを犠牲にしなきゃいけない", target: "희생해야" },
-      { time: "17:46", speaker: "テロップ", ko: "리즈 희생 결정", ja: "リズ犠牲決定", target: "희생" },
-      { time: "17:48", speaker: "ウォニョン", ko: "직선만 아니면 되는 거 아니야?", ja: "直線でさえなければいいんじゃない？", target: "직선만" },
-      { time: "17:52", speaker: "テロップ", ko: "새로운 안건 제시", ja: "新たな案件提示", target: "안건" },
-      { time: "17:54", speaker: "ガウル", ko: "시안대로 해야지", ja: "試案どおりにやらなきゃ", target: "시안대로" },
-      { time: "17:56", speaker: "テロップ", ko: "팽팽한 의견 대립", ja: "拮抗した意見対立", target: "대립" },
-      { time: "17:57", speaker: "テロップ", ko: "시안 목격자 리즈 등판", ja: "試案目撃者リズ登板", target: "목격자" },
-      { time: "18:01", speaker: "テロップ", ko: "해독 불가의 리즈어", ja: "解読不能のリズ語", target: "해독" },
-      { time: "18:05", speaker: "テロップ", ko: "마에스트로 유진의 지휘", ja: "マエストロユジンの指揮", target: "지휘" },
-      { time: "18:07", speaker: "ユジン", ko: "하나 둘 셋 맞춰봐", ja: "せーの、合わせてみて", target: "맞춰봐" },
-      { time: "18:12", speaker: "テロップ", ko: "토기파 vs 시안파 갈등", ja: "土器派 vs 試案派の葛藤", target: "갈등" },
-      { time: "18:15", speaker: "テロップ", ko: "잊힌 줄 알았던 안건", ja: "忘れられたと思っていた案件", target: "알았던" },
-      { time: "18:22", speaker: "テロップ", ko: "가내수공업급 디테일 맞추기", ja: "家内手工業級のディテール合わせ", target: "가내수공업" },
-      { time: "18:30", speaker: "テロップ", ko: "드디어 엔딩 포즈 완성!", ja: "ついにエンディングポーズ完成！", target: "완성" },
-      { time: "18:31", speaker: "テロップ", ko: "유행 예감 어때요?", ja: "流行の予感 どうですか？", target: "유행" },
-      { time: "18:36", speaker: "テロップ", ko: "달려오는 댕댕이즈", ja: "駆け寄ってくるワンちゃんズ", target: "달려오는" },
-      { time: "18:42", speaker: "テロップ", ko: "사진 들여다보기 지옥", ja: "写真を覗き込む地獄", target: "들여다보기" },
-      { time: "18:46", speaker: "テロップ", ko: "끝까지 디테일 놓치지 않는 장인정신", ja: "最後までディテールを見逃さない職人精神", target: "장인정신" },
-      { time: "18:54", speaker: "テロップ", ko: "작품명: 어때요?", ja: "作品名: どうですか？", target: "작품명" },
-      { time: "19:00", speaker: "テロップ", ko: "진심으로 웃고 있는 완성 컷", ja: "心から笑っている完成カット", target: "진심으로" },
-      { time: "19:04", speaker: "テロップ", ko: "마침내 쟁취한 퇴근!", ja: "ついに勝ち取った退勤！", target: "쟁취한" },
-      { time: "19:07", speaker: "全員", ko: "수고하셨습니다~!", ja: "お疲れ様でした〜！", target: "수고하셨습니다" }
+      { time: "12:48", speaker: "ユジン", ko: "맨날 얘가 부르는 거 있잖아.", mixed: "맨날 얘가 부르는 거 있잖아.", ja: "昔にこの子が歌ってたのあるじゃん。", target: "부르는 거" },
+      { time: "12:50", speaker: "ユジン", ko: "이서야 프리즘 불러주면 안 돼?", mixed: "이서야 Prism 불러주면 안 돼?", ja: "イソ「プリズム」歌ってくれない？", target: "불러주면" },
+      { time: "12:58", speaker: "テロップ", ko: "본인이 제일 놀람", mixed: "本人이 第一 놀람", ja: "本人が一番驚いている", target: "놀람" },
+      { time: "13:00", speaker: "ユジン", ko: "빨리 연습하자. 연습 가자아~!", mixed: "빨리 練習하자. 練習 가자아~!", ja: "早く練習しよう。練習しよう！", target: "연습" },
+      { time: "13:05", speaker: "ユジン", ko: "레츠기릿 해야지!", mixed: "Let's get it 해야지!", ja: "Let's get it しなきゃ！", target: "해야지" },
+      { time: "13:14", speaker: "全員", ko: "파박 파박 슈~", mixed: "파박 파박 슈~", ja: "パパッ パパッ シュウ", target: "파박" },
+      { time: "13:17", speaker: "テロップ", ko: "찰떡같이 알아들은 파박파박슈", mixed: "찰떡같이 알아들은 파박파박슈", ja: "一度で理解したパパッパパッシュウ", target: "찰떡같이" },
+      { time: "13:20", speaker: "テロップ", ko: "이것이 바로 파박파박슈의 정석", mixed: "이것이 바로 파박파박슈의 定石", ja: "これこそまさにパパッパパッ シュウの正解", target: "정석" },
+      { time: "13:28", speaker: "ウォニョン", ko: "포인을 제대로 해야지 예쁜데~", mixed: "Point를 제대로 해야지 예쁜데~", ja: "足をきちんと伸ばしてこそ綺麗なのに", target: "제대로" },
+      { time: "13:37", speaker: "ウォニョン", ko: "무슨 느낌인지 알죠", mixed: "무슨 느낌인지 알죠", ja: "どういうことか分かりますよね", target: "느낌인지" },
+      { time: "13:39", speaker: "ウォニョン", ko: "퇴근바이브잖아요", mixed: "退勤 Vibe잖아요", ja: "退勤バイブじゃないですか", target: "퇴근바이브" },
+      { time: "13:44", speaker: "メンバー", ko: "갑자기 급 잘해져~", mixed: "갑자기 急 잘해져~", ja: "急に上手くなる〜", target: "잘해져" },
+      { time: "13:56", speaker: "ユジン", ko: "뮤직 큐~! 퇴근바이브로 가~!", mixed: "Music Cue~! 退勤 Vibe로 가~!", ja: "ミュージック キュー！退勤バイブで行こう！", target: "퇴근바이브로" },
+      { time: "14:01", speaker: "テロップ", ko: "퇴근을 원하는 눈빛", mixed: "退勤을 願하는 눈빛", ja: "退勤を望む眼差し", target: "원하는" },
+      { time: "14:13", speaker: "テロップ", ko: "퇴근 바이브 후유증", mixed: "退勤 Vibe 後遺症", ja: "退勤バイブの後遺症", target: "후유증" },
+      { time: "14:15", speaker: "メンバー", ko: "너무 너무 힘들어", mixed: "너무 너무 힘들어", ja: "すごく すごく しんどい", target: "힘들어" },
+      { time: "14:21", speaker: "テロップ", ko: "열정막내 등판", mixed: "熱情막내 登板", ja: "情熱末っ子登板", target: "열정막내" },
+      { time: "14:32", speaker: "イソ", ko: "유진 언니 부기가 짱 많이 빠졌네요?", mixed: "유진 언니 부기(浮氣)가 짱 많이 빠졌네요?", ja: "ユジンさん 浮腫みがすごく取れましたね？", target: "빠졌네요" },
+      { time: "14:36", speaker: "イソ", ko: "아침과 비교해보세요!", mixed: "아침과 比較해보세요!", ja: "朝と比べてみてください！", target: "비교해보세요" },
+      { time: "14:45", speaker: "イソ", ko: "30초 후 모니터링 하는 건 어때요?", mixed: "30秒 後 Monitoring하는 건 어때요?", ja: "あと30秒したらモニタリングするのはどう？", target: "어때요" },
+      { time: "14:48", speaker: "ユジン", ko: "어차피 모니터링할 때 쉬잖아~", mixed: "어차피 Monitoring할 때 쉬잖아~", ja: "どうせモニタリング中は休めるじゃん〜", target: "어차피" },
+      { time: "14:54", speaker: "ユジン", ko: "앉아서 모니터링하는 건데", mixed: "앉아서 Monitoring하는 건데", ja: "座ってモニタリングするんだから", target: "앉아서" },
+      { time: "14:57", speaker: "ガウル", ko: "쉬는 거랑 뭔 상관...", mixed: "쉬는 거랑 뭔 相關...", ja: "休憩と何の関係が…", target: "상관" },
+      { time: "15:00", speaker: "ウォニョン", ko: "너무 팩트였어요", mixed: "너무 Fact였어요", ja: "ド正論でした", target: "팩트였어요" },
+      { time: "15:02", speaker: "ガウル", ko: "진짜 딱 마지막 5초!", mixed: "진짜 딱 最後 5秒!", ja: "本当にあと最後の5秒だけ！", target: "마지막" },
+      { time: "15:07", speaker: "ウォニョン", ko: "됐다! 하자!", mixed: "됐다! 하자!", ja: "よし！やろう！", target: "하자" },
+      { time: "15:10", speaker: "ユジン", ko: "모니터링 해야지", mixed: "Monitoring 해야지", ja: "モニタリングしないと", target: "모니터링" },
+      { time: "15:18", speaker: "メンバー", ko: "시작해요! 네~", mixed: "始作해요! 네~", ja: "始めますよ！はーい", target: "시작해요" },
+      { time: "15:25", speaker: "ガウル", ko: "자리가 좁아서 줄이 좀 안 맞을 것 같은 점..", mixed: "자리(席)가 좁아서 줄(列)이 좀 안 맞을 것 같은 點..", ja: "狭いせいで列が少し合わないような点…", target: "좁아서" },
+      { time: "15:40", speaker: "ユジン", ko: "제대로 돌려주세요. 네~", mixed: "제대로 돌려주세요. 네~", ja: "きちんと回すようにしてください。はい〜", target: "돌려주세요" },
+      { time: "15:48", speaker: "テロップ", ko: "옆으로 큰 무브", mixed: "옆으로 큰 Move", ja: "横に大きいムーヴ", target: "무브" },
+      { time: "15:52", speaker: "ユジン", ko: "너 약간 직각이 아닌데 이게?", mixed: "너 若干 直角이 아닌데 이게?", ja: "あなた これのときに直角じゃないね？", target: "직각" },
+      { time: "15:57", speaker: "テロップ", ko: "귀에 대는 걸로 결정", mixed: "귀에 대는 걸로 決定", ja: "耳につけることに決定", target: "결정" },
+      { time: "16:03", speaker: "ガウル", ko: "근데 옆줄은 진짜 안 맞는다.", mixed: "근데 옆줄(橫列)은 진짜 안 맞는다.", ja: "でも横列は本当に合わないね", target: "안 맞는다" },
+      { time: "16:07", speaker: "リズ", ko: "내가 너무 힘차게 뒤로 갔나?", mixed: "내가 너무 힘차게 뒤로 갔나?", ja: "私が後ろに行きすぎたかな？", target: "힘차게" },
+      { time: "16:09", speaker: "テロップ", ko: "파워 백스텝", mixed: "Power Backstep", ja: "パワーバックステップ", target: "백스텝" },
+      { time: "16:14", speaker: "テロップ", ko: "무언가 발견한 언니들", mixed: "무언가 發見한 언니들", ja: "何かを発見したお姉さんたち", target: "발견한" },
+      { time: "16:15", speaker: "メンバー", ko: "이게 뭐야 / 죄송해요", mixed: "이게 뭐야 / 罪悚해요", ja: "何これ / ごめんなさい", target: "죄송해요" },
+      { time: "16:16", speaker: "イソ", ko: "제가 워녕이 언니 허벅지 밟은 것 같은데?", mixed: "제가 워녕이 언니 허벅지 밟은 것 같은데?", ja: "私 ウォニョンさんの太ももを踏んじゃった気がします", target: "밟은 것" },
+      { time: "16:23", speaker: "ウォニョン", ko: "나 맨날 누구한테 맞거나 집히거나 골반이 치이거나...", mixed: "나 맨날 누구한테 맞거나 집히거나 骨盤이 치이거나...", ja: "私 毎日誰かに踏まれたり、つねられたり、骨盤を蹴られたり…", target: "골반" },
+      { time: "16:30", speaker: "レイ", ko: "우리가 뒤에서 어떻게 하는지 알아?", mixed: "우리가 뒤에서 어떻게 하는지 알아?", ja: "私たちが後ろでどうしてるか知ってる？", target: "어떻게" },
+      { time: "16:34", speaker: "テロップ", ko: "안무하면서 운동하는 4인 후우~", mixed: "按舞하면서 運動하는 4人 후우~", ja: "振り付けしながら運動する4人 ふう〜", target: "운동하는" },
+      { time: "17:07", speaker: "テロップ", ko: "눈사람 장갑 낀 줄", mixed: "눈사람 掌匣 낀 줄", ja: "雪だるまの手袋はめたかと思った", target: "낀 줄" },
+      { time: "17:10", speaker: "メンバー", ko: "장난감 손 같다", mixed: "作亂감 손 같다", ja: "おもちゃの手みたい", target: "장난감" },
+      { time: "17:22", speaker: "テロップ", ko: "손가락 사이로 얼굴 보여주기", mixed: "손가락 사이로 顔 보여주기", ja: "指の隙間から顔を見せること", target: "손가락" },
+      { time: "17:28", speaker: "テロップ", ko: "어느새 잊힌 퇴근바이브", mixed: "어느새 잊힌 退勤 Vibe", ja: "いつの間にか忘れ去られた退勤バイブ", target: "잊힌" },
+      { time: "17:36", speaker: "テロップ", ko: "리더 유진 출동", mixed: "Leader 유진 出動", ja: "リーダー ユジン出動", target: "출동" },
+      { time: "17:40", speaker: "ユジン", ko: "빗살무늬토기 안 되려면", mixed: "빗살무늬土器 안 되려면", ja: "櫛目文土器にならないためには", target: "되려면" },
+      { time: "17:44", speaker: "ユジン", ko: "리즈를 희생해야 돼", mixed: "리즈를 犧牲해야 돼", ja: "リズを犠牲にしなきゃいけない", target: "희생해야" },
+      { time: "17:46", speaker: "テロップ", ko: "리즈 희생 결정", mixed: "리즈 犧牲 決定", ja: "リズ犠牲決定", target: "희생" },
+      { time: "17:48", speaker: "ウォニョン", ko: "직선만 아니면 되는 거 아니야?", mixed: "直線만 아니면 되는 거 아니야?", ja: "直線でさえなければいいんじゃない？", target: "직선만" },
+      { time: "17:52", speaker: "テロップ", ko: "새로운 안건 제시", mixed: "새로운 案件 提示", ja: "新たな案件提示", target: "안건" },
+      { time: "17:54", speaker: "ガウル", ko: "시안대로 해야지", mixed: "試案대로 해야지", ja: "試案どおりにやらなきゃ", target: "시안대로" },
+      { time: "17:56", speaker: "テロップ", ko: "팽팽한 의견 대립", mixed: "팽팽한 意見 對立", ja: "拮抗した意見対立", target: "대립" },
+      { time: "17:57", speaker: "テロップ", ko: "시안 목격자 리즈 등판", mixed: "試案 目擊者 리즈 登板", ja: "試案目撃者リズ登板", target: "목격자" },
+      { time: "18:01", speaker: "テロップ", ko: "해독 불가의 리즈어", mixed: "解讀 不可의 리즈語", ja: "解読不能のリズ語", target: "해독" },
+      { time: "18:05", speaker: "テロップ", ko: "마에스트로 유진의 지휘", mixed: "Maestro 유진의 指揮", ja: "マエストロユジンの指揮", target: "지휘" },
+      { time: "18:07", speaker: "ユジン", ko: "하나 둘 셋 맞춰봐", mixed: "하나 둘 셋 맞춰봐", ja: "せーの、合わせてみて", target: "맞춰봐" },
+      { time: "18:12", speaker: "テロップ", ko: "토기파 vs 시안파 갈등", mixed: "土器派 vs 試案派 葛藤", ja: "土器派 vs 試案派の葛藤", target: "갈등" },
+      { time: "18:15", speaker: "テロップ", ko: "잊힌 줄 알았던 안건", mixed: "잊힌 줄 알았던 案件", ja: "忘れられたと思っていた案件", target: "알았던" },
+      { time: "18:22", speaker: "テロップ", ko: "가내수공업급 디테일 맞추기", mixed: "家內手工業級 Detail 맞추기", ja: "家内手工業級のディテール合わせ", target: "가내수공업" },
+      { time: "18:30", speaker: "テロップ", ko: "드디어 엔딩 포즈 완성!", mixed: "드디어 Ending Pose 完成!", ja: "ついにエンディングポーズ完成！", target: "완성" },
+      { time: "18:31", speaker: "テロップ", ko: "유행 예감 어때요?", mixed: "流行 豫感 어때요?", ja: "流行の予感 どうですか？", target: "유행" },
+      { time: "18:36", speaker: "テロップ", ko: "달려오는 댕댕이즈", mixed: "달려오는 댕댕이즈", ja: "駆け寄ってくるワンちゃんズ", target: "달려오는" },
+      { time: "18:42", speaker: "テロップ", ko: "사진 들여다보기 지옥", mixed: "寫眞 들여다보기 地獄", ja: "写真を覗き込む地獄", target: "들여다보기" },
+      { time: "18:46", speaker: "テロップ", ko: "끝까지 디테일 놓치지 않는 장인정신", mixed: "끝까지 Detail 놓치지 않는 匠人精神", ja: "最後までディテールを見逃さない職人精神", target: "장인정신" },
+      { time: "18:54", speaker: "テロップ", ko: "작품명: 어때요?", mixed: "作品名: 어때요?", ja: "作品名: どうですか？", target: "작품명" },
+      { time: "19:00", speaker: "テロップ", ko: "진심으로 웃고 있는 완성 컷", mixed: "眞心으로 웃고 있는 完成 Cut", ja: "心から笑っている完成カット", target: "진심으로" },
+      { time: "19:04", speaker: "テロップ", ko: "마침내 쟁취한 퇴근!", mixed: "마침내 爭取한 退勤!", ja: "ついに勝ち取った退勤！", target: "쟁취한" },
+      { time: "19:07", speaker: "全員", ko: "수고하셨습니다~!", mixed: "受苦하셨습니다~!", ja: "お疲れ様でした〜！", target: "수고하셨습니다" }
     ];
 
     // ボスバトル用ステート
@@ -5460,6 +7179,13 @@
     let bossPhase2Questions = [];
 
     function getBossPhase1Items() {
+      if (currentUnitKey === 's2_unit25') {
+        return [
+          { text: "맞춰봐", target: "맞춰봐", alt: "마춰봐", hint: "発音: [마춰봐]（18:07 ユジン指揮・連音化）", dmg: 15 },
+          { text: "목격자", target: "목격자", alt: "목껵짜", hint: "発音: [목껵짜]（17:57 試案目撃者・連続濃音化）", dmg: 15 },
+          { text: "장인정신", target: "장인정신", alt: "장인정신", hint: "発音: [장인정신]（18:46 職人精神・有声連音）", dmg: 20 }
+        ];
+      }
       if (currentUnitKey === 's2_unit11') {
         return [
           { text: "밟다", target: "밟다", alt: "밥따", hint: "発音: [밥따]（二重パッチム音変化）", dmg: 15 },
@@ -5474,6 +7200,37 @@
     }
 
     function getBossPhase2Questions() {
+      if (currentUnitKey === 's2_unit25') {
+        return [
+          {
+            target: "가내수공업",
+            question: "【Target 1】ディテール決戦:『가내수공업』の正しい漢字表記と意味は？",
+            soundText: "가내수공업",
+            hint: "発音: [가내수공업]（18:22 家内手工業級ディテール）",
+            correct: "【家内手工業】",
+            options: ["【家内手工業】", "【機械工業】", "【手芸工房】", "【工場作業】"],
+            dmg: 15
+          },
+          {
+            target: "의견 대립",
+            question: "【Target 2】ディテール決戦:『토기파 vs 시안파의 의견 대립』の正しい意味は？",
+            soundText: "의견 대립",
+            hint: "発音: [의견 대립]（17:56 意見対立）",
+            correct: "【意見対立】",
+            options: ["【意見対立】", "【合意形成】", "【合同練習】", "【意気投合】"],
+            dmg: 15
+          },
+          {
+            target: "쟁취한 퇴근",
+            question: "【Target 3】ディテール決戦:『마침내 쟁취한 퇴근!』の「쟁취」の漢字と意味は？",
+            soundText: "쟁취한 퇴근",
+            hint: "発音: [쟁취한 퇴근]（19:04 爭取＝自ら戦い取ること）",
+            correct: "【爭取（自ら戦って勝ち取ること）】",
+            options: ["【爭取（自ら戦って勝ち取ること）】", "【受取（受け取ること）】", "【就任（仕事に就くこと）】", "【進取（自ら進むこと）】"],
+            dmg: 20
+          }
+        ];
+      }
       if (currentUnitKey === 's2_unit11') {
         return [
           {
@@ -5752,6 +7509,12 @@
 
       // ナビゲーション操作盤（ボタン状態＆カウンター）の更新
       updateNavControls();
+      if (typeof updateSceneAccordionBar === 'function') {
+        updateSceneAccordionBar();
+      }
+      if (typeof markUnitCurrent === 'function') {
+        markUnitCurrent(unitKey);
+      }
 
       // タブのラベルを全シーン・全ユニット共通の美しいテンプレートに一本化
       const tabs = document.querySelectorAll('.tab-button');
@@ -5780,7 +7543,7 @@
         document.getElementById('step-2-panel').style.display = 'none';
         document.getElementById('boss-control-panel').style.display = 'block';
         document.getElementById('phrase-progress').textContent = "BOSS BATTLE";
-        document.getElementById('level-1-title').textContent = (unitKey === 's2_unit11' ? "覚醒ボス戦: シーン2 退勤の門番" : "ボス戦: ディテール地獄の門番");
+        document.getElementById('level-1-title').textContent = (unitKey === 's2_unit25' ? "決戦ボスバトル: シーン2 退勤の門番（最終決戦）" : (unitKey === 's2_unit11' ? "覚醒ボス戦: シーン2 退勤の門番" : "ボス戦: ディテール地獄の門番"));
 
         document.getElementById('level-2-container').innerHTML = data.level2HTML || '';
         document.getElementById('level-3-container').innerHTML = data.level3HTML || '';
@@ -5793,8 +7556,8 @@
         document.getElementById('step-1-panel').style.display = 'none';
         document.getElementById('step-2-panel').style.display = 'none';
         document.getElementById('unit10-lv1-view').style.display = 'block';
-        document.getElementById('phrase-progress').textContent = "全 33 行";
-        document.getElementById('level-1-title').textContent = "レベル 1: 全スクリプト通し学習（通常ハングル）";
+        document.getElementById('phrase-progress').textContent = (currentUnitKey === 's2_unit26' ? "全 48 行" : "全 33 行");
+        document.getElementById('level-1-title').textContent = (currentUnitKey === 's2_unit26' ? "レベル 1: シーン2全編スクリプト通し学習（12:48〜19:08 全48行）" : "レベル 1: 全スクリプト通し学習（通常ハングル）");
 
         renderUnit10();
       } else {
@@ -5849,12 +7612,15 @@
       });
     }
 
-    /* ---------------- Unit 10 専用レンダリング ---------------- */
+    /* ---------------- Unit 10 / Unit 26 復習マスタークラス レンダリング ---------------- */
     function renderUnit10() {
+      const isS2 = (currentUnitKey === 's2_unit26');
+      const script = isS2 ? scene2ScriptData : fullScriptData;
+
       // Lv 1: 通常表記
       const lv1Box = document.getElementById('unit10-script-lv1');
       lv1Box.innerHTML = '';
-      fullScriptData.forEach((row, idx) => {
+      script.forEach((row, idx) => {
         const item = document.createElement('div');
         item.className = 'script-row';
         item.id = `lv1-row-${idx}`;
@@ -5882,7 +7648,7 @@
         <div class="script-list" id="unit10-script-lv2"></div>
       `;
       const lv2Box = document.getElementById('unit10-script-lv2');
-      fullScriptData.forEach((row) => {
+      script.forEach((row) => {
         const item = document.createElement('div');
         item.className = 'script-row';
         item.innerHTML = `
@@ -5890,7 +7656,7 @@
           <div class="time">${row.time}</div>
           <div class="text-box">
             <div class="speaker">${row.speaker}</div>
-            <div class="ko-text" style="color:var(--accent);">${row.mixed}</div>
+            <div class="ko-text" style="color:var(--accent);">${row.mixed || row.ko}</div>
             <div class="ja-text">${row.ja}</div>
           </div>
         `;
@@ -5909,7 +7675,7 @@
         <div class="script-list" id="unit10-script-lv3"></div>
       `;
       const lv3Box = document.getElementById('unit10-script-lv3');
-      fullScriptData.forEach((row, idx) => {
+      script.forEach((row, idx) => {
         const item = document.createElement('div');
         item.className = 'script-row';
         item.id = `eval-row-${idx}`;
@@ -5939,11 +7705,12 @@
     }
 
     function runAutoplayStep() {
-      if (!isAutoplaying || autoplayIdx >= fullScriptData.length) {
+      const script = (currentUnitKey === 's2_unit26') ? scene2ScriptData : fullScriptData;
+      if (!isAutoplaying || autoplayIdx >= script.length) {
         isAutoplaying = false;
         return;
       }
-      const row = fullScriptData[autoplayIdx];
+      const row = script[autoplayIdx];
       const el = document.getElementById(`lv1-row-${autoplayIdx}`);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
@@ -5970,7 +7737,8 @@
       window.speechSynthesis.cancel();
       const rowEl = document.getElementById(`eval-row-${idx}`);
       const statusEl = document.getElementById(`ja-status-${idx}`);
-      const rowData = fullScriptData[idx];
+      const script = (currentUnitKey === 's2_unit26') ? scene2ScriptData : fullScriptData;
+      const rowData = script[idx];
 
       statusEl.textContent = "🎙️ 聞き取り中... 声を出してください";
       statusEl.style.color = "var(--primary)";
@@ -6102,7 +7870,10 @@
       updateBossHpUI();
       renderBossAvatar(false);
       const bossTitle = document.getElementById('boss-title-name');
-      if (currentUnitKey === 's2_unit11') {
+      if (currentUnitKey === 's2_unit25') {
+        if (bossTitle) bossTitle.innerHTML = '👾 ディテール地獄の門番（シーン2 最終決戦版）';
+        document.getElementById('boss-speech-box').textContent = "「完璧なエンディングポーズと退勤バイブでなければ帰さん…！」";
+      } else if (currentUnitKey === 's2_unit11') {
         if (bossTitle) bossTitle.innerHTML = '👾 ディテール地獄の門番（シーン2版）';
         document.getElementById('boss-speech-box').textContent = "「完璧なディテールと角度でなければ退勤させぬ…！」";
       } else {
@@ -6136,9 +7907,11 @@
       const status = document.getElementById('boss-eval-status');
 
       if (bossPhase === 1) {
-        badge.textContent = (currentUnitKey === 's2_unit11') 
-          ? `Phase 1: 発音変化の難所アタック (${bossTurn + 1}/${bossPhase1Items.length})`
-          : `Phase 1: 発音変化・連続攻撃 (${bossTurn + 1}/${bossPhase1Items.length})`;
+        badge.textContent = (currentUnitKey === 's2_unit25')
+          ? `Phase 1: 最終決戦・音変化アタック (${bossTurn + 1}/${bossPhase1Items.length})`
+          : (currentUnitKey === 's2_unit11'
+              ? `Phase 1: 発音変化の難所アタック (${bossTurn + 1}/${bossPhase1Items.length})`
+              : `Phase 1: 発音変化・連続攻撃 (${bossTurn + 1}/${bossPhase1Items.length})`);
         micBox.style.display = 'block';
         quizBox.style.display = 'none';
 
@@ -6152,12 +7925,14 @@
         status.textContent = "お手本を聞いてから「音声アタック」を押してください！";
         status.style.color = "var(--text)";
       } else if (bossPhase === 2) {
-        badge.textContent = (currentUnitKey === 's2_unit11')
-          ? `Phase 2: ディテール大激論の重要ワード (${bossTurn + 1}/${bossPhase2Questions.length})`
-          : `Phase 2: 純粋漢字語ガード (${bossTurn + 1}/${bossPhase2Questions.length})`;
+        badge.textContent = (currentUnitKey === 's2_unit25')
+          ? `Phase 2: ディテール決戦重要ワード (${bossTurn + 1}/${bossPhase2Questions.length})`
+          : (currentUnitKey === 's2_unit11'
+              ? `Phase 2: ディテール大激論の重要ワード (${bossTurn + 1}/${bossPhase2Questions.length})`
+              : `Phase 2: 純粋漢字語ガード (${bossTurn + 1}/${bossPhase2Questions.length})`);
         
-        // s2_unit11では音声アタックとクイズ選択肢の両方で突破可能
-        if (currentUnitKey === 's2_unit11') {
+        // s2_unit11およびs2_unit25では音声アタックとクイズ選択肢の両方で突破可能
+        if (currentUnitKey === 's2_unit11' || currentUnitKey === 's2_unit25') {
           micBox.style.display = 'block';
           quizBox.style.display = 'grid';
         } else {
@@ -6184,11 +7959,20 @@
           quizBox.appendChild(btn);
         });
       } else if (bossPhase === 3) {
-        badge.textContent = (currentUnitKey === 's2_unit11') ? "Phase 3: 最終決意掛け声シンクロ！" : "Phase 3: 最終掛け声シンクロ！";
+        badge.textContent = (currentUnitKey === 's2_unit25')
+          ? "Phase 3: 最終歓喜！退勤叫びシンクロ！"
+          : (currentUnitKey === 's2_unit11' ? "Phase 3: 最終決意掛け声シンクロ！" : "Phase 3: 最終掛け声シンクロ！");
         micBox.style.display = 'block';
         quizBox.style.display = 'none';
 
-        if (currentUnitKey === 's2_unit11') {
+        if (currentUnitKey === 's2_unit25') {
+          box.innerHTML = `
+            🚪 <b>退勤扉の最終開放コード</b>: <span style="font-size:1.3rem; color:var(--primary); font-weight:bold;">수고하셨습니다~!</span>
+            <br>
+            <button class="boss-listen-btn" onclick="playKoreanTTS('수고하셨습니다~!', 1.15)">🔊 掛け声のお手本を聞く</button>
+            <div style="margin-top:6px; font-size:0.85rem; color:var(--text-sub);">全力で「수고하셨습니다~!」と叫び、門番を圧倒してついに退勤せよ！</div>
+          `;
+        } else if (currentUnitKey === 's2_unit11') {
           box.innerHTML = `
             🚪 <b>退勤扉の最終開放コード</b>: <span style="font-size:1.3rem; color:var(--primary); font-weight:bold;">퇴근하자!</span>
             <br>
@@ -6218,7 +8002,13 @@
           if (bossTurn < bossPhase2Questions.length) {
             setupBossPhase();
           } else {
-            if (currentUnitKey === 's2_unit11') {
+            if (currentUnitKey === 's2_unit25') {
+              bossPhase = 3;
+              bossTurn = 0;
+              document.getElementById('boss-speech-box').textContent = "「ば、馬鹿な…家内手工業のディテールまで完璧だと…!? だが最後の退勤挨拶が揃わねば帰さん！」";
+              document.getElementById('boss-next-btn').textContent = "最終フェーズ（退勤叫び）へ突入！ ➔";
+              document.getElementById('boss-next-btn').style.display = 'block';
+            } else if (currentUnitKey === 's2_unit11') {
               // シーン2ボス完全撃破
               damageBoss(bossHp, () => {
                 renderBossAvatar(true);
@@ -6236,6 +8026,9 @@
                   </div>
                 `;
                 document.getElementById('boss-next-btn').style.display = 'none';
+                if (typeof markUnitCompleted === 'function') {
+                  markUnitCompleted(currentUnitKey);
+                }
               });
             } else {
               bossPhase = 3;
@@ -6277,7 +8070,10 @@
           const isMatch = transcript.includes(item.target) || item.target.includes(transcript) ||
             (item.target === '밟다' && (transcript.includes('밥따') || transcript.includes('밟') || transcript.includes('밥') || transcript.includes('발'))) ||
             (item.target === '집히다' && (transcript.includes('지피다') || transcript.includes('집히') || transcript.includes('지피') || transcript.includes('집'))) ||
-            (item.target === '직각' && (transcript.includes('직깍') || transcript.includes('직각')));
+            (item.target === '직각' && (transcript.includes('직깍') || transcript.includes('직각'))) ||
+            (item.target === '맞춰봐' && (transcript.includes('마춰봐') || transcript.includes('맞춰') || transcript.includes('마춰'))) ||
+            (item.target === '목격자' && (transcript.includes('목껵짜') || transcript.includes('목격') || transcript.includes('목껵'))) ||
+            (item.target === '장인정신' && (transcript.includes('장인') || transcript.includes('정신')));
 
           if (isMatch) {
             status.textContent = `命中！大ダメージ！（認識: ${transcript}）`;
@@ -6289,7 +8085,9 @@
               } else {
                 bossPhase = 2;
                 bossTurn = 0;
-                if (currentUnitKey === 's2_unit11') {
+                if (currentUnitKey === 's2_unit25') {
+                  document.getElementById('boss-speech-box').textContent = "「おのれ…最終決戦の音変化（맞춰봐・목격자・장인정신）を突破しただと…!? だがディテール激論の真髄に耐えられるか！」";
+                } else if (currentUnitKey === 's2_unit11') {
                   document.getElementById('boss-speech-box').textContent = "「おのれ…発音変化の難所（밟다・집히다・직각）を見破っただと…!? だがディテール激論ワードの猛攻を防げるか！」";
                 } else {
                   document.getElementById('boss-speech-box').textContent = "「おのれ…発音変化をマスターしているだと…!?」";
@@ -6303,7 +8101,22 @@
             status.style.color = "var(--danger)";
           }
         } else if (bossPhase === 2) {
-          if (currentUnitKey === 's2_unit11') {
+          if (currentUnitKey === 's2_unit25') {
+            const q = bossPhase2Questions[bossTurn];
+            const isMatch = transcript.includes(q.target) || q.target.includes(transcript) ||
+              (q.target === '가내수공업' && (transcript.includes('가내') || transcript.includes('수공업'))) ||
+              (q.target === '의견 대립' && (transcript.includes('의견') || transcript.includes('대립') || transcript.includes('토기파') || transcript.includes('시안파'))) ||
+              (q.target === '쟁취한 퇴근' && (transcript.includes('쟁취') || transcript.includes('퇴근')));
+
+            if (isMatch) {
+              status.textContent = `命中！門番に反撃！（認識: ${transcript}）`;
+              status.style.color = "var(--success)";
+              handleBossQuiz(q.correct, q.correct, q.dmg);
+            } else {
+              status.textContent = `不発！（認識: ${transcript}）正しい発音で言うか選択肢をタップ！`;
+              status.style.color = "var(--danger)";
+            }
+          } else if (currentUnitKey === 's2_unit11') {
             const q = bossPhase2Questions[bossTurn];
             const isMatch = transcript.includes(q.target) || q.target.includes(transcript) ||
               (q.target === '빗살무늬토기' && (transcript.includes('빗살') || transcript.includes('비쌀') || transcript.includes('토기'))) ||
@@ -6320,30 +8133,44 @@
             }
           }
         } else if (bossPhase === 3) {
+          const isS2Final = (currentUnitKey === 's2_unit25');
           const isS2Boss = (currentUnitKey === 's2_unit11');
-          const pass = isS2Boss 
-            ? (transcript.includes("퇴근") || transcript.includes("하자") || transcript.includes("됐다") || transcript.includes("됃따"))
-            : (transcript.includes("아이브") || transcript.includes("아이") || transcript.includes("이브"));
+          const pass = isS2Final
+            ? (transcript.includes("수고") || transcript.includes("하셨습니다") || transcript.includes("퇴근") || transcript.includes("쟁취"))
+            : (isS2Boss 
+                ? (transcript.includes("퇴근") || transcript.includes("하자") || transcript.includes("됐다") || transcript.includes("됃따"))
+                : (transcript.includes("아이브") || transcript.includes("아이") || transcript.includes("이브")));
 
           if (pass) {
             damageBoss(bossHp, () => {
               renderBossAvatar(true);
-              document.getElementById('boss-speech-box').textContent = isS2Boss 
-                ? "「見事だ…！完璧なディテールと角度を認めよう…！全員即退勤！！！」" 
-                : "「門が開いた！ 全員即退勤！！！」";
-              status.textContent = isS2Boss
-                ? "🎉 門番撃破！即退勤成功！シーン2特別特訓＆ボスバトル完全制覇！！"
-                : "🎉 門番撃破！即退勤成功！お疲れ様でした！！";
+              document.getElementById('boss-speech-box').textContent = isS2Final
+                ? "「参った…！家内手工業のディテールと心からの笑顔、そして完璧な退勤を認めよう…！全員即退勤！！！」"
+                : (isS2Boss 
+                    ? "「見事だ…！完璧なディテールと角度を認めよう…！全員即退勤！！！」" 
+                    : "「門が開いた！ 全員即退勤！！！」");
+              status.textContent = isS2Final
+                ? "🎉 門番撃破！即退勤成功！シーン2全編（Part 1〜5）完全制覇！！"
+                : (isS2Boss
+                    ? "🎉 門番撃破！即退勤成功！シーン2特別特訓＆ボスバトル完全制覇！！"
+                    : "🎉 門番撃破！即退勤成功！お疲れ様でした！！");
               status.style.color = "var(--success)";
               document.getElementById('boss-mic-container').style.display = 'none';
-              document.getElementById('boss-instruction-box').innerHTML = isS2Boss
-                ? `🏆 <b>シーン2 特別特訓＆ボスバトル 完全制覇！</b><br>発音変化の難所とディテール重要ワードを全てマスターしました！`
-                : `🏆 <b>退勤ミッション・完全制覇！</b><br>ディテール地獄を完璧に突破しました！`;
+              document.getElementById('boss-instruction-box').innerHTML = isS2Final
+                ? `🏆 <b>シーン2 全編＆最終決戦 完全制覇！</b><br>12:48〜19:08 のすべてのディテール激論を乗り越え、心からの笑顔で退勤を쟁취（勝ち取り）ました！`
+                : (isS2Boss
+                    ? `🏆 <b>シーン2 特別特訓＆ボスバトル 完全制覇！</b><br>発音変化の難所とディテール重要ワードを全てマスターしました！`
+                    : `🏆 <b>退勤ミッション・完全制覇！</b><br>ディテール地獄を完璧に突破しました！`);
+              if (typeof markUnitCompleted === 'function') {
+                markUnitCompleted(currentUnitKey);
+              }
             });
           } else {
-            status.textContent = isS2Boss
-              ? `掛け声が届かない！（認識: ${transcript}）「퇴근하자!」と力強く叫べ！`
-              : `掛け声が揃わない！（認識: ${transcript}）「아이~브!」と叫べ！`;
+            status.textContent = isS2Final
+              ? `掛け声が届かない！（認識: ${transcript}）「수고하셨습니다~!」と力強く叫べ！`
+              : (isS2Boss
+                  ? `掛け声が届かない！（認識: ${transcript}）「퇴근하자!」と力強く叫べ！`
+                  : `掛け声が揃わない！（認識: ${transcript}）「아이~브!」と叫べ！`);
             status.style.color = "var(--danger)";
           }
         }
@@ -6548,7 +8375,7 @@
 
       const bossTargetEl = document.querySelector('#boss-viewport .target-word, #boss-target-word, .boss-target, #step-1-panel [class*="target"]');
       const unitSelect = document.getElementById('unit-select');
-      if ((unitSelect && (unitSelect.value === 'unit9' || unitSelect.value === 's2_unit11')) || (typeof currentUnitKey !== 'undefined' && (currentUnitKey === 'unit9' || currentUnitKey === 's2_unit11'))) {
+      if ((unitSelect && (unitSelect.value === 'unit9' || unitSelect.value === 's2_unit11' || unitSelect.value === 's2_unit25')) || (typeof currentUnitKey !== 'undefined' && (currentUnitKey === 'unit9' || currentUnitKey === 's2_unit11' || currentUnitKey === 's2_unit25'))) {
         const rawText = bossTargetEl ? bossTargetEl.textContent.trim() : "";
         if (rawText) soundText = rawText.replace(/[^가-힣]/g, '');
       }
@@ -6614,10 +8441,10 @@
         let target = (phrases[currentPhraseIdx] && phrases[currentPhraseIdx].targetWord) ? phrases[currentPhraseIdx].targetWord.replace(/\s+/g, '') : '';
         let fullHangul = (phrases[currentPhraseIdx] && phrases[currentPhraseIdx].hangul) ? phrases[currentPhraseIdx].hangul.replace(/[^가-힣0-9]/g, '') : '';
         const unitSelect = document.getElementById('unit-select');
-        if ((unitSelect && (unitSelect.value === 'unit9' || unitSelect.value === 's2_unit11')) || (typeof currentUnitKey !== 'undefined' && (currentUnitKey === 'unit9' || currentUnitKey === 's2_unit11'))) {
+        if ((unitSelect && (unitSelect.value === 'unit9' || unitSelect.value === 's2_unit11' || unitSelect.value === 's2_unit25')) || (typeof currentUnitKey !== 'undefined' && (currentUnitKey === 'unit9' || currentUnitKey === 's2_unit11' || currentUnitKey === 's2_unit25'))) {
           const bossTargetEl = document.querySelector('#boss-viewport .target-word, #boss-target-word, .boss-target, #step-1-panel [class*="target"]');
-          const rawTarget = bossTargetEl ? bossTargetEl.textContent.trim() : (currentUnitKey === 's2_unit11' ? "밟다" : "옆줄");
-          target = rawTarget.replace(/[^가-힣]/g, '') || (currentUnitKey === 's2_unit11' ? "밟다" : "옆줄");
+          const rawTarget = bossTargetEl ? bossTargetEl.textContent.trim() : (currentUnitKey === 's2_unit25' ? "맞춰봐" : (currentUnitKey === 's2_unit11' ? "밟다" : "옆줄"));
+          target = rawTarget.replace(/[^가-힣]/g, '') || (currentUnitKey === 's2_unit25' ? "맞춰봐" : (currentUnitKey === 's2_unit11' ? "밟다" : "옆줄"));
         }
 
         const isMatch = (target && (transcript.includes(target) || target.includes(transcript))) ||
@@ -6625,7 +8452,11 @@
           (target === '밟다' && (transcript.includes('밥따') || transcript.includes('밟') || transcript.includes('밥'))) ||
           (target === '밟았어' && (transcript.includes('발바써') || transcript.includes('밟았'))) ||
           (target === '집히다' && (transcript.includes('지피다') || transcript.includes('집히'))) ||
-          (target === '직각' && (transcript.includes('직깍') || transcript.includes('직각')));
+          (target === '직각' && (transcript.includes('직깍') || transcript.includes('직각'))) ||
+          (target === '맞춰봐' && (transcript.includes('맞춰') || transcript.includes('맞춰봐') || transcript.includes('마춰'))) ||
+          (target === '목격자' && (transcript.includes('목격') || transcript.includes('목격자') || transcript.includes('목껵'))) ||
+          (target === '장인정신' && (transcript.includes('장인') || transcript.includes('정신') || transcript.includes('장인정신'))) ||
+          (target === '수고하셨습니다' && (transcript.includes('수고') || transcript.includes('수고하셨습니다')));
 
         if (isMatch) {
           document.getElementById('character-face').textContent = "😆✨";
@@ -6657,6 +8488,9 @@
         updateLevel1UI();
       } else {
         alert('🎉 全問クリア！ レベル2（本編対話・漢字語編）へ進みましょう！');
+        if (typeof markUnitCompleted === 'function') {
+          markUnitCompleted(currentUnitKey);
+        }
         switchLevel(2);
       }
     }
@@ -6668,17 +8502,357 @@
       }
     }
 
+    /* ---------------- シーン選択アコーディオン・ドロワー制御 ---------------- */
+    let isSceneDrawerOpen = false;
+    function toggleSceneDrawer() {
+      if (isSceneDrawerOpen) {
+        closeSceneDrawer();
+      } else {
+        openSceneDrawer();
+      }
+    }
+
+    function openSceneDrawer() {
+      isSceneDrawerOpen = true;
+      const toggle = document.getElementById('scene-accordion-toggle');
+      const drawer = document.getElementById('scene-drawer-container');
+      if (toggle) toggle.classList.add('is-open');
+      if (drawer) drawer.classList.add('is-open');
+    }
+
+    function closeSceneDrawer() {
+      isSceneDrawerOpen = false;
+      const toggle = document.getElementById('scene-accordion-toggle');
+      const drawer = document.getElementById('scene-drawer-container');
+      if (toggle) toggle.classList.remove('is-open');
+      if (drawer) drawer.classList.remove('is-open');
+    }
+
+    function selectSceneAndClose(sceneOrPartId) {
+      switchScene(sceneOrPartId);
+      closeSceneDrawer();
+    }
+
+    function updateSceneAccordionBar() {
+      const mainId = getMainSceneId(currentUnitKey);
+      const partId = getPartIdForUnit(currentUnitKey);
+      const iconEl = document.getElementById('cur-scene-icon');
+      const titleEl = document.getElementById('cur-scene-title');
+      const badgePillEl = document.getElementById('cur-scene-badge-pill');
+      const partTitleEl = document.getElementById('cur-part-title');
+
+      if (mainId === 'scene1') {
+        if (iconEl) iconEl.textContent = '🌸';
+        if (titleEl) titleEl.textContent = 'シーン 1：かけ声決め＆即退勤';
+        if (badgePillEl) badgePillEl.textContent = '19:15〜21:40';
+        if (partTitleEl) partTitleEl.textContent = '全編（Unit 1〜10）';
+      } else {
+        if (iconEl) iconEl.textContent = '🎀';
+        if (titleEl) titleEl.textContent = 'シーン 2：ダンス＆退勤大討論';
+        if (badgePillEl) badgePillEl.textContent = '12:48〜19:08';
+        const partObj = scene2Parts.find(p => p.id === partId || p.aliasId === partId);
+        if (partTitleEl) partTitleEl.textContent = partObj ? partObj.label : 'Part 1：プリズム＆退勤バイブ';
+      }
+
+      // ドロワー内のアクティブカード・パートハイライト更新
+      const card1 = document.getElementById('btn-scene-1');
+      const card2 = document.getElementById('btn-scene-2');
+      if (card1) card1.classList.toggle('active', mainId === 'scene1');
+      if (card2) card2.classList.toggle('active', mainId === 'scene2');
+
+      document.querySelectorAll('.drawer-part-item').forEach(el => {
+        el.classList.remove('active');
+      });
+      if (partId === 'scene2') {
+        const p1 = document.getElementById('drawer-part-s2p1');
+        if (p1) p1.classList.add('active');
+      } else if (partId === 'scene2_part2') {
+        const p2 = document.getElementById('drawer-part-s2p2');
+        if (p2) p2.classList.add('active');
+      } else if (partId === 'scene2_part3') {
+        const p3 = document.getElementById('drawer-part-s2p3');
+        if (p3) p3.classList.add('active');
+      } else if (partId === 'scene2_part4') {
+        const p4 = document.getElementById('drawer-part-s2p4');
+        if (p4) p4.classList.add('active');
+      } else if (partId === 'scene2_part5') {
+        const p5 = document.getElementById('drawer-part-s2p5');
+        if (p5) p5.classList.add('active');
+      }
+    }
+
+    /* ---------------- 学習進捗管理（LocalStorage） ---------------- */
+    const PROGRESS_KEY = 'chemisso_user_progress_map_v2';
+
+    function loadProgressMap() {
+      try {
+        const stored = localStorage.getItem(PROGRESS_KEY);
+        if (stored) return JSON.parse(stored);
+      } catch (e) {}
+      return { 'unit1': 'current' };
+    }
+
+    function saveProgressMap(map) {
+      try {
+        localStorage.setItem(PROGRESS_KEY, JSON.stringify(map));
+      } catch (e) {}
+    }
+
+    function getUnitStatus(unitKey) {
+      const map = loadProgressMap();
+      return map[unitKey] || 'unopened';
+    }
+
+    function markUnitCurrent(unitKey) {
+      const map = loadProgressMap();
+      if (map[unitKey] !== 'completed') {
+        map[unitKey] = 'current';
+        saveProgressMap(map);
+      }
+    }
+
+    function markUnitCompleted(unitKey) {
+      const map = loadProgressMap();
+      map[unitKey] = 'completed';
+      saveProgressMap(map);
+      updateRoadmapProgressStats();
+      showToast('🎉 ユニット完了！進捗を記録しました');
+    }
+
+    function toggleUnitCompleted(unitKey, e) {
+      if (e) e.stopPropagation();
+      const map = loadProgressMap();
+      if (map[unitKey] === 'completed') {
+        map[unitKey] = (unitKey === currentUnitKey) ? 'current' : 'unopened';
+        showToast('ステータスを更新しました');
+      } else {
+        map[unitKey] = 'completed';
+        showToast('🎉 ユニット完了に設定しました！');
+      }
+      saveProgressMap(map);
+      renderRoadmapContent();
+    }
+
+    function resetProgress() {
+      if (confirm('学習進捗をリセットしますか？')) {
+        localStorage.removeItem(PROGRESS_KEY);
+        saveProgressMap({ [currentUnitKey]: 'current' });
+        renderRoadmapContent();
+        showToast('進捗をリセットしました');
+      }
+    }
+
+    /* ---------------- ロードマップ・全体目次モーダル ---------------- */
+    let roadmapFilter = 'all'; // 'all' | 'completed' | 'learning'
+
+    function openRoadmapModal() {
+      const modal = document.getElementById('roadmap-modal');
+      if (!modal) return;
+      modal.style.display = 'flex';
+      requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+      });
+      renderRoadmapContent();
+    }
+
+    function closeRoadmapModal() {
+      const modal = document.getElementById('roadmap-modal');
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 250);
+    }
+
+    function handleRoadmapOverlayClick(e) {
+      if (e.target && e.target.id === 'roadmap-modal') {
+        closeRoadmapModal();
+      }
+    }
+
+    function setRoadmapFilter(filter) {
+      roadmapFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === filter);
+      });
+      renderRoadmapContent();
+    }
+
+    function jumpToUnitFromRoadmap(unitKey) {
+      closeRoadmapModal();
+      switchUnit(unitKey);
+      const data = unitsData[unitKey];
+      const name = data ? data.subtitle : unitKey;
+      showToast(`📖 ${name} へジャンプしました！`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showToast(msg) {
+      let toast = document.getElementById('chemisso-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'chemisso-toast';
+        toast.className = 'chemisso-toast';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.classList.add('is-show');
+      setTimeout(() => {
+        toast.classList.remove('is-show');
+      }, 2400);
+    }
+
+    function updateRoadmapProgressStats() {
+      const map = loadProgressMap();
+      const allKeys = [...scene1Units.map(u => u.value), ...scene2AllUnits.map(u => u.value)];
+      const total = allKeys.length; // 36
+      let completedCount = 0;
+      let currentCount = 0;
+      let unopenedCount = 0;
+
+      allKeys.forEach(k => {
+        const st = map[k] || 'unopened';
+        if (st === 'completed') completedCount++;
+        else if (st === 'current') currentCount++;
+        else unopenedCount++;
+      });
+
+      const percent = Math.round((completedCount / total) * 100);
+
+      const percentEl = document.getElementById('roadmap-progress-percent');
+      const fillEl = document.getElementById('roadmap-progress-fill');
+      const compEl = document.getElementById('stat-completed-count');
+      const curEl = document.getElementById('stat-current-count');
+      const unEl = document.getElementById('stat-unopened-count');
+
+      if (percentEl) percentEl.textContent = `${percent}%`;
+      if (fillEl) fillEl.style.width = `${percent}%`;
+      if (compEl) compEl.textContent = completedCount;
+      if (curEl) curEl.textContent = currentCount;
+      if (unEl) unEl.textContent = unopenedCount;
+    }
+
+    function renderRoadmapContent() {
+      updateRoadmapProgressStats();
+      const container = document.getElementById('roadmap-tree-content');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const map = loadProgressMap();
+
+      // シーン1 セクション
+      const s1Filtered = scene1Units.filter(u => {
+        const st = map[u.value] || 'unopened';
+        if (roadmapFilter === 'completed') return st === 'completed';
+        if (roadmapFilter === 'learning') return st !== 'completed';
+        return true;
+      });
+
+      if (s1Filtered.length > 0 || roadmapFilter === 'all') {
+        const s1Sec = document.createElement('div');
+        s1Sec.className = 'roadmap-scene-section';
+        s1Sec.innerHTML = `
+          <div class="roadmap-scene-header">
+            <h3><span>🌸</span> シーン 1：かけ声決め＆即退勤</h3>
+            <span class="roadmap-scene-badge">19:15〜21:40 (10 Units)</span>
+          </div>
+          <div class="roadmap-unit-grid" id="roadmap-s1-grid"></div>
+        `;
+        const grid1 = s1Sec.querySelector('#roadmap-s1-grid');
+        s1Filtered.forEach((u) => {
+          grid1.appendChild(createRoadmapUnitCard(u.value, u.label, map));
+        });
+        container.appendChild(s1Sec);
+      }
+
+      // シーン2 セクション
+      const s2Sec = document.createElement('div');
+      s2Sec.className = 'roadmap-scene-section';
+      s2Sec.innerHTML = `
+        <div class="roadmap-scene-header">
+          <h3><span>🎀</span> シーン 2：ダンス＆退勤大討論</h3>
+          <span class="roadmap-scene-badge">12:48〜19:08 (26 Units)</span>
+        </div>
+        <div id="roadmap-s2-parts-container"></div>
+      `;
+      const partsContainer = s2Sec.querySelector('#roadmap-s2-parts-container');
+      let s2HasAny = false;
+
+      scene2Parts.forEach(part => {
+        const partFiltered = part.units.filter(u => {
+          const st = map[u.value] || 'unopened';
+          if (roadmapFilter === 'completed') return st === 'completed';
+          if (roadmapFilter === 'learning') return st !== 'completed';
+          return true;
+        });
+
+        if (partFiltered.length > 0) {
+          s2HasAny = true;
+          const partGroup = document.createElement('div');
+          partGroup.className = 'roadmap-part-group';
+          partGroup.innerHTML = `
+            <div class="roadmap-part-title">
+              <span>🎬</span> ${part.label}
+            </div>
+            <div class="roadmap-unit-grid"></div>
+          `;
+          const pGrid = partGroup.querySelector('.roadmap-unit-grid');
+          partFiltered.forEach(u => {
+            pGrid.appendChild(createRoadmapUnitCard(u.value, u.label, map));
+          });
+          partsContainer.appendChild(partGroup);
+        }
+      });
+
+      if (s2HasAny || roadmapFilter === 'all') {
+        container.appendChild(s2Sec);
+      }
+    }
+
+    function createRoadmapUnitCard(unitKey, label, map) {
+      const card = document.createElement('div');
+      const st = map[unitKey] || 'unopened';
+      const isCur = (unitKey === currentUnitKey);
+
+      card.className = `roadmap-unit-card ${isCur ? 'is-current' : ''} ${st === 'completed' ? 'is-completed' : ''}`;
+      card.onclick = () => jumpToUnitFromRoadmap(unitKey);
+
+      let statusBadgeHTML = '';
+      if (st === 'completed') {
+        statusBadgeHTML = `<span class="unit-card-status-pill completed" onclick="toggleUnitCompleted('${unitKey}', event)" title="クリックで未完了に戻す">🟢 完了 ✓</span>`;
+      } else if (isCur || st === 'current') {
+        statusBadgeHTML = `<span class="unit-card-status-pill current" onclick="toggleUnitCompleted('${unitKey}', event)" title="クリックで完了にする">🟡 挑戦中</span>`;
+      } else {
+        statusBadgeHTML = `<span class="unit-card-status-pill unopened" onclick="toggleUnitCompleted('${unitKey}', event)" title="クリックで完了にする">⚪️ 未着手</span>`;
+      }
+
+      // Unitキーの短縮表示
+      const displayKey = unitKey.startsWith('s2_unit') 
+        ? `S2-U${unitKey.replace('s2_unit', '')}` 
+        : `S1-U${unitKey.replace('unit', '')}`;
+
+      card.innerHTML = `
+        <div class="unit-card-top-row">
+          <span class="unit-card-key-badge">${displayKey}</span>
+          ${statusBadgeHTML}
+        </div>
+        <div class="unit-card-title">${label}</div>
+        <div class="unit-card-jump-btn">学習する ➔</div>
+      `;
+      return card;
+    }
+
     // シーン＆パート選択イベントリスナーの確実な初期化（onclick属性とaddEventListener両立）
     function initNavigationEventListeners() {
       const btn1 = document.getElementById('btn-scene-1') || document.getElementById('btn-scene-main1') || document.getElementById('btn-scene1');
       if (btn1) {
-        btn1.onclick = () => switchScene('scene1');
-        btn1.addEventListener('click', () => switchScene('scene1'));
+        btn1.onclick = () => selectSceneAndClose('scene1');
+        btn1.addEventListener('click', () => selectSceneAndClose('scene1'));
       }
       const btn2 = document.getElementById('btn-scene-2') || document.getElementById('btn-scene-main2') || document.getElementById('btn-scene2');
       if (btn2) {
-        btn2.onclick = () => switchScene('scene2');
-        btn2.addEventListener('click', () => switchScene('scene2'));
+        btn2.onclick = () => selectSceneAndClose('scene2');
+        btn2.addEventListener('click', () => selectSceneAndClose('scene2'));
       }
       const partSelect = document.getElementById('scene-part-select');
       if (partSelect) {
@@ -6690,6 +8864,14 @@
         unitSelect.onchange = (e) => switchUnit(e.target.value);
         unitSelect.addEventListener('change', (e) => switchUnit(e.target.value));
       }
+
+      // Escキーでモーダル・ドロワーを閉じる
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeRoadmapModal();
+          closeSceneDrawer();
+        }
+      });
     }
 
     if (document.readyState === 'loading') {
@@ -6701,5 +8883,57 @@
     // 初期起動時（シーン1の初期ユニット・ナビゲーションをセットアップ）
     switchScene('scene1');
   </script>
+
+  <!-- 全体目次（学習ロードマップ）モーダル -->
+  <div class="roadmap-modal-overlay" id="roadmap-modal" style="display: none;" onclick="handleRoadmapOverlayClick(event)">
+    <div class="roadmap-modal-container" onclick="event.stopPropagation()">
+      <div class="roadmap-modal-header">
+        <div class="modal-title-group">
+          <h2>🗺️ 学習ロードマップ（全体目次）</h2>
+          <p>全36ユニット（シーン1: 10 / シーン2: 26）の学習マップ＆進捗管理</p>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeRoadmapModal()" title="閉じる">✕</button>
+      </div>
+
+      <!-- 全体進捗バーカード -->
+      <div class="roadmap-progress-card">
+        <div class="progress-info-row">
+          <span class="progress-title">📊 全体学習進捗</span>
+          <span class="progress-percent" id="roadmap-progress-percent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar-fill" id="roadmap-progress-fill" style="width: 0%;"></div>
+        </div>
+        <div class="progress-stats-row">
+          <div class="stat-pill completed"><span class="dot">🟢</span> 完了: <b id="stat-completed-count">0</b>/36</div>
+          <div class="stat-pill current"><span class="dot">🟡</span> 挑戦中: <b id="stat-current-count">1</b></div>
+          <div class="stat-pill unopened"><span class="dot">⚪️</span> 未着手: <b id="stat-unopened-count">35</b></div>
+        </div>
+        <div class="progress-filter-row">
+          <div class="filter-btn-group">
+            <button type="button" class="filter-btn active" data-filter="all" onclick="setRoadmapFilter('all')">すべて (36)</button>
+            <button type="button" class="filter-btn" data-filter="completed" onclick="setRoadmapFilter('completed')">🟢 完了</button>
+            <button type="button" class="filter-btn" data-filter="learning" onclick="setRoadmapFilter('learning')">🟡 挑戦中・未着手</button>
+          </div>
+          <button type="button" class="reset-progress-btn" onclick="resetProgress()" title="進捗をリセット">リセット</button>
+        </div>
+      </div>
+
+      <!-- 目次ツリーコンテンツ -->
+      <div class="roadmap-tree-content" id="roadmap-tree-content">
+        <!-- JSで動的レンダリング -->
+      </div>
+
+      <div class="roadmap-modal-footer">
+        <button type="button" class="btn btn-secondary modal-footer-close" onclick="closeRoadmapModal()">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- フローティング目次ボタン（常設） -->
+  <button type="button" class="floating-roadmap-btn" id="floating-roadmap-btn" onclick="openRoadmapModal()" title="全体目次を開く">
+    <span class="float-icon">🗺️</span>
+    <span class="float-text">目次</span>
+  </button>
 </body>
 </html>
